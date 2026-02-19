@@ -38,7 +38,7 @@ export const CategoryPage = () => {
         {title}
       </h1>
       <p className="text-gray-400 mb-6">
-        Danh sách {title} mới nhất, cập nhật liên tục
+        Danh sách {title.toLowerCase()} mới nhất, cập nhật liên tục
       </p>
 
       <MovieFilter filters={filters} onChange={handleFilterChange} />
