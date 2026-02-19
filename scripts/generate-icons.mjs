@@ -23,7 +23,7 @@ function regularIconSvg(size) {
   <g transform="translate(${pad},${pad})">
     <rect width="${s}" height="${s}" rx="${r}" fill="#E50914"/>
     ${filmPerfs(scale, s)}
-    <polygon points="${13 * scale},${9 * scale} ${25 * scale},${16 * scale} ${13 * scale},${23 * scale}" fill="white"/>
+    <polygon points="${12 * scale},${9 * scale} ${22 * scale},${16 * scale} ${12 * scale},${23 * scale}" fill="white"/>
   </g>
 </svg>`;
 }
@@ -40,7 +40,7 @@ function maskableIconSvg(size) {
   <rect width="${size}" height="${size}" fill="#E50914"/>
   <g transform="translate(${safeInset},${safeInset})">
     ${filmPerfs(innerScale, safeSize)}
-    <polygon points="${13 * innerScale},${9 * innerScale} ${25 * innerScale},${16 * innerScale} ${13 * innerScale},${23 * innerScale}" fill="white"/>
+    <polygon points="${12 * innerScale},${9 * innerScale} ${22 * innerScale},${16 * innerScale} ${12 * innerScale},${23 * innerScale}" fill="white"/>
   </g>
 </svg>`;
 }

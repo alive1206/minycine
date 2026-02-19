@@ -15,6 +15,8 @@ import {
   List,
   RotateCcw,
   RotateCw,
+  Sun,
+  Volume1,
 } from "lucide-react";
 
 interface VideoPlayerProps {
@@ -39,6 +41,10 @@ const formatTime = (sec: number) => {
   return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
 };
 
+const DOUBLE_TAP_DELAY = 300;
+const SEEK_SECONDS = 5;
+const SWIPE_THRESHOLD = 10;
+
 export const VideoPlayer = ({
   src,
   title,
@@ -61,7 +67,7 @@ export const VideoPlayer = ({
   const initialTimeApplied = useRef(false);
 
   const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -76,12 +82,60 @@ export const VideoPlayer = ({
   const [showSettings, setShowSettings] = useState(false);
   const [isPiP, setIsPiP] = useState(false);
 
+  // ─── Seek preview state ───────────────────────────────────
+  const [seekPreview, setSeekPreview] = useState<{
+    time: number;
+    percent: number;
+  } | null>(null);
+  const isSeeking = useRef(false);
+
+  // ─── Gesture states ───────────────────────────────────────
+  const [seekIndicator, setSeekIndicator] = useState<{
+    side: "left" | "right";
+    seconds: number;
+  } | null>(null);
+  const [gestureIndicator, setGestureIndicator] = useState<{
+    type: "volume" | "brightness";
+    value: number;
+  } | null>(null);
+  const [brightness, setBrightness] = useState(1);
+
+  // Refs for gesture tracking
+  const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastTapTimeRef = useRef(0);
+  const lastTapXRef = useRef(0);
+  const touchStartRef = useRef<{
+    x: number;
+    y: number;
+    time: number;
+    side: "left" | "right";
+  } | null>(null);
+  const isSwipingRef = useRef(false);
+  const swipeStartVolumeRef = useRef(1);
+  const swipeStartBrightnessRef = useRef(1);
+  const seekIndicatorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const gestureIndicatorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+
   // ─── HLS setup ────────────────────────────────────────────
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !src) return;
 
     const isM3u8 = src.includes(".m3u8");
+
+    const tryPlayUnmuted = (v: HTMLVideoElement) => {
+      v.muted = false;
+      v.play().catch(() => {
+        // Autoplay blocked without mute — fall back to muted
+        v.muted = true;
+        setMuted(true);
+        v.play().catch(() => {});
+      });
+    };
 
     if (isM3u8 && Hls.isSupported()) {
       const hls = new Hls({
@@ -101,8 +155,7 @@ export const VideoPlayer = ({
         setQualities(q);
         setCurrentQuality(-1);
         setLoading(false);
-        video.muted = true;
-        video.play().catch(() => {});
+        tryPlayUnmuted(video);
       });
 
       hls.on(Hls.Events.ERROR, (_event, data) => {
@@ -122,8 +175,7 @@ export const VideoPlayer = ({
     } else if (isM3u8 && video.canPlayType("application/vnd.apple.mpegurl")) {
       // Native HLS (Safari)
       video.src = src;
-      video.muted = true;
-      video.play().catch(() => {});
+      tryPlayUnmuted(video);
       queueMicrotask(() => setLoading(false));
     } else {
       // Direct MP4 or embed fallback
@@ -321,21 +373,74 @@ export const VideoPlayer = ({
     return () => window.removeEventListener("keydown", handleKey);
   }, [duration, resetHideTimer, toggleFullscreen]);
 
-  // ─── Seek ─────────────────────────────────────────────────
+  // ─── Seek helpers ─────────────────────────────────────────
+  const getRatioFromX = useCallback((clientX: number) => {
+    const bar = seekBarRef.current;
+    if (!bar) return 0;
+    const rect = bar.getBoundingClientRect();
+    return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  }, []);
+
   const handleSeek = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const video = videoRef.current;
-      const bar = seekBarRef.current;
-      if (!video || !bar || !duration) return;
-      const rect = bar.getBoundingClientRect();
-      const ratio = Math.max(
-        0,
-        Math.min(1, (e.clientX - rect.left) / rect.width),
-      );
+      if (!video || !duration) return;
+      const ratio = getRatioFromX(e.clientX);
       video.currentTime = ratio * duration;
       resetHideTimer();
     },
-    [duration, resetHideTimer],
+    [duration, resetHideTimer, getRatioFromX],
+  );
+
+  // ─── Seek bar hover preview (desktop) ─────────────────────
+  const handleSeekHover = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!duration) return;
+      const ratio = getRatioFromX(e.clientX);
+      setSeekPreview({ time: ratio * duration, percent: ratio * 100 });
+    },
+    [duration, getRatioFromX],
+  );
+
+  const handleSeekLeave = useCallback(() => {
+    if (!isSeeking.current) setSeekPreview(null);
+  }, []);
+
+  // ─── Seek bar touch drag (mobile) ─────────────────────────
+  const handleSeekTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+      if (!duration) return;
+      isSeeking.current = true;
+      const ratio = getRatioFromX(e.touches[0].clientX);
+      setSeekPreview({ time: ratio * duration, percent: ratio * 100 });
+    },
+    [duration, getRatioFromX],
+  );
+
+  const handleSeekTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+      if (!duration || !isSeeking.current) return;
+      const ratio = getRatioFromX(e.touches[0].clientX);
+      setSeekPreview({ time: ratio * duration, percent: ratio * 100 });
+    },
+    [duration, getRatioFromX],
+  );
+
+  const handleSeekTouchEnd = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+      if (!duration || !isSeeking.current) return;
+      const video = videoRef.current;
+      if (video && seekPreview) {
+        video.currentTime = seekPreview.time;
+      }
+      isSeeking.current = false;
+      setSeekPreview(null);
+      resetHideTimer();
+    },
+    [duration, seekPreview, resetHideTimer],
   );
 
   // ─── Quality change ──────────────────────────────────────
@@ -366,31 +471,211 @@ export const VideoPlayer = ({
     setMuted(video.muted);
   }, []);
 
+  // ─── Show seek indicator ─────────────────────────────────
+  const showSeekFeedback = useCallback(
+    (side: "left" | "right", seconds: number) => {
+      if (seekIndicatorTimerRef.current)
+        clearTimeout(seekIndicatorTimerRef.current);
+      setSeekIndicator({ side, seconds });
+      seekIndicatorTimerRef.current = setTimeout(() => {
+        setSeekIndicator(null);
+      }, 600);
+    },
+    [],
+  );
+
+  // ─── Show gesture indicator ──────────────────────────────
+  const showGestureFeedback = useCallback(
+    (type: "volume" | "brightness", value: number) => {
+      if (gestureIndicatorTimerRef.current)
+        clearTimeout(gestureIndicatorTimerRef.current);
+      setGestureIndicator({ type, value });
+      gestureIndicatorTimerRef.current = setTimeout(() => {
+        setGestureIndicator(null);
+      }, 800);
+    },
+    [],
+  );
+
+  // ─── Touch gestures (mobile) ──────────────────────────────
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      // Don't intercept touches on control buttons
+      const target = e.target as HTMLElement;
+      if (target.closest(".player-controls-area") || target.closest("button"))
+        return;
+
+      const touch = e.touches[0];
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const relativeX = touch.clientX - rect.left;
+      const side: "left" | "right" =
+        relativeX < rect.width / 2 ? "left" : "right";
+
+      touchStartRef.current = {
+        x: touch.clientX,
+        y: touch.clientY,
+        time: Date.now(),
+        side,
+      };
+      isSwipingRef.current = false;
+      swipeStartVolumeRef.current = volume;
+      swipeStartBrightnessRef.current = brightness;
+    },
+    [volume, brightness],
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(".player-controls-area") || target.closest("button"))
+        return;
+
+      const start = touchStartRef.current;
+      if (!start) return;
+
+      const touch = e.touches[0];
+      const deltaY = start.y - touch.clientY; // positive = up
+      const deltaX = Math.abs(touch.clientX - start.x);
+
+      // Only activate vertical swipe if vertical movement exceeds threshold and is greater than horizontal
+      if (Math.abs(deltaY) < SWIPE_THRESHOLD || deltaX > Math.abs(deltaY))
+        return;
+
+      isSwipingRef.current = true;
+      e.preventDefault();
+
+      const container = containerRef.current;
+      if (!container) return;
+      const containerHeight = container.getBoundingClientRect().height;
+      // Sensitivity: full swipe across container height = 1.0 range change
+      const delta = deltaY / containerHeight;
+
+      if (start.side === "right") {
+        // Volume: swipe up = louder
+        const video = videoRef.current;
+        if (!video) return;
+        const newVol = Math.max(
+          0,
+          Math.min(1, swipeStartVolumeRef.current + delta),
+        );
+        video.volume = newVol;
+        video.muted = newVol === 0;
+        setVolume(newVol);
+        setMuted(newVol === 0);
+        showGestureFeedback("volume", newVol);
+      } else {
+        // Brightness: swipe up = brighter
+        const newBrightness = Math.max(
+          0.2,
+          Math.min(2, swipeStartBrightnessRef.current + delta),
+        );
+        setBrightness(newBrightness);
+        if (videoRef.current) {
+          videoRef.current.style.filter = `brightness(${newBrightness})`;
+        }
+        showGestureFeedback("brightness", newBrightness);
+      }
+    },
+    [showGestureFeedback],
+  );
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(".player-controls-area") || target.closest("button"))
+        return;
+
+      // If it was a swipe gesture, don't process as tap
+      if (isSwipingRef.current) {
+        touchStartRef.current = null;
+        isSwipingRef.current = false;
+        return;
+      }
+
+      touchStartRef.current = null;
+
+      // Double-tap detection
+      const now = Date.now();
+      const touch = e.changedTouches[0];
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const relativeX = touch.clientX - rect.left;
+      const side: "left" | "right" =
+        relativeX < rect.width / 2 ? "left" : "right";
+
+      if (now - lastTapTimeRef.current < DOUBLE_TAP_DELAY) {
+        // Double tap detected — cancel pending single-tap
+        if (tapTimerRef.current) {
+          clearTimeout(tapTimerRef.current);
+          tapTimerRef.current = null;
+        }
+
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (side === "right") {
+          video.currentTime = Math.min(
+            duration,
+            video.currentTime + SEEK_SECONDS,
+          );
+          showSeekFeedback("right", SEEK_SECONDS);
+        } else {
+          video.currentTime = Math.max(0, video.currentTime - SEEK_SECONDS);
+          showSeekFeedback("left", -SEEK_SECONDS);
+        }
+        resetHideTimer();
+        lastTapTimeRef.current = 0;
+      } else {
+        // Single tap — delay to check for double-tap
+        lastTapTimeRef.current = now;
+        lastTapXRef.current = relativeX;
+        tapTimerRef.current = setTimeout(() => {
+          togglePlayPause();
+          tapTimerRef.current = null;
+        }, DOUBLE_TAP_DELAY);
+      }
+    },
+    [duration, resetHideTimer, togglePlayPause, showSeekFeedback],
+  );
+
+  // ─── Desktop click handler ────────────────────────────────
+  const handleVideoClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      // Don't toggle on control area clicks
+      if (target.closest(".player-controls-area") || target.closest("button"))
+        return;
+      // On touch devices the touch handler manages this
+      if ("ontouchstart" in window) return;
+      togglePlayPause();
+    },
+    [togglePlayPause],
+  );
+
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
   const bufferedPercent = duration > 0 ? (buffered / duration) * 100 : 0;
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full bg-black group"
+      className="relative w-full h-full bg-black group select-none"
       onMouseMove={resetHideTimer}
-      onClick={(e) => {
-        // Toggle play/pause on video area click (not on controls)
-        if (
-          e.target === videoRef.current ||
-          (e.target as HTMLElement).closest(".video-click-area")
-        ) {
-          togglePlayPause();
-        }
-      }}
+      onClick={handleVideoClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <video
         ref={videoRef}
         className="w-full h-full"
         playsInline
         autoPlay
-        muted
-        onClick={togglePlayPause}
+        style={{ filter: `brightness(${brightness})` }}
       />
 
       {/* Loading spinner */}
@@ -400,14 +685,74 @@ export const VideoPlayer = ({
         </div>
       )}
 
-      {/* Controls overlay */}
+      {/* ─── Seek indicator (double-tap feedback) ─── */}
+      {seekIndicator && (
+        <div
+          className={`absolute top-0 bottom-0 flex items-center justify-center pointer-events-none z-30 animate-seek-fade ${
+            seekIndicator.side === "left" ? "left-0 w-1/3" : "right-0 w-1/3"
+          }`}
+        >
+          <div className="flex flex-col items-center gap-1 bg-black/40 rounded-full px-5 py-3 backdrop-blur-sm">
+            {seekIndicator.side === "left" ? (
+              <RotateCcw className="w-7 h-7 text-white" />
+            ) : (
+              <RotateCw className="w-7 h-7 text-white" />
+            )}
+            <span className="text-white text-sm font-semibold">
+              {seekIndicator.seconds > 0 ? "+" : ""}
+              {seekIndicator.seconds}s
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* ─── Volume / Brightness gesture indicator ─── */}
+      {gestureIndicator && (
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 pointer-events-none z-30 ${
+            gestureIndicator.type === "volume" ? "right-8" : "left-8"
+          }`}
+        >
+          <div className="flex flex-col items-center gap-2 bg-black/50 rounded-xl px-3 py-4 backdrop-blur-sm">
+            {gestureIndicator.type === "volume" ? (
+              gestureIndicator.value === 0 ? (
+                <VolumeX className="w-5 h-5 text-white" />
+              ) : (
+                <Volume1 className="w-5 h-5 text-white" />
+              )
+            ) : (
+              <Sun className="w-5 h-5 text-white" />
+            )}
+            {/* Vertical bar */}
+            <div className="relative w-1 h-24 bg-white/20 rounded-full overflow-hidden">
+              <div
+                className="absolute bottom-0 left-0 w-full bg-white rounded-full transition-all duration-100"
+                style={{
+                  height: `${
+                    gestureIndicator.type === "volume"
+                      ? gestureIndicator.value * 100
+                      : ((gestureIndicator.value - 0.2) / 1.8) * 100
+                  }%`,
+                }}
+              />
+            </div>
+            <span className="text-white text-xs font-medium">
+              {gestureIndicator.type === "volume"
+                ? `${Math.round(gestureIndicator.value * 100)}%`
+                : `${Math.round(gestureIndicator.value * 100)}%`}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Controls overlay — pointer-events-none so taps pass through to video */}
       <div
-        className={`absolute inset-0 flex flex-col justify-end transition-opacity duration-300 z-20 ${
-          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`absolute inset-0 flex flex-col justify-end transition-opacity duration-300 z-20 pointer-events-none ${
+          showControls ? "opacity-100" : "opacity-0"
         }`}
       >
         {/* Top gradient + title */}
-        <div className="absolute top-0 left-0 right-0 bg-linear-to-b from-black/70 to-transparent p-4 flex items-start justify-between">
+        <div className="player-controls-area absolute top-0 left-0 right-0 bg-linear-to-b from-black/70 to-transparent p-4 flex items-start justify-between pointer-events-auto">
           {title ? (
             <h3 className="text-white text-sm font-medium truncate pr-2">
               {title}
@@ -423,18 +768,23 @@ export const VideoPlayer = ({
               title="Danh sách tập"
             >
               <List className="w-4 h-4" />
-              <span className="hidden sm:inline">DS Tập</span>
+              <span className="hidden">DS Tập</span>
             </button>
           )}
         </div>
 
         {/* Bottom controls */}
-        <div className="bg-linear-to-t from-black/80 to-transparent pt-12 pb-3 px-4">
+        <div className="player-controls-area bg-linear-to-t from-black/80 to-transparent pt-12 pb-3 px-4 pointer-events-auto">
           {/* Seek bar */}
           <div
             ref={seekBarRef}
             className="relative h-1.5 bg-white/20 rounded-full cursor-pointer mb-3 group/seek hover:h-2.5 transition-all"
             onClick={handleSeek}
+            onMouseMove={handleSeekHover}
+            onMouseLeave={handleSeekLeave}
+            onTouchStart={handleSeekTouchStart}
+            onTouchMove={handleSeekTouchMove}
+            onTouchEnd={handleSeekTouchEnd}
           >
             {/* Buffered */}
             <div
@@ -444,16 +794,32 @@ export const VideoPlayer = ({
             {/* Progress */}
             <div
               className="absolute top-0 left-0 h-full bg-primary rounded-full"
-              style={{ width: `${progress}%` }}
+              style={{
+                width: `${seekPreview ? seekPreview.percent : progress}%`,
+              }}
             />
             {/* Thumb */}
             <div
               className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-primary rounded-full shadow-md opacity-0 group-hover/seek:opacity-100 transition-opacity"
               style={{
-                left: `${progress}%`,
+                left: `${seekPreview ? seekPreview.percent : progress}%`,
                 transform: `translate(-50%, -50%)`,
               }}
             />
+            {/* Preview tooltip */}
+            {seekPreview && (
+              <div
+                className="absolute -top-9 pointer-events-none"
+                style={{
+                  left: `${seekPreview.percent}%`,
+                  transform: `translateX(-50%)`,
+                }}
+              >
+                <div className="bg-black/85 text-white text-xs font-mono px-2 py-1 rounded shadow-lg backdrop-blur-sm whitespace-nowrap">
+                  {formatTime(seekPreview.time)}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Control buttons */}
@@ -539,8 +905,6 @@ export const VideoPlayer = ({
             </span>
 
             <div className="flex-1" />
-
-            {/* Episode list button moved to top-right */}
 
             {/* Quality settings */}
             {qualities.length > 0 && (

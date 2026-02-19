@@ -95,7 +95,7 @@ export const Logo = ({ size = "lg" }: LogoProps) => {
         />
 
         {/* Play triangle */}
-        <path d="M15 11L26 18L15 25V11Z" fill="white" />
+        <path d="M14 11L24 18L14 25V11Z" fill="white" />
       </svg>
       <span className={`${text} font-black tracking-tight text-white`}>
         Miny<span className="text-primary">Cine</span>

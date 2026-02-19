@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#000"/>
+  <g transform="translate(31,31)">
+    <rect width="450" height="450" rx="99" fill="#E50914"/>
+    <rect x="42.1875" y="70.3125" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="372.65625" y="70.3125" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="42.1875" y="154.6875" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="372.65625" y="154.6875" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="42.1875" y="239.0625" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="372.65625" y="239.0625" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="42.1875" y="323.4375" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <rect x="372.65625" y="323.4375" width="35.15625" height="35.15625" rx="7.03125" fill="rgba(0,0,0,0.3)"/>
+    <polygon points="168.75,126.5625 309.375,225 168.75,323.4375" fill="white"/>
+  </g>
+</svg>
