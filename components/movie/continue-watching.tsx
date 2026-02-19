@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Play, X, Clock } from "lucide-react";
+import { Play, X, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { useWatchHistory } from "@/hooks/use-watch-history";
 import { useAuth } from "@/hooks/use-auth";
+import { useCarouselScroll } from "@/hooks/use-carousel-scroll";
 
 const formatTime = (sec: number) => {
   const m = Math.floor(sec / 60);
@@ -15,17 +16,29 @@ const formatTime = (sec: number) => {
 export const ContinueWatching = () => {
   const { items, removeItem } = useWatchHistory();
   const { user } = useAuth();
+  const {
+    scrollRef,
+    canScrollLeft,
+    canScrollRight,
+    scrollLeft,
+    scrollRight,
+    onScroll,
+  } = useCarouselScroll();
 
   if (!user || !items.length) return null;
 
   return (
-    <div>
+    <div className="group/carousel relative">
       <div className="flex items-center gap-2 mb-4">
         <Clock className="w-6 h-6 text-primary" />
         <h2 className="text-xl font-bold text-white">Tiếp tục xem</h2>
       </div>
 
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+      <div
+        ref={scrollRef}
+        onScroll={onScroll}
+        className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide"
+      >
         {items.slice(0, 10).map((item) => {
           const progress =
             item.duration > 0
@@ -95,6 +108,26 @@ export const ContinueWatching = () => {
           );
         })}
       </div>
+
+      {/* Navigation arrows — desktop only */}
+      {canScrollLeft && (
+        <button
+          onClick={scrollLeft}
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/4 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/70 text-white border border-white/10 opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-primary/80 hover:scale-110 cursor-pointer"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      )}
+      {canScrollRight && (
+        <button
+          onClick={scrollRight}
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/4 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/70 text-white border border-white/10 opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-primary/80 hover:scale-110 cursor-pointer"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 };
