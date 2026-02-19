@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button, Skeleton } from "@heroui/react";
-import { Play, Info, Star } from "lucide-react";
+import { Play, Info, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Movie } from "@/types/api";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMovieImages } from "@/hooks/use-movie-images";
@@ -24,15 +24,37 @@ const truncateText = (text: string, maxLength: number = 200): string => {
   return text.substring(0, maxLength).replace(/\s+\S*$/, "") + "...";
 };
 
+/** Renders the rating badge – shows "Chưa có đánh giá" when vote is 0 or missing */
+const RatingBadge = ({ voteAverage }: { voteAverage?: number }) => {
+  if (voteAverage != null && voteAverage > 0) {
+    return (
+      <span className="flex items-center text-yellow-500 gap-1">
+        <Star className="w-4 h-4 fill-current" />
+        {voteAverage.toFixed(1)}
+      </span>
+    );
+  }
+  return (
+    <span className="flex items-center text-gray-400 gap-1 text-xs">
+      <Star className="w-4 h-4" />
+      Chưa có đánh giá
+    </span>
+  );
+};
+
 interface HeroBannerProps {
   movies?: Movie[];
   isLoading?: boolean;
 }
 
 const INTERVAL_MS = 5000;
+const SWIPE_THRESHOLD = 50;
 
 export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const heroMovies = movies?.slice(0, 5) || [];
   const currentMovie = heroMovies[activeIndex];
@@ -45,14 +67,64 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
   const content = detailData?.movie?.content;
   const synopsis = content ? truncateText(stripHtml(content)) : "";
 
-  // Auto-advance
-  useEffect(() => {
+  // Navigation helpers
+  const goTo = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev + 1) % heroMovies.length);
+  };
+
+  const goPrev = () => {
+    setActiveIndex(
+      (prev) => (prev - 1 + heroMovies.length) % heroMovies.length,
+    );
+  };
+
+  // Reset auto-advance timer whenever user interacts
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
     if (heroMovies.length <= 1) return;
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % heroMovies.length);
     }, INTERVAL_MS);
-    return () => clearInterval(timer);
+  };
+
+  // Auto-advance
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [heroMovies.length]);
+
+  // Touch / swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+    touchEndX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+
+    if (diff > 0) {
+      goNext(); // swipe left → next
+    } else {
+      goPrev(); // swipe right → prev
+    }
+    resetTimer();
+  };
+
+  // Resolve vote_average (detail data takes priority)
+  const voteAverage =
+    detailData?.movie?.tmdb?.vote_average ?? currentMovie?.tmdb?.vote_average;
 
   if (isLoading || heroMovies.length === 0) {
     return (
@@ -63,7 +135,12 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
   }
 
   return (
-    <section className="relative h-[85vh] w-full overflow-hidden">
+    <section
+      className="relative h-[85vh] w-full overflow-hidden group/hero"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Stacked backgrounds with crossfade */}
       {heroMovies.map((movie, idx) => {
         const originalUrl = getImageUrl(movie.poster_url || movie.thumb_url);
@@ -117,19 +194,7 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
 
               {/* Meta */}
               <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-gray-200">
-                {detailData?.movie?.tmdb?.vote_average ? (
-                  <span className="flex items-center text-yellow-500 gap-1">
-                    <Star className="w-4 h-4 fill-current" />
-                    {detailData.movie.tmdb.vote_average.toFixed(1)}
-                  </span>
-                ) : (
-                  currentMovie.tmdb?.vote_average && (
-                    <span className="flex items-center text-yellow-500 gap-1">
-                      <Star className="w-4 h-4 fill-current" />
-                      {currentMovie.tmdb.vote_average.toFixed(1)}
-                    </span>
-                  )
-                )}
+                <RatingBadge voteAverage={voteAverage} />
                 {currentMovie.quality && (
                   <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
                     {currentMovie.quality}
@@ -199,13 +264,42 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
         </div>
       </div>
 
+      {/* Arrow navigation (desktop) */}
+      {heroMovies.length > 1 && (
+        <>
+          <button
+            onClick={() => {
+              goPrev();
+              resetTimer();
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-black/60 hover:scale-110"
+            aria-label="Phim trước"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={() => {
+              goNext();
+              resetTimer();
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-black/60 hover:scale-110"
+            aria-label="Phim kế tiếp"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </>
+      )}
+
       {/* Dot indicators */}
       {heroMovies.length > 1 && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
           {heroMovies.map((movie, idx) => (
             <button
               key={movie.slug}
-              onClick={() => setActiveIndex(idx)}
+              onClick={() => {
+                goTo(idx);
+                resetTimer();
+              }}
               className={`rounded-full transition-all duration-300 ${
                 idx === activeIndex
                   ? "w-8 h-2.5 bg-primary"
