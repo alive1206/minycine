@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Button, Skeleton, Divider } from "@heroui/react";
-import { ArrowLeft, Film, Sparkles } from "lucide-react";
+import { ArrowLeft, Film, Layers } from "lucide-react";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMoviesByGenre } from "@/hooks/use-movies";
 import { useWatchHistory } from "@/hooks/use-watch-history";
@@ -225,7 +225,7 @@ export const WatchPage = () => {
             <Divider className="my-8 bg-white/10" />
             <MovieCarousel
               title="Phim Tương Tự"
-              icon={<Sparkles className="w-6 h-6" />}
+              icon={<Layers className="w-6 h-6" />}
               movies={filteredSimilar}
               href={`/the-loai/${firstGenreSlug}`}
               isLoading={loadingSimilar}

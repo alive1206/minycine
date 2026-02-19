@@ -13,7 +13,7 @@ import {
   Globe,
   Film,
   User,
-  Sparkles,
+  Layers,
   Heart,
   Star,
 } from "lucide-react";
@@ -488,7 +488,7 @@ export const MovieDetailPage = () => {
             <Divider className="my-8 bg-white/10" />
             <MovieCarousel
               title="Phim Tương Tự"
-              icon={<Sparkles className="w-6 h-6" />}
+              icon={<Layers className="w-6 h-6" />}
               movies={filteredSimilar}
               href={`/the-loai/${firstGenreSlug}`}
               isLoading={loadingSimilar}
