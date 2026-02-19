@@ -82,7 +82,9 @@ export const FavoritesPage = () => {
                     )}
                     {fav.episode_current && (
                       <span className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-1.5 py-0.5 rounded border border-white/10">
-                        {fav.episode_current}
+                        {fav.episode_current.toLowerCase().includes("undefined")
+                          ? "? tập"
+                          : fav.episode_current}
                       </span>
                     )}
                     <div className="card-overlay absolute inset-0 bg-black/50 flex items-center justify-center">

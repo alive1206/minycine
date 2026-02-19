@@ -207,12 +207,19 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
                 )}
                 {currentMovie.episode_current && (
                   <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
-                    {currentMovie.episode_current}
+                    {currentMovie.episode_current
+                      .toLowerCase()
+                      .includes("undefined")
+                      ? "? tập"
+                      : currentMovie.episode_current}
                   </span>
                 )}
-                {currentMovie.time && (
-                  <span className="text-gray-400">{currentMovie.time}</span>
-                )}
+                <span className="text-gray-400">
+                  {currentMovie.time &&
+                  !currentMovie.time.toLowerCase().includes("undefined")
+                    ? currentMovie.time
+                    : "? phút/tập"}
+                </span>
               </div>
 
               {/* Category tags */}

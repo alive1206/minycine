@@ -15,6 +15,7 @@ import {
   User,
   Sparkles,
   Heart,
+  Star,
 } from "lucide-react";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMoviePeoples } from "@/hooks/use-movie-peoples";
@@ -194,7 +195,29 @@ export const MovieDetailPage = () => {
             <p className="text-lg text-gray-400 mb-4">{movie.origin_name}</p>
 
             {/* Meta badges */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {movie.tmdb?.vote_average != null &&
+              movie.tmdb.vote_average > 0 ? (
+                <Chip
+                  color="warning"
+                  size="sm"
+                  variant="flat"
+                  startContent={
+                    <Star className="w-3 h-3 fill-current text-yellow-500" />
+                  }
+                >
+                  {movie.tmdb.vote_average.toFixed(1)}
+                </Chip>
+              ) : (
+                <Chip
+                  size="sm"
+                  variant="flat"
+                  startContent={<Star className="w-3 h-3 text-gray-400" />}
+                  className="text-gray-400"
+                >
+                  Chưa có đánh giá
+                </Chip>
+              )}
               {movie.quality && (
                 <Chip color="primary" size="sm" variant="flat">
                   {movie.quality}
@@ -207,7 +230,9 @@ export const MovieDetailPage = () => {
               )}
               {movie.episode_current && (
                 <Chip color="warning" size="sm" variant="flat">
-                  {movie.episode_current}
+                  {movie.episode_current.toLowerCase().includes("undefined")
+                    ? "? tập"
+                    : movie.episode_current}
                 </Chip>
               )}
             </div>
@@ -220,12 +245,15 @@ export const MovieDetailPage = () => {
                   <span>Năm: {movie.year}</span>
                 </div>
               )}
-              {movie.time && (
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  <span>Thời lượng: {movie.time}</span>
-                </div>
-              )}
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>
+                  Thời lượng:{" "}
+                  {movie.time && !movie.time.toLowerCase().includes("undefined")
+                    ? movie.time
+                    : "? phút/tập"}
+                </span>
+              </div>
               {movie.country?.length > 0 && (
                 <div className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-primary" />
