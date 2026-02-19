@@ -10,8 +10,6 @@ import {
   Avatar,
   Button,
   Input,
-  Tabs,
-  Tab,
 } from "@heroui/react";
 import {
   Calendar,
@@ -196,6 +194,9 @@ export const ProfilePage = () => {
   // Profile editing
   const [name, setName] = useState(user?.name ?? "");
   const [selectedAvatar, setSelectedAvatar] = useState(user?.avatar ?? "");
+  const [avatarCategory, setAvatarCategory] = useState(
+    AVATAR_CATEGORIES[0]?.label ?? "",
+  );
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileMsg, setProfileMsg] = useState("");
@@ -348,15 +349,15 @@ export const ProfilePage = () => {
       </Card>
 
       {/* ─── Profile Edit Card ────────────────────────── */}
-      <Card className="mt-4 border border-white/10 bg-content1/80 backdrop-blur-xl">
-        <CardHeader className="px-8 pt-6 pb-0">
+      <Card className="mt-4 border border-white/10 bg-content1/80 backdrop-blur-xl overflow-hidden">
+        <CardHeader className="px-4 sm:px-8 pt-6 pb-0">
           <div className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-primary" />
             <h2 className="text-lg font-semibold">Thông tin tài khoản</h2>
           </div>
         </CardHeader>
 
-        <CardBody className="px-8 py-6">
+        <CardBody className="px-4 sm:px-8 py-6">
           <div className="flex flex-col gap-5">
             <Input
               label="Tên hiển thị"
@@ -373,54 +374,62 @@ export const ProfilePage = () => {
               }}
             />
 
-            {/* Avatar Picker with Tabs */}
+            {/* Avatar Picker */}
             {isEditingProfile && (
-              <div>
+              <div className="overflow-hidden">
                 <p className="mb-3 text-sm text-default-500">Chọn avatar</p>
-                <Tabs
-                  variant="underlined"
-                  color="primary"
-                  classNames={{
-                    tabList: "border-b border-white/10",
-                    cursor: "bg-primary",
-                    tab: "text-default-400 data-[selected=true]:text-white",
-                  }}
-                >
+
+                {/* Category chips - 2x2 grid on mobile */}
+                <div className="flex gap-2 mb-4 overflow-x-auto scrollbar-hide pb-1">
                   {AVATAR_CATEGORIES.map((cat) => (
-                    <Tab key={cat.label} title={cat.label}>
-                      <div className="grid grid-cols-4 gap-3 pt-4">
-                        {cat.avatars.map((av) => (
-                          <button
-                            key={av.id}
-                            type="button"
-                            onClick={() => setSelectedAvatar(av.url)}
-                            className={`group relative overflow-hidden rounded-full ring-2 transition-all ${
-                              selectedAvatar === av.url
-                                ? "ring-primary scale-105"
-                                : "ring-white/10 hover:ring-white/30"
-                            }`}
-                          >
-                            <Avatar
-                              src={av.url}
-                              name={av.name}
-                              classNames={{
-                                base: "w-full h-full aspect-square",
-                              }}
-                            />
-                            {selectedAvatar === av.url && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-primary/40">
-                                <Check className="h-5 w-5 text-white" />
-                              </div>
-                            )}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-1 py-0.5 text-center text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
-                              {av.name}
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    </Tab>
+                    <button
+                      key={cat.label}
+                      type="button"
+                      onClick={() => setAvatarCategory(cat.label)}
+                      className={`shrink-0 whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        avatarCategory === cat.label
+                          ? "bg-primary text-white shadow-md shadow-primary/30"
+                          : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
                   ))}
-                </Tabs>
+                </div>
+
+                {/* Avatar grid */}
+                <div className="grid grid-cols-4 gap-3">
+                  {AVATAR_CATEGORIES.find(
+                    (c) => c.label === avatarCategory,
+                  )?.avatars.map((av) => (
+                    <button
+                      key={av.id}
+                      type="button"
+                      onClick={() => setSelectedAvatar(av.url)}
+                      className={`group relative overflow-hidden rounded-full ring-2 transition-all ${
+                        selectedAvatar === av.url
+                          ? "ring-primary scale-105"
+                          : "ring-white/10 hover:ring-white/30"
+                      }`}
+                    >
+                      <Avatar
+                        src={av.url}
+                        name={av.name}
+                        classNames={{
+                          base: "w-full h-full aspect-square",
+                        }}
+                      />
+                      {selectedAvatar === av.url && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-primary/40">
+                          <Check className="h-5 w-5 text-white" />
+                        </div>
+                      )}
+                      <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-1 py-0.5 text-center text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                        {av.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 

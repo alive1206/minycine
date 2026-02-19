@@ -400,7 +400,7 @@ export const Navbar = () => {
       )}
 
       {/* Mobile menu */}
-      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 overflow-y-auto">
+      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 overflow-y-auto overflow-x-hidden">
         {navLinks.map((link) => (
           <NavbarMenuItem key={link.href}>
             <Link
@@ -418,7 +418,7 @@ export const Navbar = () => {
           <span className="text-lg text-gray-300 font-bold mt-4 block">
             Thể Loại
           </span>
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-2 max-w-full overflow-hidden">
             {loadingGenres
               ? Array.from({ length: 6 }).map((_, i) => (
                   <Skeleton key={i} className="rounded-full">
@@ -443,7 +443,7 @@ export const Navbar = () => {
           <span className="text-lg text-gray-300 font-bold mt-4 block">
             Quốc Gia
           </span>
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-2 max-w-full overflow-hidden">
             {loadingCountries
               ? Array.from({ length: 6 }).map((_, i) => (
                   <Skeleton key={i} className="rounded-full">

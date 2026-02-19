@@ -1,58 +1,123 @@
 /**
- * Generate PWA icons from SVG favicon using sharp.
- * Usage: node scripts/generate-icons.mjs
+ * Generate PWA icons from SVG.
+ * Run: node scripts/generate-icons.mjs
+ *
+ * Uses sharp if available, otherwise creates SVGs for manual conversion.
  */
-import sharp from "sharp";
-import { mkdirSync } from "fs";
-import { join, dirname } from "path";
+import { writeFileSync } from "fs";
+import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootDir = join(__dirname, "..");
-const outputDir = join(rootDir, "public/icons");
+const outDir = resolve(__dirname, "../public/icons");
 
-mkdirSync(outputDir, { recursive: true });
+// ─── Regular icon: full design on black bg, no transparency ───
+function regularIconSvg(size) {
+  const pad = Math.round(size * 0.06); // 6% padding
+  const s = size - pad * 2; // inner square size
+  const r = Math.round(s * 0.22); // border radius
+  const scale = s / 32;
 
-// Standard icon SVG (with rounded corners as in original)
-const svgIcon = `<svg width="512" height="512" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="2" y="2" width="32" height="32" rx="8" fill="#E50914"/>
-  <rect x="5" y="7" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="5" y="13" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="5" y="19" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="5" y="25" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="28.5" y="7" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="28.5" y="13" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="28.5" y="19" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <rect x="28.5" y="25" width="2.5" height="2.5" rx="0.5" fill="rgba(0,0,0,0.3)"/>
-  <path d="M15 11L26 18L15 25V11Z" fill="white"/>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <rect width="${size}" height="${size}" fill="#000"/>
+  <g transform="translate(${pad},${pad})">
+    <rect width="${s}" height="${s}" rx="${r}" fill="#E50914"/>
+    ${filmPerfs(scale, s)}
+    <polygon points="${13 * scale},${9 * scale} ${25 * scale},${16 * scale} ${13 * scale},${23 * scale}" fill="white"/>
+  </g>
 </svg>`;
-
-// Maskable icon: full bleed red background, icon centered in safe zone
-const svgMaskable = `<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" fill="#E50914"/>
-  <rect x="148" y="170" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="148" y="220" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="148" y="270" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="148" y="320" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="334" y="170" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="334" y="220" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="334" y="270" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <rect x="334" y="320" width="30" height="30" rx="4" fill="rgba(0,0,0,0.3)"/>
-  <path d="M220 180L330 256L220 332V180Z" fill="white"/>
-</svg>`;
-
-const sizes = [
-  { name: "icon-192.png", size: 192, svg: svgIcon },
-  { name: "icon-512.png", size: 512, svg: svgIcon },
-  { name: "icon-maskable-512.png", size: 512, svg: svgMaskable },
-];
-
-for (const { name, size, svg } of sizes) {
-  await sharp(Buffer.from(svg))
-    .resize(size, size)
-    .png()
-    .toFile(join(outputDir, name));
-  console.log(`✅ Generated ${name} (${size}x${size})`);
 }
 
-console.log("\n🎉 All PWA icons generated in public/icons/");
+// ─── Maskable icon: full bleed red bg, centered design ───
+function maskableIconSvg(size) {
+  const scale = size / 36;
+  // Safe zone is center 80% — icon content must be within
+  const safeInset = size * 0.1;
+  const safeSize = size * 0.8;
+  const innerScale = safeSize / 32;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <rect width="${size}" height="${size}" fill="#E50914"/>
+  <g transform="translate(${safeInset},${safeInset})">
+    ${filmPerfs(innerScale, safeSize)}
+    <polygon points="${13 * innerScale},${9 * innerScale} ${25 * innerScale},${16 * innerScale} ${13 * innerScale},${23 * innerScale}" fill="white"/>
+  </g>
+</svg>`;
+}
+
+function filmPerfs(scale, boxSize) {
+  const perfW = 2.5 * scale;
+  const perfR = 0.5 * scale;
+  const leftX = 3 * scale;
+  const rightX = boxSize - 3 * scale - perfW;
+  const ys = [5, 11, 17, 23].map((y) => y * scale);
+  const fill = "rgba(0,0,0,0.3)";
+
+  return ys
+    .flatMap((y) => [
+      `<rect x="${leftX}" y="${y}" width="${perfW}" height="${perfW}" rx="${perfR}" fill="${fill}"/>`,
+      `<rect x="${rightX}" y="${y}" width="${perfW}" height="${perfW}" rx="${perfR}" fill="${fill}"/>`,
+    ])
+    .join("\n    ");
+}
+
+// Generate SVGs
+const sizes = [192, 512];
+
+for (const size of sizes) {
+  const svg = regularIconSvg(size);
+  writeFileSync(resolve(outDir, `icon-${size}.svg`), svg);
+  console.log(`✓ icon-${size}.svg`);
+}
+
+const maskableSvg = maskableIconSvg(512);
+writeFileSync(resolve(outDir, `icon-maskable-512.svg`), maskableSvg);
+console.log(`✓ icon-maskable-512.svg`);
+
+// Try to convert to PNG using sharp
+try {
+  const sharp = (await import("sharp")).default;
+
+  for (const size of sizes) {
+    const svg = regularIconSvg(size);
+    await sharp(Buffer.from(svg))
+      .resize(size, size)
+      .png()
+      .toFile(resolve(outDir, `icon-${size}.png`));
+    console.log(`✓ icon-${size}.png`);
+  }
+
+  await sharp(Buffer.from(maskableIconSvg(512)))
+    .resize(512, 512)
+    .png()
+    .toFile(resolve(outDir, `icon-maskable-512.png`));
+  console.log(`✓ icon-maskable-512.png`);
+
+  console.log("\n🎉 All PNG icons generated!");
+} catch (e) {
+  console.log("\n⚠ sharp not found. Installing...");
+  const { execSync } = await import("child_process");
+  execSync("npm install --no-save sharp", {
+    cwd: resolve(__dirname, ".."),
+    stdio: "inherit",
+  });
+
+  const sharp = (await import("sharp")).default;
+
+  for (const size of sizes) {
+    const svg = regularIconSvg(size);
+    await sharp(Buffer.from(svg))
+      .resize(size, size)
+      .png()
+      .toFile(resolve(outDir, `icon-${size}.png`));
+    console.log(`✓ icon-${size}.png`);
+  }
+
+  await sharp(Buffer.from(maskableIconSvg(512)))
+    .resize(512, 512)
+    .png()
+    .toFile(resolve(outDir, `icon-maskable-512.png`));
+  console.log(`✓ icon-maskable-512.png`);
+
+  console.log("\n🎉 All PNG icons generated!");
+}
