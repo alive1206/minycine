@@ -28,6 +28,7 @@ import {
   LogOut,
   Heart,
   Clock,
+  XIcon,
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useGenreList, useCountryList, useYearList } from "@/hooks/use-movies";
@@ -44,6 +45,7 @@ const navLinks = [
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const router = useRouter();
   const { user, isLoading: authLoading, logout } = useAuth();
 
@@ -66,6 +68,7 @@ export const Navbar = () => {
         `/tim-kiem?keyword=${encodeURIComponent(searchValue.trim())}`,
       );
       setSearchValue("");
+      setShowMobileSearch(false);
     }
   };
 
@@ -124,7 +127,7 @@ export const Navbar = () => {
             <DropdownTrigger>
               <Button
                 variant="light"
-                className="text-sm font-medium text-gray-300 hover:text-white p-0 min-w-0 h-auto"
+                className="text-sm font-medium text-gray-300 hover:text-white data-[hover=true]:bg-transparent p-0 min-w-0 h-auto"
                 endContent={<ChevronDown className="w-4 h-4" />}
               >
                 Thể Loại
@@ -169,7 +172,7 @@ export const Navbar = () => {
             <DropdownTrigger>
               <Button
                 variant="light"
-                className="text-sm font-medium text-gray-300 hover:text-white p-0 min-w-0 h-auto"
+                className="text-sm font-medium text-gray-300 hover:text-white data-[hover=true]:bg-transparent p-0 min-w-0 h-auto"
                 endContent={<ChevronDown className="w-4 h-4" />}
               >
                 Quốc Gia
@@ -214,7 +217,7 @@ export const Navbar = () => {
             <DropdownTrigger>
               <Button
                 variant="light"
-                className="text-sm font-medium text-gray-300 hover:text-white p-0 min-w-0 h-auto"
+                className="text-sm font-medium text-gray-300 hover:text-white data-[hover=true]:bg-transparent p-0 min-w-0 h-auto"
                 endContent={<ChevronDown className="w-4 h-4" />}
               >
                 Năm
@@ -266,7 +269,12 @@ export const Navbar = () => {
           </form>
         </NavbarItem>
         <NavbarItem className="md:hidden">
-          <Button isIconOnly variant="light" className="text-white">
+          <Button
+            isIconOnly
+            variant="light"
+            className="text-white"
+            onPress={() => setShowMobileSearch((v) => !v)}
+          >
             <Search className="w-5 h-5" />
           </Button>
         </NavbarItem>
@@ -356,6 +364,41 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
+      {/* Mobile search overlay */}
+      {showMobileSearch && (
+        <div className="absolute top-0 left-0 right-0 h-16 bg-black/95 backdrop-blur-xl z-50 flex items-center px-3 gap-2 md:hidden">
+          <form onSubmit={handleSearch} className="flex-1">
+            <Input
+              autoFocus
+              classNames={{
+                inputWrapper:
+                  "bg-white/10 border border-white/20 rounded-full h-10",
+                input: "text-sm text-white placeholder:text-gray-500",
+              }}
+              placeholder="Tìm tên phim, diễn viên..."
+              startContent={<Search className="w-4 h-4 text-gray-400" />}
+              type="search"
+              value={searchValue}
+              onValueChange={setSearchValue}
+            />
+          </form>
+          <Button
+            isIconOnly
+            variant="light"
+            size="sm"
+            className="text-white shrink-0"
+            onPress={() => {
+              setShowMobileSearch(false);
+              setSearchValue("");
+            }}
+          >
+            <span className="text-sm font-medium">
+              <XIcon />
+            </span>
+          </Button>
+        </div>
+      )}
+
       {/* Mobile menu */}
       <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 overflow-y-auto">
         {navLinks.map((link) => (
@@ -372,7 +415,7 @@ export const Navbar = () => {
 
         {/* Mobile: Genres */}
         <NavbarMenuItem>
-          <span className="text-sm text-gray-500 uppercase tracking-wider font-bold mt-4 block">
+          <span className="text-lg text-gray-300 font-bold mt-4 block">
             Thể Loại
           </span>
           <div className="flex flex-wrap gap-2 mt-2">
@@ -397,7 +440,7 @@ export const Navbar = () => {
 
         {/* Mobile: Countries */}
         <NavbarMenuItem>
-          <span className="text-sm text-gray-500 uppercase tracking-wider font-bold mt-4 block">
+          <span className="text-lg text-gray-300 font-bold mt-4 block">
             Quốc Gia
           </span>
           <div className="flex flex-wrap gap-2 mt-2">
@@ -418,23 +461,6 @@ export const Navbar = () => {
                   </Link>
                 ))}
           </div>
-        </NavbarMenuItem>
-
-        {/* Mobile: Search */}
-        <NavbarMenuItem>
-          <form onSubmit={handleSearch} className="mt-4">
-            <Input
-              classNames={{
-                inputWrapper: "bg-white/5 border border-white/10 rounded-lg",
-                input: "text-white placeholder:text-gray-500",
-              }}
-              placeholder="Tìm kiếm phim..."
-              startContent={<Search className="w-4 h-4 text-gray-400" />}
-              type="search"
-              value={searchValue}
-              onValueChange={setSearchValue}
-            />
-          </form>
         </NavbarMenuItem>
       </NavbarMenu>
     </HeroNavbar>

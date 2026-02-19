@@ -407,9 +407,24 @@ export const VideoPlayer = ({
         }`}
       >
         {/* Top gradient + title */}
-        <div className="absolute top-0 left-0 right-0 bg-linear-to-b from-black/70 to-transparent p-4">
-          {title && (
-            <h3 className="text-white text-sm font-medium truncate">{title}</h3>
+        <div className="absolute top-0 left-0 right-0 bg-linear-to-b from-black/70 to-transparent p-4 flex items-start justify-between">
+          {title ? (
+            <h3 className="text-white text-sm font-medium truncate pr-2">
+              {title}
+            </h3>
+          ) : (
+            <div />
+          )}
+          {/* Episode list button — top right */}
+          {hasEpisodes && onOpenEpisodeList && (
+            <button
+              onClick={onOpenEpisodeList}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white text-xs font-medium rounded-lg backdrop-blur-sm transition-colors border border-white/10"
+              title="Danh sách tập"
+            >
+              <List className="w-4 h-4" />
+              <span className="hidden sm:inline">DS Tập</span>
+            </button>
           )}
         </div>
 
@@ -442,7 +457,7 @@ export const VideoPlayer = ({
           </div>
 
           {/* Control buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             {/* Play/Pause */}
             <button
               onClick={togglePlayPause}
@@ -499,7 +514,7 @@ export const VideoPlayer = ({
               )}
             </button>
 
-            {/* Volume slider */}
+            {/* Volume slider — hidden on mobile */}
             <input
               type="range"
               min={0}
@@ -515,7 +530,7 @@ export const VideoPlayer = ({
                 setVolume(v);
                 setMuted(v === 0);
               }}
-              className="w-16 h-1 accent-primary cursor-pointer"
+              className="hidden md:block w-16 h-1 accent-primary cursor-pointer"
             />
 
             {/* Time */}
@@ -525,16 +540,7 @@ export const VideoPlayer = ({
 
             <div className="flex-1" />
 
-            {/* Episode list button */}
-            {hasEpisodes && onOpenEpisodeList && (
-              <button
-                onClick={onOpenEpisodeList}
-                className="p-1.5 text-white hover:text-primary transition-colors"
-                title="Danh sách tập"
-              >
-                <List className="w-5 h-5" />
-              </button>
-            )}
+            {/* Episode list button moved to top-right */}
 
             {/* Quality settings */}
             {qualities.length > 0 && (

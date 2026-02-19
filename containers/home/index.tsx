@@ -78,7 +78,7 @@ export const Home = () => {
       <HeroBanner movies={heroMovies} isLoading={loadingLatest} />
 
       {/* Movie sections */}
-      <div className="px-4 md:px-10 max-w-7xl mx-auto flex flex-col gap-12 py-12 relative z-10">
+      <div className="px-4 md:px-10 max-w-7xl mx-auto flex flex-col gap-12 pt-12 pb-20 relative z-10">
         {/* Continue Watching */}
         <ContinueWatching />
         <MovieCarousel

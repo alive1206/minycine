@@ -1,13 +1,14 @@
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Button, Skeleton, Divider } from "@heroui/react";
 import { ArrowLeft, Film, Sparkles } from "lucide-react";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMoviesByGenre } from "@/hooks/use-movies";
 import { useWatchHistory } from "@/hooks/use-watch-history";
+import { useAuth } from "@/hooks/use-auth";
 import { VideoPlayer } from "@/components/player/video-player";
 import { EpisodeDrawer } from "@/components/player/episode-drawer";
 import { MovieCarousel } from "@/components/movie/movie-carousel";
@@ -20,6 +21,7 @@ export const WatchPage = () => {
 
   const { data, isLoading } = useMovieDetail(slug);
   const { saveProgress, items: watchHistory } = useWatchHistory();
+  const { user } = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const movie = data?.movie;
@@ -56,7 +58,7 @@ export const WatchPage = () => {
 
   // Get initial time from watch history
   const initialTime = useMemo(() => {
-    if (!currentEp) return undefined;
+    if (!user || !currentEp) return undefined;
     const entry = watchHistory.find(
       (h) => h.movieSlug === slug && h.episodeSlug === currentEp.slug,
     );
@@ -69,7 +71,7 @@ export const WatchPage = () => {
       return entry.currentTime;
     }
     return undefined;
-  }, [watchHistory, slug, currentEp]);
+  }, [user, watchHistory, slug, currentEp]);
 
   // Build poster URL for history
   const posterUrl = useMemo(() => {
@@ -78,10 +80,15 @@ export const WatchPage = () => {
     return url ? `${process.env.NEXT_PUBLIC_IMG_URL}/${url}` : "";
   }, [data]);
 
+  const saveProgressRef = useRef(saveProgress);
+  useEffect(() => {
+    saveProgressRef.current = saveProgress;
+  }, [saveProgress]);
+
   const handleProgressSave = useCallback(
     (progress: { currentTime: number; duration: number }) => {
-      if (!movie || !currentEp) return;
-      saveProgress({
+      if (!user || !movie || !currentEp) return;
+      saveProgressRef.current({
         movieSlug: movie.slug,
         movieName: movie.name,
         posterUrl,
@@ -91,7 +98,7 @@ export const WatchPage = () => {
         duration: progress.duration,
       });
     },
-    [movie, currentEp, posterUrl, saveProgress],
+    [user, movie, currentEp, posterUrl],
   );
 
   const handleSelectEpisode = useCallback((epSlug: string) => {

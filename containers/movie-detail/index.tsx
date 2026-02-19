@@ -70,10 +70,10 @@ export const MovieDetailPage = () => {
   const { user } = useAuth();
   const isFav = isFavorite(slug);
 
-  // Check if movie has saved watch progress
+  // Check if movie has saved watch progress (only for logged-in users)
   const resumeEntry = useMemo(
-    () => watchHistory.find((h) => h.movieSlug === slug),
-    [watchHistory, slug],
+    () => (user ? watchHistory.find((h) => h.movieSlug === slug) : undefined),
+    [user, watchHistory, slug],
   );
 
   const TMDB_CDN =
@@ -347,7 +347,7 @@ export const MovieDetailPage = () => {
                 <User className="w-5 h-5 text-primary" />
                 Diễn viên / Đoàn phim
               </h2>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+              <div className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-2">
                 {peoples.map((person) => {
                   const profileUrl = person.profile_path
                     ? `${profileSizes?.w185 || `${TMDB_CDN}/w185`}${person.profile_path}`
@@ -359,7 +359,7 @@ export const MovieDetailPage = () => {
                     <Link
                       key={person.tmdb_people_id}
                       href={actorHref}
-                      className="group text-center cursor-pointer"
+                      className="group text-center cursor-pointer shrink-0 w-24 md:w-28"
                     >
                       <div className="aspect-2/3 rounded-lg overflow-hidden bg-[#1A1A1A] relative mb-2 shadow-md ring-0 ring-primary/0 group-hover:ring-2 group-hover:ring-primary/50 transition-all duration-300">
                         {profileUrl ? (

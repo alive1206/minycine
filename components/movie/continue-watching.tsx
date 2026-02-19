@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Play, X, Clock } from "lucide-react";
 import { useWatchHistory } from "@/hooks/use-watch-history";
+import { useAuth } from "@/hooks/use-auth";
 
 const formatTime = (sec: number) => {
   const m = Math.floor(sec / 60);
@@ -13,8 +14,9 @@ const formatTime = (sec: number) => {
 
 export const ContinueWatching = () => {
   const { items, removeItem } = useWatchHistory();
+  const { user } = useAuth();
 
-  if (!items.length) return null;
+  if (!user || !items.length) return null;
 
   return (
     <div>
