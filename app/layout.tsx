@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { Providers } from "@/providers";
 import { MainLayout } from "@/components/layout/main-layout";
+import { ServiceWorkerRegistrar } from "@/components/pwa/service-worker-registrar";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -21,6 +22,16 @@ export const metadata: Metadata = {
   keywords: ["xem phim", "phim online", "phim hay", "MinyCine", "phim HD"],
   icons: {
     icon: "/favicon.svg",
+    apple: "/icons/icon-192.png",
+  },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "MinyCine",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
   },
 };
 
@@ -35,6 +46,7 @@ export default function RootLayout({
         <Providers>
           <MainLayout>{children}</MainLayout>
         </Providers>
+        <ServiceWorkerRegistrar />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
+import { PwaInstallButtons } from "@/components/pwa/pwa-install-buttons";
 
 const discoverLinks = [
   { name: "Phim Mới", href: "/phim-moi" },
@@ -24,7 +25,7 @@ export const Footer = () => {
   return (
     <footer className="bg-black border-t border-white/10 pt-16 pb-8">
       <div className="px-4 md:px-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <Logo size="md" />
@@ -83,6 +84,11 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Install App */}
+          <div>
+            <PwaInstallButtons />
           </div>
         </div>
 
