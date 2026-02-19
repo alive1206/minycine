@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "message": "success",
+  "status_code": 200,
+  "data": {
+    "tmdb_id": 213306,
+    "tmdb_type": "tv",
+    "tmdb_season": 2,
+    "ophim_id": "698de34cccc6cea26875eb65",
+    "slug": "cross-phan-2",
+    "imdb_id": "tt11794812",
+    "keywords": [
+      {
+        "tmdb_keyword_id": 818,
+        "name": "based on novel or book",
+        "name_vn": "based on novel or book"
+      },
+      {
+        "tmdb_keyword_id": 703,
+        "name": "detective",
+        "name_vn": "detective"
+      },
+      {
+        "tmdb_keyword_id": 10714,
+        "name": "serial killer",
+        "name_vn": "serial killer"
+      },
+      {
+        "tmdb_keyword_id": 316362,
+        "name": "thriller",
+        "name_vn": "thriller"
+      },
+      {
+        "tmdb_keyword_id": 521,
+        "name": "washington dc, usa",
+        "name_vn": "washington dc, usa"
+      }
+    ]
+  }
+}

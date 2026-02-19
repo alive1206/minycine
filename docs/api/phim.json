@@ -1,0 +1,199 @@
+{
+  "status": "success",
+  "message": "",
+  "data": {
+    "seoOnPage": {
+      "og_type": "video.movie",
+      "titleHead": "Cross (Phần 2)-Cross (Season 2) (2026) [HD-Vietsub]",
+      "seoSchema": {
+        "@context": "https://schema.org",
+        "@type": "TvSeries",
+        "name": "Cross (Phần 2)-Cross (Season 2) (2026) [HD-Vietsub]",
+        "dateModified": "2026-02-12T21:27:24.000Z",
+        "dateCreated": "2026-02-12T21:27:24.000Z",
+        "url": "https://ophim17.cc/phim/cross-phan-2",
+        "datePublished": "2026-02-12T21:27:24.000Z",
+        "image": "https://img.ophim.live/uploads/movies/cross-phan-2-thumb.jpg",
+        "director": "Stacey Muhammad"
+      },
+      "descriptionHead": "Sau những sự kiện chấn động ở phần 1, Alex Cross (do Aldis Hodge thủ vai) giờ đây đã vượt qua được nỗi đau mất vợ nhờ trị liệu và quay trở lại công việc với một tinh thần sắc...",
+      "og_image": [
+        "movies/cross-phan-2-thumb.jpg",
+        "movies/cross-phan-2-thumb.jpg"
+      ],
+      "updated_time": 1771510133000,
+      "og_url": "phim/cross-phan-2"
+    },
+    "breadCrumb": [
+      {
+        "name": "Phim Bộ",
+        "slug": "/danh-sach/phim-bo",
+        "position": 2
+      },
+      {
+        "name": "Âu Mỹ",
+        "slug": "/quoc-gia/au-my",
+        "position": 3
+      },
+      {
+        "name": "Hành Động",
+        "slug": "/the-loai/hanh-dong",
+        "position": 3
+      },
+      {
+        "name": "Hình Sự",
+        "slug": "/the-loai/hinh-su",
+        "position": 3
+      },
+      {
+        "name": "Chính kịch",
+        "slug": "/the-loai/chinh-kich",
+        "position": 3
+      },
+      {
+        "name": "Bí ẩn",
+        "slug": "/the-loai/bi-an",
+        "position": 3
+      },
+      {
+        "name": "Cross (Phần 2)",
+        "isCurrent": true,
+        "position": 4
+      }
+    ],
+    "params": {
+      "slug": "cross-phan-2"
+    },
+    "item": {
+      "tmdb": {
+        "type": "tv",
+        "id": "213306",
+        "season": 2,
+        "vote_average": 7.1,
+        "vote_count": 239
+      },
+      "imdb": {
+        "id": "tt11794812",
+        "vote_average": 7.2,
+        "vote_count": 29904
+      },
+      "created": {
+        "time": "2026-02-12T21:27:24.000Z"
+      },
+      "modified": {
+        "time": "2026-02-19T14:08:53.000Z"
+      },
+      "_id": "698de34cccc6cea26875eb65",
+      "name": "Cross (Phần 2)",
+      "slug": "cross-phan-2",
+      "origin_name": "Cross (Season 2)",
+      "alternative_names": [
+        "Detective Alex Cross",
+        "Detetive Alex Cross",
+        "Alex Cross",
+        "Крос",
+        "Кросс",
+        "法醫心理學家克洛斯"
+      ],
+      "content": "<p>Sau những sự kiện chấn động ở phần 1, Alex Cross (do Aldis Hodge thủ vai) giờ đây đã vượt qua được nỗi đau mất vợ nhờ trị liệu và quay trở lại công việc với một tinh thần sắc bén hơn. Lần này, Alex phải đối mặt với một nữ sát thủ kiêm dân phòng (vigilante) cực kỳ thông minh và tàn nhẫn tên là Rebecca (hay còn gọi là Luz), nhắm mục tiêu vào những nhà tài phiệt tham nhũng, những kẻ đứng sau các đường dây buôn người và bóc lột lao động trẻ em. Alex phối hợp cùng cộng sự John Sampson và đặc vụ FBI Kayla Craig để điều tra các mối đe dọa nhắm vào Lance Durand (Matthew Lillard) - một tỷ phú công nghệ tin rằng mình là mục tiêu tiếp theo của kẻ sát nhân. Cross Phần 2 là mùa phim nối từ thành công của mùa 1, khai thác một vụ án mới đầy gay cấn với tâm điểm là một kẻ truy đuổi công lý theo cách riêng, buộc Alex Cross phải đối mặt với những ranh giới đạo đức sắc bén hơn bao giờ hết.</p>",
+      "type": "series",
+      "status": "ongoing",
+      "thumb_url": "cross-phan-2-thumb.jpg",
+      "poster_url": "cross-phan-2-poster.jpg",
+      "is_copyright": false,
+      "sub_docquyen": true,
+      "chieurap": false,
+      "trailer_url": "",
+      "time": "60 Phút/Tập",
+      "episode_current": "Tập 4",
+      "episode_total": "8",
+      "quality": "HD",
+      "lang": "Vietsub",
+      "lang_key": [
+        "vs"
+      ],
+      "notify": "",
+      "showtimes": "",
+      "year": 2026,
+      "view": 0,
+      "actor": [
+        "Aldis Hodge",
+        "Juanita Jennings",
+        "Isaiah Mustafa",
+        "Stacie Greenwell",
+        "Jennifer Wigmore"
+      ],
+      "director": [
+        "Stacey Muhammad",
+        "Craig Siebels",
+        "Nzingha Stewart"
+      ],
+      "category": [
+        {
+          "id": "620a21b2e0fc277084dfd0c5",
+          "name": "Hành Động",
+          "slug": "hanh-dong"
+        },
+        {
+          "id": "620a2249e0fc277084dfd2e5",
+          "name": "Hình Sự",
+          "slug": "hinh-su"
+        },
+        {
+          "id": "620f3d2b91fa4af90ab697fe",
+          "name": "Chính kịch",
+          "slug": "chinh-kich"
+        },
+        {
+          "id": "620f84d291fa4af90ab6b3f4",
+          "name": "Bí ẩn",
+          "slug": "bi-an"
+        }
+      ],
+      "country": [
+        {
+          "id": "620a231fe0fc277084dfd7ce",
+          "name": "Âu Mỹ",
+          "slug": "au-my"
+        }
+      ],
+      "episodes": [
+        {
+          "server_name": "Subteam #1",
+          "is_ai": false,
+          "server_data": [
+            {
+              "name": "1",
+              "slug": "1",
+              "filename": "Cross.2024.S02E01.1080p.WEB.h264-ETHEL",
+              "link_embed": "https://vip.opstream10.com/share/f321d1828715ef2d889efb20b8c706b0",
+              "link_m3u8": "https://vip.opstream10.com/20260213/32782_f321d182/index.m3u8"
+            },
+            {
+              "name": "2",
+              "slug": "2",
+              "filename": "Cross.2024.S02E02.1080p.WEB.h264-ETHEL[EZTVx.to]",
+              "link_embed": "https://vip.opstream10.com/share/3ef7738c1b5241fe5211cbed656f7385",
+              "link_m3u8": "https://vip.opstream10.com/20260213/32785_3ef7738c/index.m3u8"
+            },
+            {
+              "name": "3",
+              "slug": "3",
+              "filename": "Cross.2024.S02E03.1080p.WEB.h264-ETHEL",
+              "link_embed": "https://vip.opstream10.com/share/37d7465c1cf6b226541c17d5b92034c1",
+              "link_m3u8": "https://vip.opstream10.com/20260215/32799_37d7465c/index.m3u8"
+            },
+            {
+              "name": "4",
+              "slug": "4",
+              "filename": "Cross.2024.S02E04.1080p.WEB.h264-ETHEL",
+              "link_embed": "https://vip.opstream10.com/share/5fe6b849fbf264bf68e4602074f10809",
+              "link_m3u8": "https://vip.opstream10.com/20260219/32824_5fe6b849/index.m3u8"
+            }
+          ]
+        }
+      ]
+    },
+    "APP_DOMAIN_CDN_IMAGE": "https://img.ophim.live"
+  }
+}

@@ -1,0 +1,1636 @@
+{
+  "status": "success",
+  "message": "",
+  "data": {
+    "seoOnPage": {
+      "og_type": "website",
+      "titleHead": "Phim Trung Quốc",
+      "descriptionHead": "Phim Trung Quốc",
+      "og_image": [
+        "/uploads/movies/duyen-khoi-tran-duong-khuynh-thanh-thumb.jpg",
+        "/uploads/movies/me-toi-la-hoa-khoi-thumb.jpg",
+        "/uploads/movies/giai-dieu-phuong-hoang-thumb.jpg",
+        "/uploads/movies/nhip-dap-tinh-yeu-thumb.jpg",
+        "/uploads/movies/soa-nhi-su-truong-thumb.jpg",
+        "/uploads/movies/mua-he-nhung-nam-80-thumb.jpg",
+        "/uploads/movies/thanh-son-gia-bat-tru-thumb.jpg",
+        "/uploads/movies/huyen-thoai-ma-vinh-trinh-thumb.jpg",
+        "/uploads/movies/bach-da-lau-thumb.jpg",
+        "/uploads/movies/game-vang-den-thumb.jpg",
+        "/uploads/movies/but-than-thumb.jpg",
+        "/uploads/movies/vinh-vo-chi-canh-thumb.jpg",
+        "/uploads/movies/thanh-xuan-tro-lai-thumb.jpg",
+        "/uploads/movies/gau-boonie-biet-doi-thu-nho-phan-1-thumb.jpg",
+        "/uploads/movies/nha-tham-hiem-carly-vuong-quoc-co-dai-thumb.jpg",
+        "/uploads/movies/gau-boonie-quay-ve-thoi-tien-su-thumb.jpg",
+        "/uploads/movies/biet-doi-boonie-phan-3-thumb.jpg",
+        "/uploads/movies/chan-tuong-bi-che-giau-thumb.jpg",
+        "/uploads/movies/duong-quy-ky-an-thumb.jpg",
+        "/uploads/movies/hau-vua-nhu-hau-cop-thumb.jpg",
+        "/uploads/movies/vien-son-di-van-luc-thumb.jpg",
+        "/uploads/movies/hay-noi-anh-yeu-em-luc-hoang-hon-thumb.jpg",
+        "/uploads/movies/tao-thao-thumb.jpg",
+        "/uploads/movies/huyen-co-ve-tran-quoc-than-dinh-thumb.jpg"
+      ],
+      "og_url": "quoc-gia/trung-quoc"
+    },
+    "breadCrumb": [
+      {
+        "name": "Phim Trung Quốc",
+        "slug": "/quoc-gia/trung-quoc",
+        "isCurrent": false,
+        "position": 2
+      },
+      {
+        "name": "Trang 1",
+        "isCurrent": true,
+        "position": 3
+      }
+    ],
+    "titlePage": "Trung Quốc",
+    "items": [
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "",
+          "season": null,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-14T17:14:43.000Z"
+        },
+        "_id": "699048cbccc6cea26876c71f",
+        "name": "Duyên Khởi Trần Đường: Khuynh Thành",
+        "slug": "duyen-khoi-tran-duong-khuynh-thanh",
+        "origin_name": "Chentang Genesis: Love in Fallen City",
+        "alternative_names": [
+          ""
+        ],
+        "type": "series",
+        "thumb_url": "duyen-khoi-tran-duong-khuynh-thanh-thumb.jpg",
+        "poster_url": "duyen-khoi-tran-duong-khuynh-thanh-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "12 phút/tập",
+        "episode_current": "Hoàn tất (17/17)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a220de0fc277084dfd16d",
+            "name": "Tình Cảm",
+            "slug": "tinh-cam"
+          },
+          {
+            "id": "620a2238e0fc277084dfd291",
+            "name": "Tâm Lý",
+            "slug": "tam-ly"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "17"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "273124",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-19T11:36:02.000Z"
+        },
+        "_id": "6990019ada6ce23e8e99e5ac",
+        "name": "Mẹ Tôi Là Hoa Khôi",
+        "slug": "me-toi-la-hoa-khoi",
+        "origin_name": "Mama Go!",
+        "alternative_names": [
+          ""
+        ],
+        "type": "series",
+        "thumb_url": "me-toi-la-hoa-khoi-thumb.jpg",
+        "poster_url": "me-toi-la-hoa-khoi-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 15",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          },
+          {
+            "id": "620e4c0b6ba8271c5eef05a8",
+            "name": "Gia Đình",
+            "slug": "gia-dinh"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "15"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "313777",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-17T23:57:21.000Z"
+        },
+        "_id": "698efa5af07c400a86c5b204",
+        "name": "Giai Điệu Phượng Hoàng",
+        "slug": "giai-dieu-phuong-hoang",
+        "origin_name": "Phoenix's Melody",
+        "alternative_names": [
+          ""
+        ],
+        "type": "series",
+        "thumb_url": "giai-dieu-phuong-hoang-thumb.jpg",
+        "poster_url": "giai-dieu-phuong-hoang-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 11",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "11"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "257107",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-13T12:15:54.000Z"
+        },
+        "_id": "698eaaf64da3bf6eb3357e4b",
+        "name": "Nhịp Đập Tình Yêu",
+        "slug": "nhip-dap-tinh-yeu",
+        "origin_name": "MBTI Love",
+        "alternative_names": [
+          "霍先生乖乖宠我",
+          "真愛節拍",
+          "Zhen Ai Jie Pai",
+          "Huo Xian Sheng Guai Guai Chong Wo",
+          "Любовь по MBTI"
+        ],
+        "type": "series",
+        "thumb_url": "nhip-dap-tinh-yeu-thumb.jpg",
+        "poster_url": "nhip-dap-tinh-yeu-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "11 phút/tập",
+        "episode_current": "Hoàn tất (24/24)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2024,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "24"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "313574",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-19T11:36:26.000Z"
+        },
+        "_id": "698dab28f937c3b5a10a47ce",
+        "name": "Sỏa Nhi Sư Trưởng",
+        "slug": "soa-nhi-su-truong",
+        "origin_name": "The Naive Leader",
+        "alternative_names": [
+          "Sha Er Shi Zhang"
+        ],
+        "type": "series",
+        "thumb_url": "soa-nhi-su-truong-thumb.jpg",
+        "poster_url": "soa-nhi-su-truong-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 16",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "16"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "313473",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-18T13:57:44.000Z"
+        },
+        "_id": "698d7df94da3bf6eb33517fe",
+        "name": "Mùa Hè Những Năm 80",
+        "slug": "mua-he-nhung-nam-80",
+        "origin_name": "A Summer Meant for Us",
+        "alternative_names": [
+          "二八槓的夏天"
+        ],
+        "type": "series",
+        "thumb_url": "mua-he-nhung-nam-80-thumb.jpg",
+        "poster_url": "mua-he-nhung-nam-80-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "12 phút/tập",
+        "episode_current": "Tập 18",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "18"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "295178",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-18T13:55:19.000Z"
+        },
+        "_id": "698d52b9f07c400a86c5279d",
+        "name": "Thanh Sơn Già Bất Trụ",
+        "slug": "thanh-son-gia-bat-tru",
+        "origin_name": "Lush Mountains",
+        "alternative_names": [
+          ""
+        ],
+        "type": "series",
+        "thumb_url": "thanh-son-gia-bat-tru-thumb.jpg",
+        "poster_url": "thanh-son-gia-bat-tru-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "45 phút/tập",
+        "episode_current": "Tập 24",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2021,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": true,
+            "name": "24"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "50569",
+          "season": null,
+          "vote_average": 6.8,
+          "vote_count": 45
+        },
+        "imdb": {
+          "id": "tt0068310",
+          "vote_average": 7,
+          "vote_count": 1581
+        },
+        "modified": {
+          "time": "2026-02-12T09:26:58.000Z"
+        },
+        "_id": "698d3a6eae6f0c1fdf38c6d0",
+        "name": "Huyền Thoại Mã Vĩnh Trinh",
+        "slug": "huyen-thoai-ma-vinh-trinh",
+        "origin_name": "The Boxer from Shantung",
+        "alternative_names": [
+          "Ma Yong Zhen",
+          "La brute",
+          "le bonze et le méchant",
+          "Le Boxeur de Shantung",
+          "Der Pirat von Shantung",
+          "Ma wing ching",
+          "Boxer from Shantung",
+          "Боксер из Шантунга",
+          "El boxeador invencible",
+          "Killer from Shantung",
+          "The Shantung Boxer",
+          "Le Justicier de Shanghaï",
+          "O Assassino de Shantung",
+          "马永贞",
+          "Der Boxer von Shantung",
+          "Orientens blodigste opgør",
+          "Poksija Shantungist",
+          "El luchador de Shantung",
+          "La Brute",
+          "le Bonze et le Méchant",
+          "Il drago si scatena",
+          "De bokser van Shantung",
+          "Pięściarz z Shantung"
+        ],
+        "type": "single",
+        "thumb_url": "huyen-thoai-ma-vinh-trinh-thumb.jpg",
+        "poster_url": "huyen-thoai-ma-vinh-trinh-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "134 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 1972,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2249e0fc277084dfd2e5",
+            "name": "Hình Sự",
+            "slug": "hinh-su"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          },
+          {
+            "id": "620a2347e0fc277084dfd876",
+            "name": "Hồng Kông",
+            "slug": "hong-kong"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1609617",
+          "season": null,
+          "vote_average": 3,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-11T11:25:19.000Z"
+        },
+        "_id": "698c03d6458948c6799dec6b",
+        "name": "Bách Dạ Lâu",
+        "slug": "bach-da-lau",
+        "origin_name": "Huckster",
+        "alternative_names": [
+          ""
+        ],
+        "type": "single",
+        "thumb_url": "bach-da-lau-thumb.jpg",
+        "poster_url": "bach-da-lau-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "86 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f84d291fa4af90ab6b3f4",
+            "name": "Bí ẩn",
+            "slug": "bi-an"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "295426",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-18T11:13:31.000Z"
+        },
+        "_id": "698c02a71d0b515454a741d8",
+        "name": "Game Vàng Đen",
+        "slug": "game-vang-den",
+        "origin_name": "Black Gold Game",
+        "alternative_names": [
+          "大侦探",
+          "Hei Jin You Xi"
+        ],
+        "type": "series",
+        "thumb_url": "game-vang-den-thumb.jpg",
+        "poster_url": "game-vang-den-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 18",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "18"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "",
+          "season": null,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-14T17:16:02.000Z"
+        },
+        "_id": "698c0220f07c400a86c50eea",
+        "name": "Bút Thần",
+        "slug": "but-than",
+        "origin_name": "The Divine Pen",
+        "alternative_names": [
+          ""
+        ],
+        "type": "tvshows",
+        "thumb_url": "but-than-thumb.jpg",
+        "poster_url": "but-than-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "10 phút/tập",
+        "episode_current": "Hoàn tất (8/8)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "8"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "312733",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-10T11:54:19.000Z"
+        },
+        "_id": "698ab62a4da3bf6eb334dd6c",
+        "name": "Vịnh Vô Chỉ Cảnh",
+        "slug": "vinh-vo-chi-canh",
+        "origin_name": "Swimming Limitless",
+        "alternative_names": [
+          "Yong Wu Zhi Jing"
+        ],
+        "type": "series",
+        "thumb_url": "vinh-vo-chi-canh-thumb.jpg",
+        "poster_url": "vinh-vo-chi-canh-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Hoàn tất (17/17)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": true,
+            "name": "17"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "273275",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-19T11:38:59.000Z"
+        },
+        "_id": "69895b6eb9fc4b5429662af5",
+        "name": "Thanh Xuân Trở Lại",
+        "slug": "thanh-xuan-tro-lai",
+        "origin_name": "We Are Still Young",
+        "alternative_names": [
+          "Young Again"
+        ],
+        "type": "series",
+        "thumb_url": "thanh-xuan-tro-lai-thumb.jpg",
+        "poster_url": "thanh-xuan-tro-lai-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 23",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "23"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "248643",
+          "season": 1,
+          "vote_average": 9,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "tt34000703",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-09T11:39:44.000Z"
+        },
+        "_id": "6989552af65d22d617a7e440",
+        "name": "Gấu Boonie: Biệt Đội Thu Nhỏ (Phần 1)",
+        "slug": "gau-boonie-biet-doi-thu-nho-phan-1",
+        "origin_name": "Boonie Bears: Shrunk 1",
+        "alternative_names": [
+          "熊出没之小小世界第二季",
+          "Boonie Bears：Shrunk 2",
+          "Отважные Мишки. Новые приключения",
+          "Boonie Bears: It's a Small World",
+          "Boonie Bears: Small World",
+          "The Little World of Bear Haunted",
+          "Xiong Chu Mo Zhi Xiao Xiao Shi Jie",
+          "Xiong Chumo: Xiao Xiao Shijie",
+          "Xióng Chū Méi Zhī Xiǎo Xiǎo Shì Jiè",
+          "Xióng Chū Mò Zhī Xiǎo Xiǎo Shì Jiè",
+          "Xióng Chūmò Zhī Xiǎo Xiǎo Shìjiè",
+          "熊出没·小小世界",
+          "熊出没第12季",
+          "Lustakad karud"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "gau-boonie-biet-doi-thu-nho-phan-1-thumb.jpg",
+        "poster_url": "gau-boonie-biet-doi-thu-nho-phan-1-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "13 phút/tập",
+        "episode_current": "Tập 10",
+        "quality": "HD",
+        "lang": "Thuyết Minh",
+        "lang_key": [
+          "tm"
+        ],
+        "year": 2024,
+        "category": [
+          {
+            "id": "620a220de0fc277084dfd16d",
+            "name": "Tình Cảm",
+            "slug": "tinh-cam"
+          },
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Thuyết Minh #1",
+            "is_ai": false,
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "237739",
+          "season": 1,
+          "vote_average": 9,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "tt30956499",
+          "vote_average": 0,
+          "vote_count": 7
+        },
+        "modified": {
+          "time": "2026-02-09T11:39:29.000Z"
+        },
+        "_id": "698953a097c71dcd0d691b31",
+        "name": "Nhà Thám Hiểm Carly: Vương Quốc Cổ Đại",
+        "slug": "nha-tham-hiem-carly-vuong-quoc-co-dai",
+        "origin_name": "Adventurer Carly: Ancient Kingdom",
+        "alternative_names": [
+          "Zhao Lin De Tan Xian Ri Ji",
+          "ZhaoLin De Tan Xian RiJi",
+          "Zhào Lín De Tàn Xiǎn Rì Jì",
+          "赵琳的探险日记 第二季",
+          "赵琳的探险日记2",
+          "探险日记",
+          "Adventurer Carly: Ancient Kingdom",
+          "Zhao Lin's Adventure Diary",
+          "Ancient Kingdom"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "nha-tham-hiem-carly-vuong-quoc-co-dai-thumb.jpg",
+        "poster_url": "nha-tham-hiem-carly-vuong-quoc-co-dai-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "13 phút/tập",
+        "episode_current": "Tập 10",
+        "quality": "HD",
+        "lang": "Thuyết Minh",
+        "lang_key": [
+          "tm"
+        ],
+        "year": 2023,
+        "category": [
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620a220de0fc277084dfd16d",
+            "name": "Tình Cảm",
+            "slug": "tinh-cam"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Thuyết Minh #1",
+            "is_ai": false,
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "581218",
+          "season": null,
+          "vote_average": 7,
+          "vote_count": 28
+        },
+        "imdb": {
+          "id": "tt10250750",
+          "vote_average": 5.6,
+          "vote_count": 331
+        },
+        "modified": {
+          "time": "2026-02-08T17:39:55.000Z"
+        },
+        "_id": "698865ad46046a8eb686c7e9",
+        "name": "Gấu Boonie: Quay Về Thời Tiền Sử",
+        "slug": "gau-boonie-quay-ve-thoi-tien-su",
+        "origin_name": "Boonie Bears: Blast into the Past",
+        "alternative_names": [
+          "熊出没6",
+          "熊出没大电影6",
+          "Xiong chu mo yuan shi shi dai",
+          "熊出没：原始时代",
+          "熊出没6：原始时代",
+          "熊出没·原始时代",
+          "BONNIE BEAR AVENTURA EN LA PREHISTORIA",
+          "Die Boonies: eine bärenstarke Zeitreise",
+          "Die Boonies - Eine bärenstarke Zeitreise",
+          "Les ours Boonie : L'aventure préhistorique",
+          "Boonie Bears: Aventura en la prehistoria",
+          "Boonie Bears: Abentura Historiaurrean",
+          "Boonie Bears: aventura en la prehistoria",
+          "Les Ours Boonie : L'Aventure préhistorique",
+          "Ha'Akhim Super Dov Be'Minheret Ha'Zman",
+          "Побег из джунглей",
+          "Ayı Kardeşler: Zamanda Yolculuk",
+          "熊出沒之原始時代",
+          "Ведмедики Буні: Стрибок у минуле",
+          "Biệt Đội Gấu Mập: Quay Về Thời Tiền Sử"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "gau-boonie-quay-ve-thoi-tien-su-thumb.jpg",
+        "poster_url": "gau-boonie-quay-ve-thoi-tien-su-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "90 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Thuyết Minh",
+        "lang_key": [
+          "tm"
+        ],
+        "year": 2019,
+        "category": [
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620e4c0b6ba8271c5eef05a8",
+            "name": "Gia Đình",
+            "slug": "gia-dinh"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Thuyết Minh #1",
+            "is_ai": false,
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "157689",
+          "season": 3,
+          "vote_average": 8,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "tt15731684",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-08T17:40:13.000Z"
+        },
+        "_id": "698865541d0b515454a6fe61",
+        "name": "Biệt Đội Boonie (Phần 3)",
+        "slug": "biet-doi-boonie-phan-3",
+        "origin_name": "Boonie Squad (Season 3)",
+        "alternative_names": [
+          "Boonie Squad"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "biet-doi-boonie-phan-3-thumb.jpg",
+        "poster_url": "biet-doi-boonie-phan-3-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "13 phút/tập",
+        "episode_current": "Tập 2",
+        "quality": "HD",
+        "lang": "Thuyết Minh",
+        "lang_key": [
+          "tm"
+        ],
+        "year": 2024,
+        "category": [
+          {
+            "id": "620a220de0fc277084dfd16d",
+            "name": "Tình Cảm",
+            "slug": "tinh-cam"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Thuyết Minh #1",
+            "is_ai": false,
+            "name": "2"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "313056",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-19T11:35:29.000Z"
+        },
+        "_id": "698569444ea2111da8b74e11",
+        "name": "Chân Tướng Bị Che Giấu",
+        "slug": "chan-tuong-bi-che-giau",
+        "origin_name": "The Hidden Truth",
+        "alternative_names": [
+          "Bei Yin Ni De Zhen Xiang"
+        ],
+        "type": "series",
+        "thumb_url": "chan-tuong-bi-che-giau-thumb.jpg",
+        "poster_url": "chan-tuong-bi-che-giau-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 11",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a2249e0fc277084dfd2e5",
+            "name": "Hình Sự",
+            "slug": "hinh-su"
+          },
+          {
+            "id": "620f84d291fa4af90ab6b3f4",
+            "name": "Bí ẩn",
+            "slug": "bi-an"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "11"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "312917",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-18T13:58:06.000Z"
+        },
+        "_id": "69855ba854ca9185bbac1eb8",
+        "name": "Đường Quỷ Kỳ Án",
+        "slug": "duong-quy-ky-an",
+        "origin_name": "Mysterious and Absurd Cases of the Tang  Dynasty",
+        "alternative_names": [
+          "唐诡奇案",
+          "Tang Gui Qi An",
+          "长安变",
+          "Tang Dynasty Mysterious Cases"
+        ],
+        "type": "series",
+        "thumb_url": "duong-quy-ky-an-thumb.jpg",
+        "poster_url": "duong-quy-ky-an-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "10 phút/tập",
+        "episode_current": "Hoàn tất (24/24)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f84d291fa4af90ab6b3f4",
+            "name": "Bí ẩn",
+            "slug": "bi-an"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "24"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "313057",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-19T11:39:15.000Z"
+        },
+        "_id": "698559a0988d934ea9e68527",
+        "name": "Hầu Vua Như Hầu Cọp",
+        "slug": "hau-vua-nhu-hau-cop",
+        "origin_name": "Shall We Dance",
+        "alternative_names": [
+          "伴君如伴舞",
+          "Ban Jun Ru Ban Wu"
+        ],
+        "type": "series",
+        "thumb_url": "hau-vua-nhu-hau-cop-thumb.jpg",
+        "poster_url": "hau-vua-nhu-hau-cop-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "15 phút/tập",
+        "episode_current": "Tập 23",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "23"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1621496",
+          "season": null,
+          "vote_average": 5,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-05T21:33:02.000Z"
+        },
+        "_id": "6984a57cb06c99c722ef57da",
+        "name": "Viên Sơn Dị Văn Lục",
+        "slug": "vien-son-di-van-luc",
+        "origin_name": "Anecdotes of Ape Mountain",
+        "alternative_names": [
+          "Tales of the Monkey Mountain"
+        ],
+        "type": "single",
+        "thumb_url": "vien-son-di-van-luc-thumb.jpg",
+        "poster_url": "vien-son-di-van-luc-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "0 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "309015",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-15T10:34:09.000Z"
+        },
+        "_id": "69849cd2ccc6cea26874ef34",
+        "name": "Hãy nói \"Anh yêu em\" lúc hoàng hôn.",
+        "slug": "hay-noi-anh-yeu-em-luc-hoang-hon",
+        "origin_name": "Forever by Your Side",
+        "alternative_names": [
+          "Tell You I Love You at Sunset"
+        ],
+        "type": "tvshows",
+        "thumb_url": "hay-noi-anh-yeu-em-luc-hoang-hon-thumb.jpg",
+        "poster_url": "hay-noi-anh-yeu-em-luc-hoang-hon-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "67 phút/tập",
+        "episode_current": "Tập 8",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2025,
+        "category": [
+          {
+            "id": "620a220de0fc277084dfd16d",
+            "name": "Tình Cảm",
+            "slug": "tinh-cam"
+          },
+          {
+            "id": "620e0e64d9648f114cde7728",
+            "name": "Tài Liệu",
+            "slug": "tai-lieu"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "8"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "103800",
+          "season": 1,
+          "vote_average": 8,
+          "vote_count": 2
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-05T22:15:30.000Z"
+        },
+        "_id": "6984609bf937c3b5a10956c1",
+        "name": "Tào Tháo",
+        "slug": "tao-thao",
+        "origin_name": "Cao Cao",
+        "alternative_names": [
+          "盖世英雄曹操",
+          "英雄曹操"
+        ],
+        "type": "series",
+        "thumb_url": "tao-thao-thumb.jpg",
+        "poster_url": "tao-thao-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "45 phút/tập",
+        "episode_current": "Hoàn tất (41/41)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2013,
+        "category": [
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "41"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1622972",
+          "season": null,
+          "vote_average": 4,
+          "vote_count": 1
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-05T14:09:53.000Z"
+        },
+        "_id": "69843cee46046a8eb6864b04",
+        "name": "Huyền Cơ Vệ: Trấn Quốc Thần Đỉnh",
+        "slug": "huyen-co-ve-tran-quoc-than-dinh",
+        "origin_name": "Geomancer",
+        "alternative_names": [
+          "Xuanji Guardian: The Divine Cauldron"
+        ],
+        "type": "single",
+        "thumb_url": "huyen-co-ve-tran-quoc-than-dinh-thumb.jpg",
+        "poster_url": "huyen-co-ve-tran-quoc-than-dinh-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "72 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      }
+    ],
+    "params": {
+      "type_slug": "quoc-gia",
+      "slug": "trung-quoc",
+      "filterCategory": [
+        ""
+      ],
+      "filterCountry": [
+        "trung-quoc"
+      ],
+      "filterYear": "",
+      "filterType": "",
+      "sortField": "_id",
+      "sortType": "desc",
+      "pagination": {
+        "totalItems": 8318,
+        "totalItemsPerPage": 24,
+        "currentPage": 1,
+        "pageRanges": 5
+      }
+    },
+    "type_list": "trung-quoc",
+    "APP_DOMAIN_FRONTEND": "https://ophim17.cc",
+    "APP_DOMAIN_CDN_IMAGE": "https://img.ophim.live"
+  }
+}

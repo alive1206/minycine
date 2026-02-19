@@ -1,0 +1,622 @@
+{
+  "success": true,
+  "message": "success",
+  "status_code": 200,
+  "data": {
+    "tmdb_id": 213306,
+    "tmdb_type": "tv",
+    "tmdb_season": 2,
+    "ophim_id": "698de34cccc6cea26875eb65",
+    "slug": "cross-phan-2",
+    "imdb_id": "tt11794812",
+    "image_sizes": {
+      "backdrop": {
+        "original": "https://image.tmdb.org/t/p/original",
+        "w1280": "https://image.tmdb.org/t/p/w1280",
+        "w300": "https://image.tmdb.org/t/p/w300",
+        "w780": "https://image.tmdb.org/t/p/w780"
+      },
+      "poster": {
+        "original": "https://image.tmdb.org/t/p/original",
+        "w154": "https://image.tmdb.org/t/p/w154",
+        "w185": "https://image.tmdb.org/t/p/w185",
+        "w342": "https://image.tmdb.org/t/p/w342",
+        "w500": "https://image.tmdb.org/t/p/w500",
+        "w780": "https://image.tmdb.org/t/p/w780",
+        "w92": "https://image.tmdb.org/t/p/w92"
+      }
+    },
+    "images": [
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/v1hqncj250WcVeVs5RXzQ3ekwMA.jpg"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/eynTpZBeR5BKKlRCAYrOsh0dnSQ.jpg",
+        "iso_639_1": "it"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/7h4Y10nl520vK5k7khqkZzOrKV4.jpg",
+        "iso_639_1": "kn"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/qrfEHpVkGZA5aMOcdu2qaNyHDWh.jpg",
+        "iso_639_1": "te"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/gDeqwXQtzatZfb5EsHW2wRRDun0.jpg"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/cw3LSrgDG34Ik2lCGYfLt1eNvRD.jpg",
+        "iso_639_1": "de"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/qLztQ7NtyRYyS0thEc8uXZtXnwx.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/lpxkbLngu8AP7XdQDQq2LIMBlZU.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/jOg9PGFrhmXK7c3UxoTCXN7NU1U.jpg",
+        "iso_639_1": "pt"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/f3yNhHfm1FuDyNPjk6USW80dvCz.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/dM3nU1V5jcZc7b2f7yR0IpdgrYR.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/szO9ghwati3Pd64TOcLFbIzjsDD.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/mDj6DXgJVfSBPvWsO116aD1393W.jpg"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/wLo2WIDC2FQUuaubScn8beW7vum.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/nsV47M2M6nWwdH4H1Dz9Pivc4oA.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/gp77Ks5xbM1OOcnn0rn6nf2Ud9J.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/oaZqSVkaluPdtP1x0BpXgw2cJjn.jpg",
+        "iso_639_1": "pt"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/9dgcQzYCzgJ7He3heQ3XJLQXfdr.jpg",
+        "iso_639_1": "hi"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/rTxoOgYl0br5bFsVSWsZTPjt5El.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/kQ0U6tNYKlhVGFfQ043lg6GT02Z.jpg",
+        "iso_639_1": "ko"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/dUzRtJKdyDnRaw6LvrlJLNMldUm.jpg",
+        "iso_639_1": "ta"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/w4HqCpNojW3kbgtj4qHCnf5G7bf.jpg"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/oIt7hJlpbXETlbmDYoZJu5XkYGI.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/2QPe2SVi1bwkUFAuMh1rIy6r0Uy.jpg",
+        "iso_639_1": "ml"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/qrUQEKja2OLc8KFG56UmgvlpscN.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/tBBEJt105y1elRZJXvmqF5gFUag.jpg",
+        "iso_639_1": "he"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/cYHJfdRnIhmeBoYN4jRMMnBDroO.jpg"
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "aspect_ratio": 1.778,
+        "type": "backdrop",
+        "file_path": "/5E45Z6xyskhq3lGOsErT6OiGTIC.jpg",
+        "iso_639_1": "ja"
+      },
+      {
+        "width": 3000,
+        "height": 1688,
+        "aspect_ratio": 1.777,
+        "type": "backdrop",
+        "file_path": "/o1zgmmZ3R9uJhUnmO0V4ihf4zBw.jpg"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/hFvzCGyQsXog4VWXmuxiq5Z5jDq.jpg",
+        "iso_639_1": "ja"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/iSf301ejJfmgx8K79wb3pb4xXRt.jpg",
+        "iso_639_1": "ml"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/i1VLajBgIRKEewiXd4E4ImGTadR.jpg",
+        "iso_639_1": "ta"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/xk1V3h6XoFjeKE1FuB62dYN0xFK.jpg",
+        "iso_639_1": "te"
+      },
+      {
+        "width": 1000,
+        "height": 1500,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/vjC4LAf7K6aXCWcp3CdinYsG0aG.jpg",
+        "iso_639_1": "ru"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/vPoHfMxyJL4zTNFL6figw3iNGcj.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/wxT57nvzXoYpSGDHZLFu1HPKDSu.jpg",
+        "iso_639_1": "fa"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/umF2seYxiKxwopAs0m86aaiEuFU.jpg",
+        "iso_639_1": "fa"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/kzPPcc9vnj7DkUiM6DtDoPUcAqy.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/yDMlTwQ4JP8wgjkW7X1lEF8wCBm.jpg"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/tfcHXGjH0iyVdAs0QMkdtn5Duc1.jpg"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/gxY1qxfgZdpcTqrndJR0RO2EwAW.jpg",
+        "iso_639_1": "uk"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/cNxA85Ao9WAEC2AJgmyy6wfyZVt.jpg",
+        "iso_639_1": "uk"
+      },
+      {
+        "width": 1440,
+        "height": 2160,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/3n61nYX8ewKTEAjLyk2aV50z9bY.jpg",
+        "iso_639_1": "uk"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/kHxAIPUMVu9mAvWvMsZOd5lwJwt.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/9fcohCosA5YPCCwwmqDhmkg88vG.jpg"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/oNigzlBMj85CmnH5UffbrDRwZR2.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/lr97DjTtdCOrjKCxuvQ4SNbXriJ.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/P1OVTaCRbeFI6xNLqt7DAfMngh.jpg",
+        "iso_639_1": "pt"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/6hhKdavCEZi8d584ZtIrQIrBvZI.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/oArnlWvky2KtWoGC0ChaDboEvcH.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/wy8NYpq3k4izodX5YOYmExKfHMe.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/61L7sn3QfGDfcXOgTuT4VF2jhSr.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/rHRlUDzPSGXDHugwp1xPYZ9JA5g.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/5bPu59SvLNxW27UUKluGZ5FfpDL.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/yunzDR1ffmZ0W80EmYBLDMmfRYR.jpg",
+        "iso_639_1": "es"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/ki38zfVGkTKVnID9ASfgenFUE8N.jpg",
+        "iso_639_1": "zh"
+      },
+      {
+        "width": 900,
+        "height": 1350,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/651ZdgXaY6plZVTdVqnl5lNr4sg.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/pD17DkmM71Y3SCnVSk1I71Z1NtW.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/9tW1JUGAQAy8Hb6u74RFvvwKjBh.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 1000,
+        "height": 1500,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/zd7nu5atUicoWsWaJ2JxGnvfkcl.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 900,
+        "height": 1350,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/negcgCHB8tT1AFMlbnstfFFO2uG.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/1exnP7UIyQtQmhowsjWrJNXS9Rm.jpg"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/spkgSlIpZn68wgiKjvlEm1GF1UE.jpg",
+        "iso_639_1": "zh"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/526QgSveLlSdnGlHgvWUHe2bdOI.jpg",
+        "iso_639_1": "zh"
+      },
+      {
+        "width": 1080,
+        "height": 1620,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/hyY67mhrqDeL2WnvHtS40iEcENA.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 1920,
+        "height": 2880,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/r1xYUEq0tKonsW5SaIz8S7GqCgR.jpg",
+        "iso_639_1": "en"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/zowUSxbACgbhHWsGQ1GKgb9AwgI.jpg",
+        "iso_639_1": "uk"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/pxfyQ88lVtxKRABHlzJv7o3AlGd.jpg",
+        "iso_639_1": "pl"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/svhI1yJdcbZqx51rE1EWL9E33gX.jpg",
+        "iso_639_1": "de"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/4t2BRfqHaSKUypPV09LkMjEECpQ.jpg",
+        "iso_639_1": "pt"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/xBZzq5S0PI61jGRA8lhPuVFr073.jpg",
+        "iso_639_1": "de"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/9bQsdUNv45XW1J7xDDsk3DNcm0f.jpg",
+        "iso_639_1": "he"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/tDCJSGgcVlBzquQ8e0dEUwA7EiA.jpg",
+        "iso_639_1": "kn"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/ibOhcdolO4GG5lRwrYdyqcftl5i.jpg",
+        "iso_639_1": "ko"
+      },
+      {
+        "width": 2000,
+        "height": 3000,
+        "aspect_ratio": 0.667,
+        "type": "poster",
+        "file_path": "/6G7CHRHhbQlYaCPHGvu8KzEMvPG.jpg",
+        "iso_639_1": "hi"
+      }
+    ]
+  }
+}

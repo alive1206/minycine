@@ -1,0 +1,2364 @@
+{
+  "status": "success",
+  "message": "",
+  "data": {
+    "seoOnPage": {
+      "og_type": "website",
+      "titleHead": "Phim hành động",
+      "descriptionHead": "Phim hành động",
+      "og_image": [
+        "/uploads/movies/exit-protocol-thumb.jpg",
+        "/uploads/movies/chua-ruoi-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-10-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-9-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-8-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-7-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-6-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-5-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-4-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-3-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-2-thumb.jpg",
+        "/uploads/movies/stargate-sg-1-phan-1-thumb.jpg",
+        "/uploads/movies/cross-phan-2-thumb.jpg",
+        "/uploads/movies/huyen-thoai-ma-vinh-trinh-thumb.jpg",
+        "/uploads/movies/thanh-pho-so-hai-thumb.jpg",
+        "/uploads/movies/tuyen-thu-de-mui-vi-chien-thang-thumb.jpg",
+        "/uploads/movies/thung-lung-xe-hoi-thumb.jpg",
+        "/uploads/movies/nguyen-sinh-phan-2-thumb.jpg",
+        "/uploads/movies/nguyen-sinh-phan-1-thumb.jpg",
+        "/uploads/movies/nguyen-sinh-phan-3-thumb.jpg",
+        "/uploads/movies/anh-hung-vo-chuc-thuc-ra-cung-chang-can-ky-nang-gi-ca-thumb.jpg",
+        "/uploads/movies/star-trek-hoc-vien-starfleet-thumb.jpg",
+        "/uploads/movies/nhat-ky-song-cham-noi-di-gioi-nuoi-con-trong-luc-lam-mao-hiem-gia-thumb.jpg",
+        "/uploads/movies/7-chien-si-huyen-thoai-thumb.jpg"
+      ],
+      "og_url": "the-loai/hanh-dong"
+    },
+    "breadCrumb": [
+      {
+        "name": "Hành Động",
+        "slug": "/the-loai/hanh-dong",
+        "isCurrent": false,
+        "position": 2
+      },
+      {
+        "name": "Trang 1",
+        "isCurrent": true,
+        "position": 3
+      }
+    ],
+    "titlePage": "Hành Động",
+    "items": [
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1293167",
+          "season": null,
+          "vote_average": 4.8,
+          "vote_count": 7
+        },
+        "imdb": {
+          "id": "tt32421438",
+          "vote_average": 3.6,
+          "vote_count": 201
+        },
+        "modified": {
+          "time": "2026-02-17T23:58:06.000Z"
+        },
+        "_id": "6993c2cdf65d22d617aaa029",
+        "name": "Exit Protocol",
+        "slug": "exit-protocol",
+        "origin_name": "Exit Protocol",
+        "alternative_names": [
+          "Fight or Flight",
+          "پروتکل خروج",
+          "Protocolo de Fuga",
+          "Väljumisprotokoll"
+        ],
+        "type": "single",
+        "thumb_url": "exit-protocol-thumb.jpg",
+        "poster_url": "exit-protocol-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "84 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2025,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2370e0fc277084dfd91e",
+            "name": "Anh",
+            "slug": "anh"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": true,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "270572",
+          "season": 1,
+          "vote_average": 8.156,
+          "vote_count": 16
+        },
+        "imdb": {
+          "id": "tt27557666",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-17T21:31:20.000Z"
+        },
+        "_id": "6992e073e263b2a946187631",
+        "name": "Chúa Ruồi",
+        "slug": "chua-ruoi",
+        "origin_name": "Lord of the Flies",
+        "alternative_names": [
+          "Sa majesté des mouches",
+          "Sineklerin Tanrısı",
+          "Kärbeste jumal"
+        ],
+        "type": "series",
+        "thumb_url": "chua-ruoi-thumb.jpg",
+        "poster_url": "chua-ruoi-poster.jpg",
+        "sub_docquyen": true,
+        "chieurap": false,
+        "time": "58 phút/tập",
+        "episode_current": "Tập 2",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2370e0fc277084dfd91e",
+            "name": "Anh",
+            "slug": "anh"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Subteam #1",
+            "is_ai": false,
+            "name": "2"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 10,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-18T11:34:25.000Z"
+        },
+        "_id": "69913e3032adc86a1e75113d",
+        "name": "Stargate SG-1 (Phần 10)",
+        "slug": "stargate-sg-1-phan-10",
+        "origin_name": "Stargate SG-1 (Season 10)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-10-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-10-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (20/20)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2006,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "20"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 9,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-18T00:56:03.000Z"
+        },
+        "_id": "69913e12ccc6cea268772939",
+        "name": "Stargate SG-1 (Phần 9)",
+        "slug": "stargate-sg-1-phan-9",
+        "origin_name": "Stargate SG-1 (Season 9)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-9-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-9-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (20/20)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2005,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "20"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 8,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-18T00:55:32.000Z"
+        },
+        "_id": "69913dfb458948c6799f6f96",
+        "name": "Stargate SG-1 (Phần 8)",
+        "slug": "stargate-sg-1-phan-8",
+        "origin_name": "Stargate SG-1 (Season 8)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-8-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-8-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (20/20)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2004,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "20"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 7,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-16T11:16:02.000Z"
+        },
+        "_id": "69913de6f063d23bbbc759b6",
+        "name": "Stargate SG-1 (Phần 7)",
+        "slug": "stargate-sg-1-phan-7",
+        "origin_name": "Stargate SG-1 (Season 7)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-7-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-7-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2003,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 6,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-16T11:15:40.000Z"
+        },
+        "_id": "69913dd1b06c99c722f190b2",
+        "name": "Stargate SG-1 (Phần 6)",
+        "slug": "stargate-sg-1-phan-6",
+        "origin_name": "Stargate SG-1 (Season 6)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-6-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-6-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2002,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 5,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-16T11:15:22.000Z"
+        },
+        "_id": "69913da046046a8eb6888c9c",
+        "name": "Stargate SG-1 (Phần 5)",
+        "slug": "stargate-sg-1-phan-5",
+        "origin_name": "Stargate SG-1 (Season 5)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-5-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-5-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2001,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 4,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-15T15:31:22.000Z"
+        },
+        "_id": "69913d8beea244e3e8a9c562",
+        "name": "Stargate SG-1 (Phần 4)",
+        "slug": "stargate-sg-1-phan-4",
+        "origin_name": "Stargate SG-1 (Season 4)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-4-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-4-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2000,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 3,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-15T15:31:58.000Z"
+        },
+        "_id": "69913d6f0a0114095c75d6e3",
+        "name": "Stargate SG-1 (Phần 3)",
+        "slug": "stargate-sg-1-phan-3",
+        "origin_name": "Stargate SG-1 (Season 3)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-3-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-3-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 1999,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 2,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-15T15:32:42.000Z"
+        },
+        "_id": "69913d50b06c99c722f19036",
+        "name": "Stargate SG-1 (Phần 2)",
+        "slug": "stargate-sg-1-phan-2",
+        "origin_name": "Stargate SG-1 (Season 2)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-2-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-2-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (22/22)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 1998,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "4629",
+          "season": 1,
+          "vote_average": 8.277,
+          "vote_count": 1744
+        },
+        "imdb": {
+          "id": "tt0118480",
+          "vote_average": 8.4,
+          "vote_count": 107070
+        },
+        "modified": {
+          "time": "2026-02-15T15:34:20.000Z"
+        },
+        "_id": "69913d34124287e08255b188",
+        "name": "Stargate SG-1 (Phần 1)",
+        "slug": "stargate-sg-1-phan-1",
+        "origin_name": "Stargate SG-1 (Season 1)",
+        "alternative_names": [
+          "Star Gate SG-1",
+          "Старгейт",
+          "La porte des étoiles",
+          "星际之门：SG-1",
+          "Hvězdná brána",
+          "Hvězdná  brána SG1",
+          "Stargate - Kommando SG-1",
+          "Stargate: SG-1",
+          "Stargate SG1 : La porte des étoiles",
+          "Stargate SG-1",
+          "סטארגייט ס\"ג-1",
+          "スターゲイト SG-1",
+          "스타게이트 SG-1",
+          "Звездные врата: ЗВ-1",
+          "Stargate",
+          "Старгейт SG-1",
+          "Hvězdná brána SG-1",
+          "Stargate Kommando SG-1",
+          "Stargate: Kommando SG-1",
+          "Tähevärav SG-1",
+          "Stargåte SG-1",
+          "Tähtiportti",
+          "I pyli tou sympantos",
+          "Η πύλη του σύμπαντος",
+          "Csillagkapu",
+          "Žvaigždžių vartai SG-1",
+          "Zvaigžņu Vārti SG-1",
+          "Gwiezdne wrota",
+          "Звездана капија: SG-1",
+          "Звёздные врата: ЗВ-1",
+          "Zvezdna vrata",
+          "Hviezdna brána SG-1",
+          "Yıldız Geçidi YG-1",
+          "Зоряна брама: SG-1",
+          "Stargate Command",
+          "Stargåte SG.1"
+        ],
+        "type": "series",
+        "thumb_url": "stargate-sg-1-phan-1-thumb.jpg",
+        "poster_url": "stargate-sg-1-phan-1-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "42 phút/tập",
+        "episode_current": "Hoàn tất (21/21)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 1997,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2381e0fc277084dfd9c6",
+            "name": "Canada",
+            "slug": "canada"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "21"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "213306",
+          "season": 2,
+          "vote_average": 7.1,
+          "vote_count": 239
+        },
+        "imdb": {
+          "id": "tt11794812",
+          "vote_average": 7.2,
+          "vote_count": 29904
+        },
+        "modified": {
+          "time": "2026-02-19T14:08:53.000Z"
+        },
+        "_id": "698de34cccc6cea26875eb65",
+        "name": "Cross (Phần 2)",
+        "slug": "cross-phan-2",
+        "origin_name": "Cross (Season 2)",
+        "alternative_names": [
+          "Detective Alex Cross",
+          "Detetive Alex Cross",
+          "Alex Cross",
+          "Крос",
+          "Кросс",
+          "法醫心理學家克洛斯"
+        ],
+        "type": "series",
+        "thumb_url": "cross-phan-2-thumb.jpg",
+        "poster_url": "cross-phan-2-poster.jpg",
+        "sub_docquyen": true,
+        "chieurap": false,
+        "time": "60 Phút/Tập",
+        "episode_current": "Tập 4",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2249e0fc277084dfd2e5",
+            "name": "Hình Sự",
+            "slug": "hinh-su"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          },
+          {
+            "id": "620f84d291fa4af90ab6b3f4",
+            "name": "Bí ẩn",
+            "slug": "bi-an"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Subteam #1",
+            "is_ai": false,
+            "name": "4"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "50569",
+          "season": null,
+          "vote_average": 6.8,
+          "vote_count": 45
+        },
+        "imdb": {
+          "id": "tt0068310",
+          "vote_average": 7,
+          "vote_count": 1581
+        },
+        "modified": {
+          "time": "2026-02-12T09:26:58.000Z"
+        },
+        "_id": "698d3a6eae6f0c1fdf38c6d0",
+        "name": "Huyền Thoại Mã Vĩnh Trinh",
+        "slug": "huyen-thoai-ma-vinh-trinh",
+        "origin_name": "The Boxer from Shantung",
+        "alternative_names": [
+          "Ma Yong Zhen",
+          "La brute",
+          "le bonze et le méchant",
+          "Le Boxeur de Shantung",
+          "Der Pirat von Shantung",
+          "Ma wing ching",
+          "Boxer from Shantung",
+          "Боксер из Шантунга",
+          "El boxeador invencible",
+          "Killer from Shantung",
+          "The Shantung Boxer",
+          "Le Justicier de Shanghaï",
+          "O Assassino de Shantung",
+          "马永贞",
+          "Der Boxer von Shantung",
+          "Orientens blodigste opgør",
+          "Poksija Shantungist",
+          "El luchador de Shantung",
+          "La Brute",
+          "le Bonze et le Méchant",
+          "Il drago si scatena",
+          "De bokser van Shantung",
+          "Pięściarz z Shantung"
+        ],
+        "type": "single",
+        "thumb_url": "huyen-thoai-ma-vinh-trinh-thumb.jpg",
+        "poster_url": "huyen-thoai-ma-vinh-trinh-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "134 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 1972,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2249e0fc277084dfd2e5",
+            "name": "Hình Sự",
+            "slug": "hinh-su"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62093063196e9f4ab6b448b8",
+            "name": "Trung Quốc",
+            "slug": "trung-quoc"
+          },
+          {
+            "id": "620a2347e0fc277084dfd876",
+            "name": "Hồng Kông",
+            "slug": "hong-kong"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1426964",
+          "season": null,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "tt39369643",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-11T16:04:14.000Z"
+        },
+        "_id": "698c40bef65d22d617a81b6b",
+        "name": "Thành Phố Sợ Hãi",
+        "slug": "thanh-pho-so-hai",
+        "origin_name": "State of Fear",
+        "alternative_names": [
+          "惊城之乱",
+          "Hermandad: Estado de terror",
+          "L'Appel du chaos",
+          "W mieście strachu",
+          "Irmandade - Uppror",
+          "Irmandade: Kardeşlik İsyanı"
+        ],
+        "type": "single",
+        "thumb_url": "thanh-pho-so-hai-thumb.jpg",
+        "poster_url": "thanh-pho-so-hai-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "103 Phút",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2249e0fc277084dfd2e5",
+            "name": "Hình Sự",
+            "slug": "hinh-su"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "62159c501f1609c9d934830a",
+            "name": "Brazil",
+            "slug": "brazil"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "Full"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "movie",
+          "id": "1297842",
+          "season": null,
+          "vote_average": 7,
+          "vote_count": 6
+        },
+        "imdb": {
+          "id": "tt27613895",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-11T13:59:38.000Z"
+        },
+        "_id": "698c28da32adc86a1e7393ff",
+        "name": "Tuyển Thủ Dê: \"Mùi\" Vị Chiến Thắng",
+        "slug": "tuyen-thu-de-mui-vi-chien-thang",
+        "origin_name": "GOAT",
+        "alternative_names": [
+          "GOAT: Мечтай по крупному",
+          "고트",
+          "山羊",
+          "ゴート",
+          "CAPRA",
+          "CABRA",
+          "VUOHI",
+          "GOAT: Labākais pasaulē",
+          "La cabra que cambió el juego: GOAT",
+          "G.O.A.T.: Bock auf große Sprünge",
+          "Goat: Rêver plus haut",
+          "Um Cabra Bom de Bola",
+          "Goat: Мечтай по-крупному",
+          "奇迹梦之队",
+          "La Cabra que Cambio el Juego - Goat",
+          "Nejlepší z nejlepších: GOAT",
+          "Väike kits. Suur mäng",
+          "Como cabras",
+          "Goat: Kaikkien aikojen paras",
+          "GOAT: Ο δρόμος προς την κορυφή",
+          "GOAT級神射手",
+          "GOAT: Will",
+          "a bajnok",
+          "गोट",
+          "GOAT: Sogna in grande",
+          "GOAT: Drøm stort",
+          "Wielka mała koza",
+          "GOAT: O Maior de Todos",
+          "Cel mai tare din parcare",
+          "GOAT. Мечтай по-крупному",
+          "GOAT - Bäst i världen",
+          "GOAT: Okus zmage",
+          "GOAT: Najlepší z najlepších",
+          "Şampiyon Keçi: Tüm Zamanların En İyisi",
+          "山羊巔峰",
+          "Цап-забивайло",
+          "Tuyển Thủ Dê: Mùi Vị Chiến Thắng"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "tuyen-thu-de-mui-vi-chien-thang-thumb.jpg",
+        "poster_url": "tuyen-thu-de-mui-vi-chien-thang-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": true,
+        "time": "100 Phút",
+        "episode_current": "Trailer",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620e4c0b6ba8271c5eef05a8",
+            "name": "Gia Đình",
+            "slug": "gia-dinh"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          }
+        ],
+        "last_episodes": []
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "283370",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "tt35449383",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-10T16:34:50.000Z"
+        },
+        "_id": "698aec9e124287e082541ebc",
+        "name": "Thung Lũng Xe Hơi",
+        "slug": "thung-lung-xe-hoi",
+        "origin_name": "Motorvalley",
+        "alternative_names": [
+          "极速山谷",
+          "Motorsport"
+        ],
+        "type": "series",
+        "thumb_url": "thung-lung-xe-hoi-thumb.jpg",
+        "poster_url": "thung-lung-xe-hoi-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Hoàn tất (6/6)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "621674a770b58bba6858b852",
+            "name": "Ý",
+            "slug": "y"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "89456",
+          "season": 2,
+          "vote_average": 8.611,
+          "vote_count": 1499
+        },
+        "imdb": {
+          "id": "tt10332508",
+          "vote_average": 8.6,
+          "vote_count": 26842
+        },
+        "modified": {
+          "time": "2026-02-09T17:22:12.000Z"
+        },
+        "_id": "6989838f4da3bf6eb334c501",
+        "name": "Nguyên Sinh (Phần 2)",
+        "slug": "nguyen-sinh-phan-2",
+        "origin_name": "Primal (Season 2)",
+        "alternative_names": [
+          "البدائي",
+          "Genndy Tartakovsky's Primal",
+          "Primal: Tales of Savagery",
+          "Primal",
+          "Първобитно",
+          "Instinto predador",
+          "Praiskon",
+          "Ősember",
+          "Iskonski",
+          "Первобытный",
+          "Первісний"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "nguyen-sinh-phan-2-thumb.jpg",
+        "poster_url": "nguyen-sinh-phan-2-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "23 phút/tập",
+        "episode_current": "Hoàn tất (10/10)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2022,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2378e0fc277084dfd972",
+            "name": "Pháp",
+            "slug": "phap"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "89456",
+          "season": 1,
+          "vote_average": 8.611,
+          "vote_count": 1499
+        },
+        "imdb": {
+          "id": "tt10332508",
+          "vote_average": 8.6,
+          "vote_count": 26842
+        },
+        "modified": {
+          "time": "2026-02-09T17:22:34.000Z"
+        },
+        "_id": "6989837dd88856be77142ef7",
+        "name": "Nguyên Sinh (Phần 1)",
+        "slug": "nguyen-sinh-phan-1",
+        "origin_name": "Primal (Season 1)",
+        "alternative_names": [
+          "البدائي",
+          "Genndy Tartakovsky's Primal",
+          "Primal: Tales of Savagery",
+          "Primal",
+          "Първобитно",
+          "Instinto predador",
+          "Praiskon",
+          "Ősember",
+          "Iskonski",
+          "Первобытный",
+          "Первісний"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "nguyen-sinh-phan-1-thumb.jpg",
+        "poster_url": "nguyen-sinh-phan-1-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "23 phút/tập",
+        "episode_current": "Hoàn tất (10/10)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2019,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2378e0fc277084dfd972",
+            "name": "Pháp",
+            "slug": "phap"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "89456",
+          "season": 3,
+          "vote_average": 8.611,
+          "vote_count": 1499
+        },
+        "imdb": {
+          "id": "tt10332508",
+          "vote_average": 8.6,
+          "vote_count": 26842
+        },
+        "modified": {
+          "time": "2026-02-09T13:58:24.000Z"
+        },
+        "_id": "69898355da6ce23e8e98af49",
+        "name": "Nguyên Sinh (Phần 3)",
+        "slug": "nguyen-sinh-phan-3",
+        "origin_name": "Primal (Season 3)",
+        "alternative_names": [
+          "البدائي",
+          "Genndy Tartakovsky's Primal",
+          "Primal: Tales of Savagery",
+          "Primal",
+          "Първобитно",
+          "Instinto predador",
+          "Praiskon",
+          "Ősember",
+          "Iskonski",
+          "Первобытный",
+          "Первісний"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "nguyen-sinh-phan-3-thumb.jpg",
+        "poster_url": "nguyen-sinh-phan-3-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "23 phút/tập",
+        "episode_current": "Tập 4",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620f3d2b91fa4af90ab697fe",
+            "name": "Chính kịch",
+            "slug": "chinh-kich"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          },
+          {
+            "id": "620a2378e0fc277084dfd972",
+            "name": "Pháp",
+            "slug": "phap"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "4"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "236565",
+          "season": 1,
+          "vote_average": 6.7,
+          "vote_count": 12
+        },
+        "imdb": {
+          "id": "tt32582999",
+          "vote_average": 0,
+          "vote_count": 14
+        },
+        "modified": {
+          "time": "2026-02-09T12:42:44.000Z"
+        },
+        "_id": "6989659154ca9185bbac903d",
+        "name": "Anh Hùng Vô Chức: Thực Ra Cũng Chẳng Cần Kỹ Năng Gì Cả?!",
+        "slug": "anh-hung-vo-chuc-thuc-ra-cung-chang-can-ky-nang-gi-ca",
+        "origin_name": "Hero Without a Class: Who Even Needs Skills?!",
+        "alternative_names": [
+          "无职英雄 ～技能什么的毫无用处～",
+          "Mushoku no Eiyuu: Betsu ni Skill Nanka Iranakatta n da ga",
+          "無職の英雄 別にスキルなんか要らなかったんだが",
+          "Mushoku No Eiyû: Betsu Ni Sukiru Nanka Iranakattan Da Ga",
+          "无职英雄",
+          "无职英雄：技能什么的毫无用处",
+          "Der Held ohne Klasse: Der Aufstieg eines Talentlosen",
+          "Hero Without a Class",
+          "Mushoku no Eiyuu ~Betsu ni Skill Nanka Iranakattan daga~",
+          "Mushoku no Eiyuu ~Betsuni Skill Nanka Iranakattan Da Ga",
+          "Mushoku no Eiyuu ~Betsuni Skill Nanka Iranakattan daga~",
+          "Mushoku no Eiyuu: Betsu ni Skill Nanka Ira Nakattan Daga",
+          "Mushoku no Eiyuu: Betsu ni Skill Nanka Iranakattanda ga",
+          "Mushoku no Eiyû: Betsu ni Sukiru Nanka Iranakattan da ga",
+          "Mushoku no Eiyū Betsu ni Sukiru Nanka Iranakattan Daga",
+          "Mushoku no Eiyū: Betsu ni Skill Nanka Iranakattan da ga",
+          "Mushoku no Eiyū: Betsu ni Sukiru Nanka Iranakattan da ga",
+          "Mushoku-Eiyu-Anime",
+          "MushokuEiyu",
+          "The Hero Who Has No Class. No Need Any Skills",
+          "It's Okay.",
+          "The Hero Who Has No Class: No Need Any Skills",
+          "It's Okay",
+          "The Unemployed Hero Does Not Need Something Like Skills",
+          "Unemployed Hero: I Didn't Need Any Skills",
+          "Unemployed Hero: I Didn't Really Need Any Skills",
+          "むしょくのえいゆう べつにスキルなんかいらなかったんだが",
+          "無職の英雄",
+          "無職の英雄 別にスキルなんか要らなかったんだが -才能ゼロの成り上がり-",
+          "Бесклассовый герой: Да мне всё равно не нужны эти ваши умения",
+          "無職英雄：技能什麼的毫無用處",
+          "Who Even Needs Skills?!",
+          "Hero Without Class",
+          "The Classless Hero: I Didn't Need Skills Anyway",
+          "The Hero Who Has No Class.",
+          "The Hero Who Has No Class. I Don't Need Any Skills"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "anh-hung-vo-chuc-thuc-ra-cung-chang-can-ky-nang-gi-ca-thumb.jpg",
+        "poster_url": "anh-hung-vo-chuc-thuc-ra-cung-chang-can-ky-nang-gi-ca-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "24 phút/tập",
+        "episode_current": "Hoàn tất (12/12)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2025,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a221de0fc277084dfd1c1",
+            "name": "Hài Hước",
+            "slug": "hai-huoc"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a2307e0fc277084dfd726",
+            "name": "Nhật Bản",
+            "slug": "nhat-ban"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "12"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "223530",
+          "season": 1,
+          "vote_average": 4.88,
+          "vote_count": 104
+        },
+        "imdb": {
+          "id": "tt8622160",
+          "vote_average": 5,
+          "vote_count": 1592
+        },
+        "modified": {
+          "time": "2026-02-08T13:50:06.000Z"
+        },
+        "_id": "6988321ef063d23bbbc59179",
+        "name": "Star Trek: Học Viện Starfleet",
+        "slug": "star-trek-hoc-vien-starfleet",
+        "origin_name": "Star Trek: Starfleet Academy",
+        "alternative_names": [
+          "Star Trek：Starfleet Academy",
+          "Star Trek: Academia da Frota Estelar",
+          "Star Trek: Akademie Hvězdné flotily",
+          "Star Trek: Academia de la Flota Estelar",
+          "Star Trek: Csillagflotta Akadémia",
+          "Star Trek: Akademia Gwiezdnej Floty",
+          "Star Trek: Academia Flotei Stelare",
+          "Звездный путь: Академия Звездного флота",
+          "Star Trek: Akadémia Hviezdnej flotily"
+        ],
+        "type": "series",
+        "thumb_url": "star-trek-hoc-vien-starfleet-thumb.jpg",
+        "poster_url": "star-trek-hoc-vien-starfleet-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "58 phút/tập",
+        "episode_current": "Trailer",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a231fe0fc277084dfd7ce",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          }
+        ],
+        "last_episodes": []
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "240633",
+          "season": 1,
+          "vote_average": 7.257,
+          "vote_count": 35
+        },
+        "imdb": {
+          "id": "tt30236310",
+          "vote_average": 6.3,
+          "vote_count": 560
+        },
+        "modified": {
+          "time": "2026-02-06T11:44:28.000Z"
+        },
+        "_id": "698569ba4da3bf6eb334511f",
+        "name": "Nhật Ký Sống Chậm Nơi Dị Giới: Nuôi Con Trong Lúc Làm Mạo Hiểm Giả",
+        "slug": "nhat-ky-song-cham-noi-di-gioi-nuoi-con-trong-luc-lam-mao-hiem-gia",
+        "origin_name": "A Journey Through Another World: Raising Kids While Adventuring",
+        "alternative_names": [
+          "異世界悠閒紀行~邊養娃邊當冒險者~",
+          "异世界悠闲纪行 ～边养娃边当冒险者～",
+          "いせかい ゆるり きこう ～ こそだてしながら ぼうけんしゃします ～",
+          "Isekai Yururi Kikou: Kosodateshinagara Boukensha Shimasu",
+          "Isekai Yururi Kikō ~ Kosodate Shinagara Bōken-sha Shimasu ~",
+          "Iseyuru",
+          "이세계 느긋한 기행 ~육아하면서 모험가 합니다~",
+          "Isekai Yururi Kikou",
+          "異世界悠閒紀行～邊養娃邊當冒險者～",
+          "A Journey Through Another World ~Raising Kids While Adventuring~",
+          "Isekai Yururi Kikou: Raising Children While Being an Adventurer",
+          "Nhật Ký Sống Chậm Nơi Dị Giới Nuôi Con Trong Lúc Làm Mạo Hiểm Giả",
+          "异世界悠闲纪行～边养娃边当冒险者～",
+          "Catatan Perjalanan Santai di Dunia Lain: Aku Menjadi Petualang Sembari Mengasuh Anak",
+          "A Leisurely Journey to Another World -I'll Be an Adventurer While Raising My Child-",
+          "Isekai Yururi Kikou: Kosodate Shinagara Boukensha Shimasu",
+          "Isekai Yururi Kikô: Kosodate Shinagara Bôkensha Shimasu",
+          "Isekai Yururi Kikō: Kosodate Shinagara Bōkensha Shimasu",
+          "Isekai-Yururi-Anime",
+          "いせかいゆるりきこう こそだてしながらぼうけんしゃします",
+          "異世界ゆるり紀行",
+          "異世界ゆるり紀行 〜子育てしながら冒険者します〜",
+          "異世界ゆるり紀行 ～子育てしながら冒険者します～",
+          "Приключения в другом мире: Воспитывать детей будучи авантюристом",
+          "Isekai Yururi Kikou ~Raising Children While Being an Adventurer~",
+          "Raising Children While Being an Adventurer"
+        ],
+        "type": "hoathinh",
+        "thumb_url": "nhat-ky-song-cham-noi-di-gioi-nuoi-con-trong-luc-lam-mao-hiem-gia-thumb.jpg",
+        "poster_url": "nhat-ky-song-cham-noi-di-gioi-nuoi-con-trong-luc-lam-mao-hiem-gia-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "24 phút/tập",
+        "episode_current": "Hoàn tất (12/12)",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2024,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2282e0fc277084dfd435",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          },
+          {
+            "id": "620a229be0fc277084dfd4dd",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a2307e0fc277084dfd726",
+            "name": "Nhật Bản",
+            "slug": "nhat-ban"
+          },
+          {
+            "id": "620a2335e0fc277084dfd822",
+            "name": "Đài Loan",
+            "slug": "dai-loan"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "12"
+          }
+        ]
+      },
+      {
+        "tmdb": {
+          "type": "tv",
+          "id": "304533",
+          "season": 1,
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "imdb": {
+          "id": "",
+          "vote_average": 0,
+          "vote_count": 0
+        },
+        "modified": {
+          "time": "2026-02-13T22:57:06.000Z"
+        },
+        "_id": "698553f84ea2111da8b74af2",
+        "name": "7 Chiến Sĩ Huyền Thoại",
+        "slug": "7-chien-si-huyen-thoai",
+        "origin_name": "The Seven Legends",
+        "alternative_names": [
+          ""
+        ],
+        "type": "series",
+        "thumb_url": "7-chien-si-huyen-thoai-thumb.jpg",
+        "poster_url": "7-chien-si-huyen-thoai-poster.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "? phút/tập",
+        "episode_current": "Tập 4",
+        "quality": "HD",
+        "lang": "Vietsub",
+        "lang_key": [
+          "vs"
+        ],
+        "year": 2026,
+        "category": [
+          {
+            "id": "620a21b2e0fc277084dfd0c5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "620a2293e0fc277084dfd489",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          }
+        ],
+        "country": [
+          {
+            "id": "620a2318e0fc277084dfd77a",
+            "name": "Thái Lan",
+            "slug": "thai-lan"
+          }
+        ],
+        "last_episodes": [
+          {
+            "server_name": "Vietsub #1",
+            "is_ai": false,
+            "name": "4"
+          }
+        ]
+      }
+    ],
+    "params": {
+      "type_slug": "the-loai",
+      "slug": "hanh-dong",
+      "filterCategory": [
+        "hanh-dong"
+      ],
+      "filterCountry": [
+        ""
+      ],
+      "filterYear": "",
+      "filterType": "",
+      "sortField": "_id",
+      "sortType": "desc",
+      "pagination": {
+        "totalItems": 8519,
+        "totalItemsPerPage": 24,
+        "currentPage": 1,
+        "pageRanges": 5
+      }
+    },
+    "type_list": "hanh-dong",
+    "APP_DOMAIN_FRONTEND": "https://ophim17.cc",
+    "APP_DOMAIN_CDN_IMAGE": "https://img.ophim.live"
+  }
+}

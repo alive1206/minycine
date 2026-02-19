@@ -1,26 +1,120 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "../hero.ts";
+@source "../node_modules/@heroui/theme/dist/**/*.js";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
+  --color-background: #0d0d0d;
+  --color-foreground: #ffffff;
+  --color-surface: #1a1a1a;
+  --color-surface-hover: #222222;
+  --color-muted: #a3a3a3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar for carousels */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
+}
+
+/* Thin scrollbar for compact areas */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+/* Hero gradient overlays */
+.hero-gradient-left {
+  background: linear-gradient(
+    to right,
+    #0d0d0d 0%,
+    #0d0d0d 30%,
+    transparent 100%
+  );
+}
+.hero-gradient-bottom {
+  background: linear-gradient(to top, #0d0d0d 10%, transparent 100%);
+}
+
+/* Movie card hover */
+.movie-card {
+  transition: transform 0.3s ease;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+/* Disable scale inside horizontal scroll to not block scrolling */
+.overflow-x-auto .movie-card:hover {
+  transform: none;
+}
+.movie-card .card-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.movie-card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* Hero banner animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
 }

@@ -1,0 +1,174 @@
+{
+  "success": true,
+  "message": "success",
+  "status_code": 200,
+  "data": {
+    "tmdb_id": 213306,
+    "tmdb_type": "tv",
+    "tmdb_season": 2,
+    "ophim_id": "698de34cccc6cea26875eb65",
+    "slug": "cross-phan-2",
+    "imdb_id": "tt11794812",
+    "profile_sizes": {
+      "h632": "https://image.tmdb.org/t/p/h632",
+      "original": "https://image.tmdb.org/t/p/original",
+      "w185": "https://image.tmdb.org/t/p/w185",
+      "w45": "https://image.tmdb.org/t/p/w45"
+    },
+    "peoples": [
+      {
+        "tmdb_people_id": 83860,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Aldis Hodge",
+        "original_name": "Aldis Hodge",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "/enDU0pemco1mFxxdLKUzWakC6sk.jpg",
+        "also_known_as": [
+          "Aldis Alexander Basil Hodge",
+          "آلدیس هاج"
+        ]
+      },
+      {
+        "tmdb_people_id": 58433,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "David Ellison",
+        "original_name": "David Ellison",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "/jOhjFZWW2KqsOzm4IiE71FHmcIf.jpg",
+        "also_known_as": [
+          "大衛·埃利森",
+          "데이빗 엘리슨",
+          "大衛·埃里森"
+        ]
+      },
+      {
+        "tmdb_people_id": 29018,
+        "adult": false,
+        "gender": 1,
+        "gender_name": "Female",
+        "name": "Dana Goldberg",
+        "original_name": "Dana Goldberg",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "/AtiT0HTrrrvVVjZgOXpxKxVFyAb.jpg",
+        "also_known_as": [
+          "達納·戈德堡"
+        ]
+      },
+      {
+        "tmdb_people_id": 21022,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "James Patterson",
+        "original_name": "James Patterson",
+        "character": "",
+        "known_for_department": "Writing",
+        "profile_path": "/aOXc6ME5oaDVEKiz3iDdKXzBlCo.jpg",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 1224821,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Jim Dunn",
+        "original_name": "Jim Dunn",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 1224820,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Sam Ernst",
+        "original_name": "Sam Ernst",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 1233035,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Ben Watkins",
+        "original_name": "Ben Watkins",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "/6YDvWYMZFoPVu0IIXxEDiVaaOZe.jpg",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 4431386,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Matt Thunell",
+        "original_name": "Matt Thunell",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 3412595,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Bill Bost",
+        "original_name": "Bill Bost",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 1524570,
+        "adult": false,
+        "gender": 2,
+        "gender_name": "Male",
+        "name": "Craig Siebels",
+        "original_name": "Craig Siebels",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 3760741,
+        "adult": false,
+        "gender": 0,
+        "gender_name": "Not set / not specified",
+        "name": "Patrick Santa",
+        "original_name": "Patrick Santa",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      },
+      {
+        "tmdb_people_id": 2755598,
+        "adult": false,
+        "gender": 0,
+        "gender_name": "Not set / not specified",
+        "name": "Bill Robinson",
+        "original_name": "Bill Robinson",
+        "character": "",
+        "known_for_department": "Production",
+        "profile_path": "",
+        "also_known_as": null
+      }
+    ]
+  }
+}
