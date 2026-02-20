@@ -25,7 +25,8 @@ function cleanParams(
   params: MovieListParams = {},
 ): Record<string, string | number> {
   const cleaned: Record<string, string | number> = {};
-  if (params.page) cleaned.page = params.page;
+  // Note: `page` is intentionally excluded — it's passed as a separate
+  // explicit argument by every hook to avoid double-sending.
   if (params.limit) cleaned.limit = params.limit;
   if (params.sort_field) cleaned.sort_field = params.sort_field;
   if (params.sort_type) cleaned.sort_type = params.sort_type;

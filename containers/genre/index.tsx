@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useParams } from "next/navigation";
 import { MovieGrid } from "@/components/movie/movie-grid";
 import { MovieFilter } from "@/components/movie/movie-filter";
 import { useMoviesByGenre } from "@/hooks/use-movies";
+import { usePageParam } from "@/hooks/use-page-param";
 import type { MovieListParams } from "@/types/api";
+import { Skeleton } from "@heroui/react";
 
-export const GenrePage = () => {
+const GenreContent = () => {
   const params = useParams();
   const slug = params.slug as string;
-  const [page, setPage] = useState(1);
+  const [page, setPage] = usePageParam();
   const [filters, setFilters] = useState<MovieListParams>({
     sort_field: "year",
     sort_type: "desc",
@@ -45,3 +47,20 @@ export const GenrePage = () => {
     </div>
   );
 };
+
+const PageFallback = () => (
+  <div className="min-h-screen px-4 md:px-10 py-8">
+    <Skeleton className="rounded-lg mb-2">
+      <div className="h-10 w-64" />
+    </Skeleton>
+    <Skeleton className="rounded-lg mb-6">
+      <div className="h-5 w-48" />
+    </Skeleton>
+  </div>
+);
+
+export const GenrePage = () => (
+  <Suspense fallback={<PageFallback />}>
+    <GenreContent />
+  </Suspense>
+);

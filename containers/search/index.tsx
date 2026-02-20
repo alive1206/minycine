@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import { usePageParam } from "@/hooks/use-page-param";
 import { useSearchParams } from "next/navigation";
 import { MovieGrid } from "@/components/movie/movie-grid";
 import { MovieFilter } from "@/components/movie/movie-filter";
@@ -13,7 +14,7 @@ import type { MovieListParams } from "@/types/api";
 const SearchResults = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword") || "";
-  const [page, setPage] = useState(1);
+  const [page, setPage] = usePageParam();
   const [filters, setFilters] = useState<MovieListParams>({
     sort_field: "year",
     sort_type: "desc",
