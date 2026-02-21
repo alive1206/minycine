@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     "Trải nghiệm điện ảnh đỉnh cao với kho phim khổng lồ, chất lượng HD, cập nhật liên tục. Phim bộ, phim lẻ, phim mới nhất — tất cả tại MinyCine.",
   keywords: ["xem phim", "phim online", "phim hay", "MinyCine", "phim HD"],
   icons: {
-    icon: "/favicon.svg",
-    apple: "/icons/icon-192.png",
+    icon: "/favicon.svg?v=2",
+    apple: "/icons/icon-192.png?v=2",
   },
   manifest: "/manifest.json",
   appleWebApp: {

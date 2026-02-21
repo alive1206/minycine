@@ -31,7 +31,13 @@ function popcornKernels(scale, offsetX, offsetY) {
     .join("\n    ");
 }
 
-function popcornBucket(scale, offsetX, offsetY) {
+function popcornBucket(
+  scale,
+  offsetX,
+  offsetY,
+  bucketColor = "#E50914",
+  rimColor = "#CC0812",
+) {
   const x1 = 8 * scale + offsetX;
   const y1 = 16 * scale + offsetY;
   const x2 = 10 * scale + offsetX;
@@ -50,11 +56,11 @@ function popcornBucket(scale, offsetX, offsetY) {
   const rimW = 22 * scale;
   const rimH = 2.5 * scale;
 
-  return `<path d="M${x1} ${y1}L${x2} ${y2}H${x3}L${x4} ${y1}H${x1}Z" fill="#E50914"/>
+  return `<path d="M${x1} ${y1}L${x2} ${y2}H${x3}L${x4} ${y1}H${x1}Z" fill="${bucketColor}"/>
     <path d="M${stripe1x1} ${y1}L${stripe1x2} ${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
     <path d="M${stripe2x} ${y1}V${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
     <path d="M${stripe3x1} ${y1}L${stripe3x2} ${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
-    <rect x="${rimX}" y="${rimY}" width="${rimW}" height="${rimH}" rx="${1 * scale}" fill="#CC0812"/>`;
+    <rect x="${rimX}" y="${rimY}" width="${rimW}" height="${rimH}" rx="${1 * scale}" fill="${rimColor}"/>`;
 }
 
 // ─── Regular icon: popcorn on black bg ───
@@ -73,6 +79,7 @@ function regularIconSvg(size) {
 }
 
 // ─── Maskable icon: popcorn on red bg, safe zone aware ───
+// Bucket uses darker red (#B20710) so it's visible against the #E50914 background
 function maskableIconSvg(size) {
   const safeInset = size * 0.1;
   const safeSize = size * 0.8;
@@ -82,7 +89,7 @@ function maskableIconSvg(size) {
   <rect width="${size}" height="${size}" fill="#E50914"/>
   <g>
     ${popcornKernels(scale, safeInset, safeInset)}
-    ${popcornBucket(scale, safeInset, safeInset)}
+    ${popcornBucket(scale, safeInset, safeInset, "#B20710", "#8C0510")}
   </g>
 </svg>`;
 }
