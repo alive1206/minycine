@@ -5,48 +5,87 @@ import { useEffect, useRef, useCallback } from "react";
 import { userAtom, accessTokenAtom, authLoadingAtom } from "@/jotais/auth";
 
 const REFRESH_TOKEN_KEY = "minycine_refresh_token";
-const ACCESS_TOKEN_REFRESH_BUFFER = 60 * 1000;
-const ACCESS_TOKEN_LIFETIME = 15 * 60 * 1000;
+const ACCESS_TOKEN_REFRESH_BUFFER = 60 * 1000; // 1 minute before expiry
+const ACCESS_TOKEN_LIFETIME = 15 * 60 * 1000; // 15 minutes
 
 export const AuthInitializer = () => {
   const setUser = useSetAtom(userAtom);
   const setAccessToken = useSetAtom(accessTokenAtom);
   const setLoading = useSetAtom(authLoadingAtom);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const lastRefreshRef = useRef<number>(0);
+
+  const doRefresh = useCallback(async (): Promise<boolean> => {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+    if (!refreshToken) return false;
+
+    try {
+      const res = await fetch("/api/auth/refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setAccessToken(data.accessToken);
+        setUser(data.user);
+        localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
+        lastRefreshRef.current = Date.now();
+        return true;
+      } else {
+        setAccessToken(null);
+        setUser(null);
+        localStorage.removeItem(REFRESH_TOKEN_KEY);
+        return false;
+      }
+    } catch {
+      setAccessToken(null);
+      setUser(null);
+      localStorage.removeItem(REFRESH_TOKEN_KEY);
+      return false;
+    }
+  }, [setAccessToken, setUser]);
+
+  const scheduleRefreshRef = useRef<() => void>(() => {});
 
   const scheduleRefresh = useCallback(() => {
     if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
 
     refreshTimerRef.current = setTimeout(async () => {
+      const success = await doRefresh();
+      if (success) scheduleRefreshRef.current();
+    }, ACCESS_TOKEN_LIFETIME - ACCESS_TOKEN_REFRESH_BUFFER);
+  }, [doRefresh]);
+
+  // Keep ref in sync
+  useEffect(() => {
+    scheduleRefreshRef.current = scheduleRefresh;
+  }, [scheduleRefresh]);
+
+  // Handle tab visibility change — refresh token when user returns to tab
+  useEffect(() => {
+    const handleVisibilityChange = async () => {
+      if (document.visibilityState !== "visible") return;
+
       const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
       if (!refreshToken) return;
 
-      try {
-        const res = await fetch("/api/auth/refresh", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ refreshToken }),
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setAccessToken(data.accessToken);
-          setUser(data.user);
-          localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
-          scheduleRefresh();
-        } else {
-          setAccessToken(null);
-          setUser(null);
-          localStorage.removeItem(REFRESH_TOKEN_KEY);
-        }
-      } catch {
-        setAccessToken(null);
-        setUser(null);
-        localStorage.removeItem(REFRESH_TOKEN_KEY);
+      // Check if enough time has passed that the access token might be expired
+      const elapsed = Date.now() - lastRefreshRef.current;
+      if (elapsed >= ACCESS_TOKEN_LIFETIME - ACCESS_TOKEN_REFRESH_BUFFER) {
+        const success = await doRefresh();
+        if (success) scheduleRefresh();
       }
-    }, ACCESS_TOKEN_LIFETIME - ACCESS_TOKEN_REFRESH_BUFFER);
-  }, [setAccessToken, setUser]);
+    };
 
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [doRefresh, scheduleRefresh]);
+
+  // Initial auth on mount
   useEffect(() => {
     const init = async () => {
       const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
@@ -55,34 +94,20 @@ export const AuthInitializer = () => {
         return;
       }
 
-      try {
-        const res = await fetch("/api/auth/refresh", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ refreshToken }),
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setAccessToken(data.accessToken);
-          setUser(data.user);
-          localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
-          scheduleRefresh();
-        } else {
-          localStorage.removeItem(REFRESH_TOKEN_KEY);
-        }
-      } catch {
+      const success = await doRefresh();
+      if (success) {
+        scheduleRefresh();
+      } else {
         localStorage.removeItem(REFRESH_TOKEN_KEY);
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     init();
     return () => {
       if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
     };
-  }, [scheduleRefresh, setAccessToken, setUser, setLoading]);
+  }, [doRefresh, scheduleRefresh, setLoading]);
 
   return null;
 };

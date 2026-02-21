@@ -8,6 +8,7 @@ import {
   authLoadingAtom,
   type AuthUser,
 } from "@/jotais/auth";
+import { authFetch } from "@/lib/auth-fetch";
 
 const REFRESH_TOKEN_KEY = "minycine_refresh_token";
 
@@ -72,6 +73,10 @@ export function useAuth() {
   }, [setAccessToken, setUser]);
 
   return { user, accessToken, isLoading, login, register, logout };
+}
+
+export function useAuthFetch() {
+  return authFetch;
 }
 
 export { REFRESH_TOKEN_KEY };

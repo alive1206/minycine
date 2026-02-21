@@ -24,7 +24,7 @@ import {
   Trash2,
   Play,
 } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth, useAuthFetch } from "@/hooks/use-auth";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useWatchHistory } from "@/hooks/use-watch-history";
 import { useEffect, useState } from "react";
@@ -189,7 +189,8 @@ const WatchHistorySection = () => {
 
 export const ProfilePage = () => {
   const router = useRouter();
-  const { user, isLoading, logout, accessToken } = useAuth();
+  const { user, isLoading, logout } = useAuth();
+  const authFetch = useAuthFetch();
 
   // Profile editing
   const [name, setName] = useState(user?.name ?? "");
@@ -218,17 +219,12 @@ export const ProfilePage = () => {
   }, [user, isLoading, router]);
 
   const handleSaveProfile = async () => {
-    if (!accessToken) return;
     setProfileSaving(true);
     setProfileMsg("");
 
     try {
-      const res = await fetch("/api/auth/update-profile", {
+      const res = await authFetch("/api/auth/update-profile", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
         body: JSON.stringify({ name, avatar: selectedAvatar || null }),
       });
 
@@ -247,7 +243,6 @@ export const ProfilePage = () => {
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!accessToken) return;
     setPwError("");
     setPwMsg("");
 
@@ -277,12 +272,8 @@ export const ProfilePage = () => {
     setPwSaving(true);
 
     try {
-      const res = await fetch("/api/auth/change-password", {
+      const res = await authFetch("/api/auth/change-password", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
         body: JSON.stringify({ currentPassword, newPassword }),
       });
 
