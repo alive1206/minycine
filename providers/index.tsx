@@ -5,6 +5,7 @@ import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 import { AuthInitializer } from "@/lib/auth-initializer";
+import { appStore } from "@/lib/store";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -22,7 +23,7 @@ export const Providers = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <JotaiProvider>
+    <JotaiProvider store={appStore}>
       <QueryClientProvider client={queryClient}>
         <HeroUIProvider>
           <ToastProvider placement="bottom-center" />

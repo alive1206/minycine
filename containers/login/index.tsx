@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Input, Button, Card, CardBody, CardHeader } from "@heroui/react";
 import { Eye, EyeOff, LogIn } from "lucide-react";
@@ -9,6 +9,8 @@ import { useAuth } from "@/hooks/use-auth";
 
 export const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
   const { login, user, isLoading } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -19,7 +21,7 @@ export const LoginPage = () => {
 
   // Redirect if already logged in
   if (!isLoading && user) {
-    router.push("/");
+    router.push(redirectTo);
     return null;
   }
 
@@ -40,7 +42,7 @@ export const LoginPage = () => {
 
     try {
       await login(email, password);
-      router.push("/");
+      router.push(redirectTo);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Đăng nhập thất bại");
     } finally {

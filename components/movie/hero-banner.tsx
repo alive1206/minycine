@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button, Skeleton } from "@heroui/react";
 import { Play, Info, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import type { Movie } from "@/types/api";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMovieImages } from "@/hooks/use-movie-images";
@@ -42,6 +43,164 @@ const RatingBadge = ({ voteAverage }: { voteAverage?: number }) => {
   );
 };
 
+// ─── Individual slide that fetches its own data ────────────────
+interface HeroSlideProps {
+  movie: Movie;
+  isActive: boolean;
+}
+
+const HeroSlide = ({ movie, isActive }: HeroSlideProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const { data: detailData } = useMovieDetail(movie.slug);
+  const { data: tmdbImages } = useMovieImages(movie.slug);
+
+  const originalUrl = getImageUrl(movie.poster_url || movie.thumb_url);
+  const backdropUrl = tmdbImages?.backdropUrl || originalUrl;
+
+  return (
+    <div
+      className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+      style={{
+        opacity:
+          isActive && imageLoaded
+            ? 1
+            : isActive && !backdropUrl
+              ? 1
+              : isActive
+                ? imageLoaded
+                  ? 1
+                  : 0
+                : 0,
+      }}
+    >
+      {backdropUrl && (
+        <Image
+          src={backdropUrl}
+          alt={movie.name}
+          fill
+          priority
+          className="object-cover"
+          unoptimized
+          onLoad={() => setImageLoaded(true)}
+        />
+      )}
+    </div>
+  );
+};
+
+/** Hook to get slide content (detail + images) for a given movie */
+const useSlideContent = (movie: Movie | undefined) => {
+  const slug = movie?.slug || "";
+  const { data: detailData } = useMovieDetail(slug);
+  const { data: tmdbImages } = useMovieImages(slug);
+
+  const content = detailData?.movie?.content;
+  const synopsis = content ? truncateText(stripHtml(content)) : "";
+  const voteAverage =
+    detailData?.movie?.tmdb?.vote_average ?? movie?.tmdb?.vote_average;
+
+  return { synopsis, voteAverage, tmdbImages };
+};
+
+// ─── Content overlay component with AnimatePresence ───────────
+interface SlideContentProps {
+  movie: Movie;
+  synopsis: string;
+  voteAverage?: number;
+}
+
+const SlideContent = ({ movie, synopsis, voteAverage }: SlideContentProps) => (
+  <motion.div
+    key={movie.slug}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    className="flex flex-col gap-5 items-start"
+  >
+    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-lg">
+      {movie.name}
+    </h1>
+
+    {movie.origin_name && (
+      <p className="text-lg text-gray-400 font-medium">{movie.origin_name}</p>
+    )}
+
+    {/* Meta */}
+    <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-gray-200">
+      <RatingBadge voteAverage={voteAverage} />
+      {movie.quality && (
+        <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
+          {movie.quality}
+        </span>
+      )}
+      {movie.lang && (
+        <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
+          {movie.lang}
+        </span>
+      )}
+      {movie.episode_current && (
+        <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
+          {movie.episode_current.toLowerCase().includes("undefined")
+            ? "? tập"
+            : movie.episode_current}
+        </span>
+      )}
+      <span className="text-gray-400">
+        {movie.time && !movie.time.toLowerCase().includes("undefined")
+          ? movie.time
+          : "? phút/tập"}
+      </span>
+    </div>
+
+    {/* Category tags */}
+    {movie.category?.length > 0 && (
+      <div className="flex flex-wrap gap-2">
+        {movie.category.slice(0, 4).map((cat) => (
+          <span
+            key={cat.slug}
+            className="bg-white/10 text-gray-300 text-xs px-2 py-0.5 rounded"
+          >
+            {cat.name}
+          </span>
+        ))}
+      </div>
+    )}
+
+    {/* Movie synopsis */}
+    {synopsis && (
+      <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-xl line-clamp-3">
+        {synopsis}
+      </p>
+    )}
+
+    {/* Actions */}
+    <div className="flex items-center gap-4 mt-2">
+      <Button
+        as={Link}
+        href={`/phim/${movie.slug}`}
+        color="primary"
+        size="lg"
+        className="font-bold shadow-lg shadow-red-900/20 hover:scale-105 transition-transform"
+        startContent={<Play className="w-5 h-5 fill-white" />}
+      >
+        Xem Phim
+      </Button>
+      <Button
+        as={Link}
+        href={`/phim/${movie.slug}`}
+        variant="flat"
+        size="lg"
+        className="bg-white/20 text-white backdrop-blur-sm font-bold border border-white/10"
+        startContent={<Info className="w-5 h-5" />}
+      >
+        Chi Tiết
+      </Button>
+    </div>
+  </motion.div>
+);
+
+// ─── Main HeroBanner ──────────────────────────────────────────
 interface HeroBannerProps {
   movies?: Movie[];
   isLoading?: boolean;
@@ -59,37 +218,32 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
   const heroMovies = movies?.slice(0, 5) || [];
   const currentMovie = heroMovies[activeIndex];
 
-  // Fetch detail for the active movie to get content/synopsis
-  const { data: detailData } = useMovieDetail(currentMovie?.slug || "");
-  // Fetch TMDb images for high-quality backdrop
-  const { data: tmdbImages } = useMovieImages(currentMovie?.slug || "");
-
-  const content = detailData?.movie?.content;
-  const synopsis = content ? truncateText(stripHtml(content)) : "";
+  // Prefetch content for the active slide
+  const { synopsis, voteAverage } = useSlideContent(currentMovie);
 
   // Navigation helpers
-  const goTo = (index: number) => {
+  const goTo = useCallback((index: number) => {
     setActiveIndex(index);
-  };
+  }, []);
 
-  const goNext = () => {
+  const goNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % heroMovies.length);
-  };
+  }, [heroMovies.length]);
 
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
     setActiveIndex(
       (prev) => (prev - 1 + heroMovies.length) % heroMovies.length,
     );
-  };
+  }, [heroMovies.length]);
 
   // Reset auto-advance timer whenever user interacts
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     if (heroMovies.length <= 1) return;
     timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % heroMovies.length);
     }, INTERVAL_MS);
-  };
+  }, [heroMovies.length]);
 
   // Auto-advance
   useEffect(() => {
@@ -97,8 +251,7 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [heroMovies.length]);
+  }, [resetTimer]);
 
   // Touch / swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -122,10 +275,6 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
     resetTimer();
   };
 
-  // Resolve vote_average (detail data takes priority)
-  const voteAverage =
-    detailData?.movie?.tmdb?.vote_average ?? currentMovie?.tmdb?.vote_average;
-
   if (isLoading || heroMovies.length === 0) {
     return (
       <section className="relative h-[85vh] w-full overflow-hidden bg-[#0D0D0D]">
@@ -141,132 +290,31 @@ export const HeroBanner = ({ movies, isLoading }: HeroBannerProps) => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Stacked backgrounds with crossfade */}
-      {heroMovies.map((movie, idx) => {
-        const originalUrl = getImageUrl(movie.poster_url || movie.thumb_url);
-        // Use TMDb backdrop for the active slide, fallback to original
-        const backdropUrl =
-          idx === activeIndex && tmdbImages?.backdropUrl
-            ? tmdbImages.backdropUrl
-            : originalUrl;
-        return (
-          <div
-            key={movie.slug}
-            className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-            style={{ opacity: idx === activeIndex ? 1 : 0 }}
-          >
-            {backdropUrl && (
-              <Image
-                src={backdropUrl}
-                alt={movie.name}
-                fill
-                priority={idx === 0}
-                className="object-cover"
-                unoptimized
-              />
-            )}
-          </div>
-        );
-      })}
+      {/* Stacked backgrounds — each slide prefetches its own data */}
+      {heroMovies.map((movie, idx) => (
+        <HeroSlide
+          key={movie.slug}
+          movie={movie}
+          isActive={idx === activeIndex}
+        />
+      ))}
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 hero-gradient-left" />
       <div className="absolute inset-0 hero-gradient-bottom" />
 
-      {/* Content with crossfade */}
+      {/* Content with AnimatePresence crossfade */}
       <div className="absolute inset-0 flex items-center">
         <div className="px-4 md:px-10 w-full max-w-7xl mx-auto pt-20">
           <div className="max-w-2xl flex flex-col gap-5 items-start">
-            {/* Animated content block */}
-            <div
-              key={currentMovie.slug}
-              className="flex flex-col gap-5 items-start animate-fade-in"
-            >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-lg">
-                {currentMovie.name}
-              </h1>
-
-              {currentMovie.origin_name && (
-                <p className="text-lg text-gray-400 font-medium">
-                  {currentMovie.origin_name}
-                </p>
-              )}
-
-              {/* Meta */}
-              <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-gray-200">
-                <RatingBadge voteAverage={voteAverage} />
-                {currentMovie.quality && (
-                  <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
-                    {currentMovie.quality}
-                  </span>
-                )}
-                {currentMovie.lang && (
-                  <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
-                    {currentMovie.lang}
-                  </span>
-                )}
-                {currentMovie.episode_current && (
-                  <span className="bg-white/20 px-2 py-0.5 rounded text-xs">
-                    {currentMovie.episode_current
-                      .toLowerCase()
-                      .includes("undefined")
-                      ? "? tập"
-                      : currentMovie.episode_current}
-                  </span>
-                )}
-                <span className="text-gray-400">
-                  {currentMovie.time &&
-                  !currentMovie.time.toLowerCase().includes("undefined")
-                    ? currentMovie.time
-                    : "? phút/tập"}
-                </span>
-              </div>
-
-              {/* Category tags */}
-              {currentMovie.category?.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {currentMovie.category.slice(0, 4).map((cat) => (
-                    <span
-                      key={cat.slug}
-                      className="bg-white/10 text-gray-300 text-xs px-2 py-0.5 rounded"
-                    >
-                      {cat.name}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* Movie synopsis */}
-              {synopsis && (
-                <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-xl line-clamp-3">
-                  {synopsis}
-                </p>
-              )}
-
-              {/* Actions */}
-              <div className="flex items-center gap-4 mt-2">
-                <Button
-                  as={Link}
-                  href={`/phim/${currentMovie.slug}`}
-                  color="primary"
-                  size="lg"
-                  className="font-bold shadow-lg shadow-red-900/20 hover:scale-105 transition-transform"
-                  startContent={<Play className="w-5 h-5 fill-white" />}
-                >
-                  Xem Phim
-                </Button>
-                <Button
-                  as={Link}
-                  href={`/phim/${currentMovie.slug}`}
-                  variant="flat"
-                  size="lg"
-                  className="bg-white/20 text-white backdrop-blur-sm font-bold border border-white/10"
-                  startContent={<Info className="w-5 h-5" />}
-                >
-                  Chi Tiết
-                </Button>
-              </div>
-            </div>
+            <AnimatePresence mode="wait">
+              <SlideContent
+                key={currentMovie.slug}
+                movie={currentMovie}
+                synopsis={synopsis}
+                voteAverage={voteAverage}
+              />
+            </AnimatePresence>
           </div>
         </div>
       </div>

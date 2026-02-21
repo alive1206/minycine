@@ -1,7 +1,7 @@
 "use client";
 
-import { getDefaultStore } from "jotai";
 import { accessTokenAtom, userAtom } from "@/jotais/auth";
+import { appStore } from "@/lib/store";
 
 const REFRESH_TOKEN_KEY = "minycine_refresh_token";
 
@@ -29,7 +29,7 @@ async function refreshAccessToken(): Promise<string | null> {
 
       if (!res.ok) {
         // Refresh failed — clear auth state
-        const store = getDefaultStore();
+        const store = appStore;
         store.set(accessTokenAtom, null);
         store.set(userAtom, null);
         localStorage.removeItem(REFRESH_TOKEN_KEY);
@@ -37,13 +37,13 @@ async function refreshAccessToken(): Promise<string | null> {
       }
 
       const data = await res.json();
-      const store = getDefaultStore();
+      const store = appStore;
       store.set(accessTokenAtom, data.accessToken);
       store.set(userAtom, data.user);
       localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
       return data.accessToken as string;
     } catch {
-      const store = getDefaultStore();
+      const store = appStore;
       store.set(accessTokenAtom, null);
       store.set(userAtom, null);
       localStorage.removeItem(REFRESH_TOKEN_KEY);
@@ -71,7 +71,7 @@ export async function authFetch(
   input: RequestInfo | URL,
   init?: RequestInit,
 ): Promise<Response> {
-  const store = getDefaultStore();
+  const store = appStore;
   const token = store.get(accessTokenAtom);
 
   // Build headers with authorization

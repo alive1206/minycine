@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Navbar as HeroNavbar,
   NavbarBrand,
@@ -47,6 +47,7 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isLoading: authLoading, logout } = useAuth();
 
   // Fetch taxonomy data from API
@@ -351,22 +352,15 @@ export const Navbar = () => {
               </DropdownMenu>
             </Dropdown>
           ) : (
-            <Link href="/dang-nhap" className="block">
-              {/* Desktop: full button */}
-              <Button
-                as="span"
-                color="primary"
-                className="hidden md:inline-flex font-semibold text-sm shadow-md shadow-primary/20 hover:shadow-primary/40 transition-shadow"
-                startContent={<User className="w-4 h-4" />}
-              >
-                Đăng Nhập
-              </Button>
-              {/* Mobile: compact avatar icon */}
+            <Link
+              href={`/dang-nhap?redirect=${encodeURIComponent(pathname)}`}
+              className="block"
+            >
               <Avatar
                 icon={<User className="w-4 h-4" />}
                 size="sm"
                 classNames={{
-                  base: "md:hidden bg-white/10 cursor-pointer ring-2 ring-white/20 hover:ring-primary/50 transition-all",
+                  base: "bg-white/10 cursor-pointer ring-2 ring-white/20 hover:ring-primary/50 transition-all",
                   icon: "text-gray-400",
                 }}
               />
