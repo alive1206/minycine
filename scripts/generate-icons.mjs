@@ -126,7 +126,7 @@ try {
   console.log(`✓ icon-maskable-512.png`);
 
   console.log("\n🎉 All PNG icons generated!");
-} catch (e) {
+} catch {
   console.log("\n⚠ sharp not found. Installing...");
   const { execSync } = await import("child_process");
   execSync("npm install --no-save sharp", {

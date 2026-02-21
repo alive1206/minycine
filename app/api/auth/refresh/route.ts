@@ -42,10 +42,6 @@ export async function POST(request: Request) {
       .limit(1);
 
     if (!storedToken) {
-      await db
-        .delete(refreshTokens)
-        .where(eq(refreshTokens.userId, payload.userId));
-
       return NextResponse.json(
         { error: "Refresh token đã bị thu hồi" },
         { status: 401 },

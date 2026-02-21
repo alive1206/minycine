@@ -2,50 +2,26 @@
 
 import { useSetAtom } from "jotai";
 import { useEffect, useRef, useCallback } from "react";
-import { userAtom, accessTokenAtom, authLoadingAtom } from "@/jotais/auth";
+import { authLoadingAtom } from "@/jotais/auth";
+import { refreshSession, REFRESH_TOKEN_KEY } from "@/lib/refresh-session";
 
-const REFRESH_TOKEN_KEY = "minycine_refresh_token";
 const ACCESS_TOKEN_REFRESH_BUFFER = 60 * 1000; // 1 minute before expiry
 const ACCESS_TOKEN_LIFETIME = 15 * 60 * 1000; // 15 minutes
 
 export const AuthInitializer = () => {
-  const setUser = useSetAtom(userAtom);
-  const setAccessToken = useSetAtom(accessTokenAtom);
+  // const setAccessToken = useSetAtom(accessTokenAtom);
   const setLoading = useSetAtom(authLoadingAtom);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const lastRefreshRef = useRef<number>(0);
 
   const doRefresh = useCallback(async (): Promise<boolean> => {
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
-    if (!refreshToken) return false;
-
-    try {
-      const res = await fetch("/api/auth/refresh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken }),
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        setAccessToken(data.accessToken);
-        setUser(data.user);
-        localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
-        lastRefreshRef.current = Date.now();
-        return true;
-      } else {
-        setAccessToken(null);
-        setUser(null);
-        localStorage.removeItem(REFRESH_TOKEN_KEY);
-        return false;
-      }
-    } catch {
-      setAccessToken(null);
-      setUser(null);
-      localStorage.removeItem(REFRESH_TOKEN_KEY);
-      return false;
+    const newToken = await refreshSession();
+    if (newToken) {
+      lastRefreshRef.current = Date.now();
+      return true;
     }
-  }, [setAccessToken, setUser]);
+    return false;
+  }, []);
 
   const scheduleRefreshRef = useRef<() => void>(() => {});
 

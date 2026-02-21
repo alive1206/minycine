@@ -1,61 +1,8 @@
 "use client";
 
-import { accessTokenAtom, userAtom } from "@/jotais/auth";
+import { accessTokenAtom } from "@/jotais/auth";
 import { appStore } from "@/lib/store";
-
-const REFRESH_TOKEN_KEY = "minycine_refresh_token";
-
-let isRefreshing = false;
-let refreshPromise: Promise<string | null> | null = null;
-
-/**
- * Attempt to refresh the access token using the stored refresh token.
- * Uses a singleton promise to prevent concurrent refresh requests.
- */
-async function refreshAccessToken(): Promise<string | null> {
-  if (isRefreshing && refreshPromise) return refreshPromise;
-
-  isRefreshing = true;
-  refreshPromise = (async () => {
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
-    if (!refreshToken) return null;
-
-    try {
-      const res = await fetch("/api/auth/refresh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken }),
-      });
-
-      if (!res.ok) {
-        // Refresh failed — clear auth state
-        const store = appStore;
-        store.set(accessTokenAtom, null);
-        store.set(userAtom, null);
-        localStorage.removeItem(REFRESH_TOKEN_KEY);
-        return null;
-      }
-
-      const data = await res.json();
-      const store = appStore;
-      store.set(accessTokenAtom, data.accessToken);
-      store.set(userAtom, data.user);
-      localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
-      return data.accessToken as string;
-    } catch {
-      const store = appStore;
-      store.set(accessTokenAtom, null);
-      store.set(userAtom, null);
-      localStorage.removeItem(REFRESH_TOKEN_KEY);
-      return null;
-    } finally {
-      isRefreshing = false;
-      refreshPromise = null;
-    }
-  })();
-
-  return refreshPromise;
-}
+import { refreshSession } from "@/lib/refresh-session";
 
 /**
  * Auth-aware `fetch` wrapper. Automatically attaches the current access token
@@ -95,8 +42,8 @@ export async function authFetch(
   // If not 401, return as-is
   if (response.status !== 401) return response;
 
-  // Attempt to refresh
-  const newToken = await refreshAccessToken();
+  // Attempt to refresh via shared singleton (deduplicates with auth-initializer)
+  const newToken = await refreshSession();
   if (!newToken) return response; // Refresh failed, return original 401
 
   // Retry with new token

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { refreshTokens } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { verifyRefreshToken } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
@@ -10,12 +9,9 @@ export async function POST(request: Request) {
     const { refreshToken: token } = body;
 
     if (token) {
-      const payload = await verifyRefreshToken(token);
-      if (payload) {
-        await db
-          .delete(refreshTokens)
-          .where(eq(refreshTokens.userId, payload.userId));
-      }
+      // Only delete the specific token, not all tokens for the user
+      // This preserves sessions on other devices/tabs
+      await db.delete(refreshTokens).where(eq(refreshTokens.token, token));
     }
 
     return NextResponse.json({ message: "Đã đăng xuất" });
