@@ -51,7 +51,7 @@ interface HeroSlideProps {
 
 const HeroSlide = ({ movie, isActive }: HeroSlideProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { data: detailData } = useMovieDetail(movie.slug);
+  // const { data: detailData } = useMovieDetail(movie.slug);
   const { data: tmdbImages } = useMovieImages(movie.slug);
 
   const originalUrl = getImageUrl(movie.poster_url || movie.thumb_url);
@@ -118,7 +118,7 @@ const SlideContent = ({ movie, synopsis, voteAverage }: SlideContentProps) => (
     transition={{ duration: 0.4, ease: "easeOut" }}
     className="flex flex-col gap-5 items-start"
   >
-    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-lg">
+    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-lg line-clamp-2">
       {movie.name}
     </h1>
 
