@@ -10,7 +10,7 @@ import {
 import { HeroBanner } from "@/components/movie/hero-banner";
 import { MovieCarousel } from "@/components/movie/movie-carousel";
 import { ContinueWatching } from "@/components/movie/continue-watching";
-import { Clapperboard, Film, Tv, Flame, Wand2, Globe } from "lucide-react";
+import { Clapperboard, Film, Tv, Flame, Globe, Popcorn } from "lucide-react";
 import type { Movie } from "@/types/api";
 
 const sortByYear = (items: Movie[]) =>
@@ -139,7 +139,7 @@ export const Home = () => {
 
         <MovieCarousel
           title="Hoạt Hình"
-          icon={<Wand2 className="w-6 h-6" />}
+          icon={<Popcorn className="w-6 h-6" />}
           movies={sortedHoatHinh}
           href="/danh-sach/hoat-hinh"
           isLoading={loadingHoatHinh}

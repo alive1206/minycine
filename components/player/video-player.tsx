@@ -120,6 +120,17 @@ export const VideoPlayer = ({
     null,
   );
 
+  // Track whether autoplay was forced-muted by browser policy
+  const [autoplayForcedMute, setAutoplayForcedMute] = useState(false);
+
+  const handleUnmuteBanner = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    setMuted(false);
+    setAutoplayForcedMute(false);
+  }, []);
+
   // ─── HLS setup ────────────────────────────────────────────
   useEffect(() => {
     const video = videoRef.current;
@@ -130,9 +141,10 @@ export const VideoPlayer = ({
     const tryPlayUnmuted = (v: HTMLVideoElement) => {
       v.muted = false;
       v.play().catch(() => {
-        // Autoplay blocked without mute — fall back to muted
+        // Autoplay blocked — fall back to muted + show unmute banner
         v.muted = true;
         setMuted(true);
+        setAutoplayForcedMute(true);
         v.play().catch(() => {});
       });
     };
@@ -709,6 +721,18 @@ export const VideoPlayer = ({
         autoPlay
         style={{ filter: `brightness(${brightness})` }}
       />
+
+      {/* Autoplay forced-mute banner */}
+      {/* Autoplay forced-mute banner */}
+      {autoplayForcedMute && (
+        <button
+          onClick={handleUnmuteBanner}
+          className="absolute top-14 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2 px-4 py-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full text-white text-sm font-medium transition-all border border-white/20 pointer-events-auto animate-pulse"
+        >
+          <VolumeX className="w-4 h-4" />
+          Nhấn để bật tiếng
+        </button>
+      )}
 
       {/* Loading spinner */}
       {loading && (

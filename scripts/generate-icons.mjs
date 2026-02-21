@@ -1,5 +1,5 @@
 /**
- * Generate PWA icons from SVG.
+ * Generate PWA icons from SVG (popcorn design).
  * Run: node scripts/generate-icons.mjs
  *
  * Uses sharp if available, otherwise creates SVGs for manual conversion.
@@ -11,54 +11,80 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outDir = resolve(__dirname, "../public/icons");
 
-// ─── Regular icon: full design on black bg, no transparency ───
+// ─── Popcorn SVG building blocks ───
+function popcornKernels(scale, offsetX, offsetY) {
+  const kernels = [
+    { cx: 13, cy: 12, r: 4.5, fill: "#FFF8DC" },
+    { cx: 23, cy: 12, r: 4.5, fill: "#FFF8DC" },
+    { cx: 18, cy: 10, r: 5, fill: "#FFFDE7" },
+    { cx: 10, cy: 14, r: 3.5, fill: "#FFF3CD" },
+    { cx: 26, cy: 14, r: 3.5, fill: "#FFF3CD" },
+    { cx: 15, cy: 8, r: 3.5, fill: "#FFFDE7" },
+    { cx: 21, cy: 8, r: 3.5, fill: "#FFF8DC" },
+    { cx: 18, cy: 14, r: 4, fill: "#FFFDE7" },
+  ];
+  return kernels
+    .map(
+      (k) =>
+        `<circle cx="${k.cx * scale + offsetX}" cy="${k.cy * scale + offsetY}" r="${k.r * scale}" fill="${k.fill}"/>`,
+    )
+    .join("\n    ");
+}
+
+function popcornBucket(scale, offsetX, offsetY) {
+  const x1 = 8 * scale + offsetX;
+  const y1 = 16 * scale + offsetY;
+  const x2 = 10 * scale + offsetX;
+  const y2 = 32 * scale + offsetY;
+  const x3 = 26 * scale + offsetX;
+  const x4 = 28 * scale + offsetX;
+
+  const stripe1x1 = 12 * scale + offsetX;
+  const stripe1x2 = 13.5 * scale + offsetX;
+  const stripe2x = 18 * scale + offsetX;
+  const stripe3x1 = 24 * scale + offsetX;
+  const stripe3x2 = 22.5 * scale + offsetX;
+
+  const rimX = 7 * scale + offsetX;
+  const rimY = 15 * scale + offsetY;
+  const rimW = 22 * scale;
+  const rimH = 2.5 * scale;
+
+  return `<path d="M${x1} ${y1}L${x2} ${y2}H${x3}L${x4} ${y1}H${x1}Z" fill="#E50914"/>
+    <path d="M${stripe1x1} ${y1}L${stripe1x2} ${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
+    <path d="M${stripe2x} ${y1}V${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
+    <path d="M${stripe3x1} ${y1}L${stripe3x2} ${y2}" stroke="white" stroke-width="${0.8 * scale}" stroke-opacity="0.3"/>
+    <rect x="${rimX}" y="${rimY}" width="${rimW}" height="${rimH}" rx="${1 * scale}" fill="#CC0812"/>`;
+}
+
+// ─── Regular icon: popcorn on black bg ───
 function regularIconSvg(size) {
-  const pad = Math.round(size * 0.06); // 6% padding
-  const s = size - pad * 2; // inner square size
-  const r = Math.round(s * 0.22); // border radius
-  const scale = s / 32;
+  const pad = Math.round(size * 0.1);
+  const innerSize = size - pad * 2;
+  const scale = innerSize / 36;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  <rect width="${size}" height="${size}" fill="#000"/>
-  <g transform="translate(${pad},${pad})">
-    <rect width="${s}" height="${s}" rx="${r}" fill="#E50914"/>
-    ${filmPerfs(scale, s)}
-    <polygon points="${12 * scale},${9 * scale} ${22 * scale},${16 * scale} ${12 * scale},${23 * scale}" fill="white"/>
+  <rect width="${size}" height="${size}" rx="${Math.round(size * 0.18)}" fill="#1a1a1a"/>
+  <g>
+    ${popcornKernels(scale, pad, pad)}
+    ${popcornBucket(scale, pad, pad)}
   </g>
 </svg>`;
 }
 
-// ─── Maskable icon: full bleed red bg, centered design ───
+// ─── Maskable icon: popcorn on red bg, safe zone aware ───
 function maskableIconSvg(size) {
-  const scale = size / 36;
-  // Safe zone is center 80% — icon content must be within
   const safeInset = size * 0.1;
   const safeSize = size * 0.8;
-  const innerScale = safeSize / 32;
+  const scale = safeSize / 36;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
   <rect width="${size}" height="${size}" fill="#E50914"/>
-  <g transform="translate(${safeInset},${safeInset})">
-    ${filmPerfs(innerScale, safeSize)}
-    <polygon points="${12 * innerScale},${9 * innerScale} ${22 * innerScale},${16 * innerScale} ${12 * innerScale},${23 * innerScale}" fill="white"/>
+  <g>
+    ${popcornKernels(scale, safeInset, safeInset)}
+    ${popcornBucket(scale, safeInset, safeInset)}
   </g>
 </svg>`;
-}
-
-function filmPerfs(scale, boxSize) {
-  const perfW = 2.5 * scale;
-  const perfR = 0.5 * scale;
-  const leftX = 3 * scale;
-  const rightX = boxSize - 3 * scale - perfW;
-  const ys = [5, 11, 17, 23].map((y) => y * scale);
-  const fill = "rgba(0,0,0,0.3)";
-
-  return ys
-    .flatMap((y) => [
-      `<rect x="${leftX}" y="${y}" width="${perfW}" height="${perfW}" rx="${perfR}" fill="${fill}"/>`,
-      `<rect x="${rightX}" y="${y}" width="${perfW}" height="${perfW}" rx="${perfR}" fill="${fill}"/>`,
-    ])
-    .join("\n    ");
 }
 
 // Generate SVGs
