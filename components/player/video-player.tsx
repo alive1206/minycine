@@ -122,6 +122,8 @@ export const VideoPlayer = ({
 
   // Track whether autoplay was forced-muted by browser policy
   const [autoplayForcedMute, setAutoplayForcedMute] = useState(false);
+  // Track whether autoplay is completely blocked (even muted)
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
   const handleUnmuteBanner = useCallback(() => {
     const video = videoRef.current;
@@ -129,6 +131,32 @@ export const VideoPlayer = ({
     video.muted = false;
     setMuted(false);
     setAutoplayForcedMute(false);
+  }, []);
+
+  const handlePlayOverlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    video
+      .play()
+      .then(() => {
+        setPlaying(true);
+        setAutoplayBlocked(false);
+        setMuted(false);
+      })
+      .catch(() => {
+        // If unmuted play still fails, try muted
+        video.muted = true;
+        video
+          .play()
+          .then(() => {
+            setPlaying(true);
+            setAutoplayBlocked(false);
+            setMuted(true);
+            setAutoplayForcedMute(true);
+          })
+          .catch(() => {});
+      });
   }, []);
 
   // ─── HLS setup ────────────────────────────────────────────
@@ -145,7 +173,11 @@ export const VideoPlayer = ({
         v.muted = true;
         setMuted(true);
         setAutoplayForcedMute(true);
-        v.play().catch(() => {});
+        v.play().catch(() => {
+          // Even muted autoplay blocked — show play overlay
+          setAutoplayBlocked(true);
+          setAutoplayForcedMute(false);
+        });
       });
     };
 
@@ -723,7 +755,6 @@ export const VideoPlayer = ({
       />
 
       {/* Autoplay forced-mute banner */}
-      {/* Autoplay forced-mute banner */}
       {autoplayForcedMute && (
         <button
           onClick={handleUnmuteBanner}
@@ -731,6 +762,18 @@ export const VideoPlayer = ({
         >
           <VolumeX className="w-4 h-4" />
           Nhấn để bật tiếng
+        </button>
+      )}
+
+      {/* Autoplay completely blocked — show big play button */}
+      {autoplayBlocked && (
+        <button
+          onClick={handlePlayOverlay}
+          className="absolute inset-0 flex items-center justify-center z-40 bg-black/50 cursor-pointer"
+        >
+          <div className="w-20 h-20 rounded-full bg-primary/90 hover:bg-primary flex items-center justify-center transition-all hover:scale-110 shadow-lg shadow-primary/30">
+            <Play className="w-10 h-10 text-white fill-white ml-1" />
+          </div>
         </button>
       )}
 

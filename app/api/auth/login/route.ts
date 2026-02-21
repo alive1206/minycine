@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { users, refreshTokens } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, and, lt } from "drizzle-orm";
 import {
   verifyPassword,
   signAccessToken,
@@ -52,7 +52,15 @@ export async function POST(request: Request) {
       email: user.email,
     });
 
-    await db.delete(refreshTokens).where(eq(refreshTokens.userId, user.id));
+    // Clean up expired tokens only (keep active sessions on other devices)
+    await db
+      .delete(refreshTokens)
+      .where(
+        and(
+          eq(refreshTokens.userId, user.id),
+          lt(refreshTokens.expiresAt, new Date()),
+        ),
+      );
 
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     await db.insert(refreshTokens).values({
