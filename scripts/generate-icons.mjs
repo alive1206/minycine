@@ -78,18 +78,17 @@ function regularIconSvg(size) {
 </svg>`;
 }
 
-// ─── Maskable icon: popcorn on red bg, safe zone aware ───
-// Bucket uses darker red (#B20710) so it's visible against the #E50914 background
+// ─── Maskable icon: popcorn on dark bg, safe zone aware ───
 function maskableIconSvg(size) {
   const safeInset = size * 0.1;
   const safeSize = size * 0.8;
   const scale = safeSize / 36;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  <rect width="${size}" height="${size}" fill="#E50914"/>
+  <rect width="${size}" height="${size}" fill="#1a1a1a"/>
   <g>
     ${popcornKernels(scale, safeInset, safeInset)}
-    ${popcornBucket(scale, safeInset, safeInset, "#B20710", "#8C0510")}
+    ${popcornBucket(scale, safeInset, safeInset)}
   </g>
 </svg>`;
 }

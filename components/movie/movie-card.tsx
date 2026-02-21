@@ -14,16 +14,18 @@ interface MovieCardProps {
  * The API returns relative filenames like "movie-thumb.jpg".
  * We prepend the CDN base URL from APP_DOMAIN_CDN_IMAGE.
  */
-const getImageUrl = (movie: Movie): string => {
-  const url = movie.poster_url || movie.thumb_url;
-  if (!url) return "/placeholder-poster.jpg";
-  // If already absolute URL, use it
+const getImageUrl = (url: string | undefined): string => {
+  if (!url) return "";
   if (url.startsWith("http")) return url;
   return `${process.env.NEXT_PUBLIC_IMG_URL}/${url}`;
 };
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
-  const imageUrl = getImageUrl(movie);
+  // Use same image source as detail page: thumb_url || poster_url
+  const imageUrl =
+    getImageUrl(movie.thumb_url) ||
+    getImageUrl(movie.poster_url) ||
+    "/placeholder-poster.jpg";
 
   return (
     <Link
