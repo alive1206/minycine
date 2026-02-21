@@ -1,4 +1,4 @@
-const CACHE_NAME = "minycine-v1";
+const CACHE_NAME = "minycine-v2";
 
 const PRECACHE_URLS = ["/", "/manifest.json"];
 
