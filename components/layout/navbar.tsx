@@ -405,7 +405,7 @@ export const Navbar = () => {
       )}
 
       {/* Mobile menu */}
-      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 overflow-y-auto overflow-x-hidden">
+      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 pb-[max(env(safe-area-inset-bottom,20px),20px)] overflow-y-auto overflow-x-hidden">
         {navLinks.map((link) => (
           <NavbarMenuItem key={link.href}>
             <Link
