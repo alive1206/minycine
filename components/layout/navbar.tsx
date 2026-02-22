@@ -405,7 +405,7 @@ export const Navbar = () => {
       )}
 
       {/* Mobile menu */}
-      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 pb-[max(env(safe-area-inset-bottom,20px),20px)] overflow-y-auto overflow-x-hidden">
+      <NavbarMenu className="bg-[#0D0D0D]/95 backdrop-blur-xl pt-6 overflow-y-auto overflow-x-hidden pb-0!">
         {navLinks.map((link) => (
           <NavbarMenuItem key={link.href}>
             <Link
@@ -466,6 +466,16 @@ export const Navbar = () => {
                   </Link>
                 ))}
           </div>
+        </NavbarMenuItem>
+
+        {/* iOS safe area spacer */}
+        <NavbarMenuItem className="p-0! m-0!">
+          <div
+            className="w-full"
+            style={{
+              height: "calc(env(safe-area-inset-bottom, 20px) + 40px)",
+            }}
+          />
         </NavbarMenuItem>
       </NavbarMenu>
     </HeroNavbar>
