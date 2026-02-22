@@ -42,7 +42,7 @@ const formatTime = (sec: number) => {
 };
 
 const DOUBLE_TAP_DELAY = 300;
-const SEEK_SECONDS = 5;
+const SEEK_SECONDS = 10;
 const SWIPE_THRESHOLD = 10;
 
 export const VideoPlayer = ({
@@ -936,32 +936,38 @@ export const VideoPlayer = ({
               )}
             </button>
 
-            {/* Skip backward 5s */}
+            {/* Skip backward 10s */}
             <button
               onClick={() => {
                 const video = videoRef.current;
                 if (video) {
-                  video.currentTime = Math.max(0, video.currentTime - 5);
+                  video.currentTime = Math.max(
+                    0,
+                    video.currentTime - SEEK_SECONDS,
+                  );
                   resetHideTimer();
                 }
               }}
               className="p-1.5 text-white hover:text-primary transition-colors"
-              title="Tua lùi 5 giây"
+              title="Tua lùi 10 giây"
             >
               <RotateCcw className="w-4.5 h-4.5" />
             </button>
 
-            {/* Skip forward 5s */}
+            {/* Skip forward 10s */}
             <button
               onClick={() => {
                 const video = videoRef.current;
                 if (video) {
-                  video.currentTime = Math.min(duration, video.currentTime + 5);
+                  video.currentTime = Math.min(
+                    duration,
+                    video.currentTime + SEEK_SECONDS,
+                  );
                   resetHideTimer();
                 }
               }}
               className="p-1.5 text-white hover:text-primary transition-colors"
-              title="Tua tới 5 giây"
+              title="Tua tới 10 giây"
             >
               <RotateCw className="w-4.5 h-4.5" />
             </button>
