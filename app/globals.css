@@ -146,3 +146,11 @@ body {
 .animate-seek-fade {
   animation: seek-fade 0.6s ease-out forwards;
 }
+
+/* Fix iOS Safari: NavbarMenu uses 100vh which includes area behind URL bar */
+/* Override with 100dvh (dynamic viewport height) that respects browser chrome */
+[data-slot="menu"] {
+  height: calc(100dvh - var(--navbar-height)) !important;
+  max-height: calc(100dvh - var(--navbar-height)) !important;
+  -webkit-overflow-scrolling: touch;
+}
