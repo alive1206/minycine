@@ -16,6 +16,8 @@ import {
   Layers,
   Heart,
   Star,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useMovieDetail } from "@/hooks/use-movie-detail";
 import { useMoviePeoples } from "@/hooks/use-movie-peoples";
@@ -24,6 +26,7 @@ import { useMoviesByGenre } from "@/hooks/use-movies";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useWatchHistory } from "@/hooks/use-watch-history";
 import { useAuth } from "@/hooks/use-auth";
+import { useCarouselScroll } from "@/hooks/use-carousel-scroll";
 import { MovieCarousel } from "@/components/movie/movie-carousel";
 
 const getImageUrl = (url: string | undefined): string => {
@@ -70,6 +73,14 @@ export const MovieDetailPage = () => {
   const { items: watchHistory } = useWatchHistory();
   const { user } = useAuth();
   const isFav = isFavorite(slug);
+  const {
+    scrollRef: castScrollRef,
+    canScrollLeft: castCanScrollLeft,
+    canScrollRight: castCanScrollRight,
+    scrollLeft: castScrollLeft,
+    scrollRight: castScrollRight,
+    onScroll: castOnScroll,
+  } = useCarouselScroll();
 
   // Check if movie has saved watch progress (only for logged-in users)
   const resumeEntry = useMemo(
@@ -370,12 +381,16 @@ export const MovieDetailPage = () => {
         {peoples.length > 0 && (
           <>
             <Divider className="my-8 bg-white/10" />
-            <div>
+            <div className="group/cast relative">
               <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
                 Diễn viên / Đoàn phim
               </h2>
-              <div className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-2">
+              <div
+                ref={castScrollRef}
+                onScroll={castOnScroll}
+                className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-2"
+              >
                 {peoples.map((person) => {
                   const profileUrl = person.profile_path
                     ? `${profileSizes?.w185 || `${TMDB_CDN}/w185`}${person.profile_path}`
@@ -389,7 +404,7 @@ export const MovieDetailPage = () => {
                       href={actorHref}
                       className="group text-center cursor-pointer shrink-0 w-24 md:w-28"
                     >
-                      <div className="aspect-2/3 rounded-lg overflow-hidden bg-[#1A1A1A] relative mb-2 shadow-md ring-0 ring-primary/0 group-hover:ring-2 group-hover:ring-primary/50 transition-all duration-300">
+                      <div className="aspect-2/3 rounded-lg overflow-hidden bg-[#1A1A1A] relative mb-2 shadow-md border-2 border-transparent group-hover:border-primary/50 transition-all duration-300">
                         {profileUrl ? (
                           <Image
                             src={profileUrl}
@@ -416,6 +431,26 @@ export const MovieDetailPage = () => {
                   );
                 })}
               </div>
+
+              {/* Navigation arrows — desktop only */}
+              {castCanScrollLeft && (
+                <button
+                  onClick={castScrollLeft}
+                  className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/4 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/70 text-white border border-white/10 opacity-0 group-hover/cast:opacity-100 transition-opacity hover:bg-primary/80 hover:scale-110 cursor-pointer"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+              )}
+              {castCanScrollRight && (
+                <button
+                  onClick={castScrollRight}
+                  className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/4 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/70 text-white border border-white/10 opacity-0 group-hover/cast:opacity-100 transition-opacity hover:bg-primary/80 hover:scale-110 cursor-pointer"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              )}
             </div>
           </>
         )}

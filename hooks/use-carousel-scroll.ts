@@ -1,47 +1,57 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 export function useCarouselScroll() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollEl, setScrollEl] = useState<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
+  // Callback ref: fires when the element mounts/unmounts
+  const scrollRef = useCallback((node: HTMLDivElement | null) => {
+    setScrollEl(node);
+  }, []);
+
+  // Keep a stable ref for use in scroll/click handlers
+  const elRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    elRef.current = scrollEl;
+  }, [scrollEl]);
+
   const checkScroll = useCallback(() => {
-    const el = scrollRef.current;
+    const el = elRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 4);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
   }, []);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+    if (!scrollEl) return;
 
     checkScroll();
 
     // Re-check when container resizes
     const resizeObs = new ResizeObserver(checkScroll);
-    resizeObs.observe(el);
+    resizeObs.observe(scrollEl);
 
     // Re-check when children change (movies load asynchronously)
     const mutationObs = new MutationObserver(checkScroll);
-    mutationObs.observe(el, { childList: true, subtree: true });
+    mutationObs.observe(scrollEl, { childList: true, subtree: true });
 
     return () => {
       resizeObs.disconnect();
       mutationObs.disconnect();
     };
-  }, [checkScroll]);
+  }, [scrollEl, checkScroll]);
 
   const scrollLeft = useCallback(() => {
-    const el = scrollRef.current;
+    const el = elRef.current;
     if (!el) return;
     el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
   }, []);
 
   const scrollRight = useCallback(() => {
-    const el = scrollRef.current;
+    const el = elRef.current;
     if (!el) return;
     el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
   }, []);
