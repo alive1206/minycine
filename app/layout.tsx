@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/providers";
 import { MainLayout } from "@/components/layout/main-layout";
 import { ServiceWorkerRegistrar } from "@/components/pwa/service-worker-registrar";
@@ -51,6 +52,7 @@ export default function RootLayout({
           <MainLayout>{children}</MainLayout>
         </Providers>
         <ServiceWorkerRegistrar />
+        <SpeedInsights />
       </body>
     </html>
   );
