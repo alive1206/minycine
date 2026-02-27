@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     "Trải nghiệm điện ảnh đỉnh cao với kho phim khổng lồ, chất lượng HD, cập nhật liên tục. Phim bộ, phim lẻ, phim mới nhất — tất cả tại MinyCine.",
   keywords: ["xem phim", "phim online", "phim hay", "MinyCine", "phim HD"],
   icons: {
-    icon: "/favicon.svg?v=4",
-    apple: "/icons/icon-192.png?v=4",
+    icon: "/favicon.svg?v=5",
+    apple: "/icons/icon-192.png?v=5",
   },
   manifest: "/manifest.json",
   appleWebApp: {
@@ -49,6 +49,11 @@ export default function RootLayout({
     <html lang="vi" className="dark">
       <body className={`${beVietnamPro.variable} font-sans antialiased`}>
         <SplashScreen />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.body.style.overflow='hidden';setTimeout(function(){document.body.style.overflow=''},3600)`,
+          }}
+        />
         <Providers>
           <MainLayout>{children}</MainLayout>
         </Providers>
