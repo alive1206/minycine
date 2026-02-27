@@ -170,6 +170,9 @@ body {
   justify-content: center;
   background: #0d0d0d;
   overflow: hidden;
+  /* Block touch scrolling on mobile */
+  touch-action: none;
+  overscroll-behavior: none;
   /* Auto-dismiss: fade out at 3s, then hide at 3.6s */
   animation: splash-dismiss 0.6s 3s ease-out forwards;
   will-change: opacity;

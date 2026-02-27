@@ -1,4 +1,4 @@
-const CACHE_NAME = "minycine-v5";
+const CACHE_NAME = "minycine-v6";
 
 const PRECACHE_URLS = ["/", "/manifest.json"];
 
@@ -26,7 +26,7 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch: network-first for navigations, cache-first for static assets
+// Fetch: network-first for navigations AND Next.js assets, cache-first for others
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -41,8 +41,9 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Navigation requests: network-first
-  if (request.mode === "navigate") {
+  // Navigation requests & Next.js bundles: network-first
+  // This ensures the latest HTML/CSS/JS is always served
+  if (request.mode === "navigate" || request.url.includes("/_next/")) {
     event.respondWith(
       fetch(request)
         .then((response) => {
@@ -55,13 +56,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Static assets: cache-first
+  // Other static assets (icons, manifest, etc.): cache-first
   event.respondWith(
     caches.match(request).then(
       (cached) =>
         cached ||
         fetch(request).then((response) => {
-          // Only cache successful responses
           if (response.ok) {
             const clone = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
