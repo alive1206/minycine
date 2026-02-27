@@ -176,8 +176,8 @@ body {
     justify-content: center;
     background: #0d0d0d;
     overflow: hidden;
-    /* Auto-dismiss: fade out at 2s, then hide at 2.6s */
-    animation: splash-dismiss 0.6s 2s ease-out forwards;
+    /* Auto-dismiss: fade out at 3s, then hide at 3.6s */
+    animation: splash-dismiss 0.6s 3s ease-out forwards;
   }
 }
 

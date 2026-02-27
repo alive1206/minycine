@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="35" fill="#1a1a1a"/>
+  <rect width="192" height="192" rx="35" fill="#0d0d0d"/>
+  <!-- Subtle red glow behind popcorn -->
+  <circle cx="96" cy="98" r="60" fill="url(#glow)" opacity="0.4"/>
+  <defs>
+    <radialGradient id="glow">
+      <stop offset="0%" stop-color="#E50914" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#E50914" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
   <g>
     <circle cx="74.61111111111111" cy="70.33333333333333" r="19.25" fill="#FFF8DC"/>
     <circle cx="117.38888888888889" cy="70.33333333333333" r="19.25" fill="#FFF8DC"/>
