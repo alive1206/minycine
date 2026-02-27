@@ -38,6 +38,7 @@ const navLinks = [
   { name: "Trang Chủ", href: "/" },
   { name: "Phim Lẻ", href: "/danh-sach/phim-le" },
   { name: "Phim Bộ", href: "/danh-sach/phim-bo" },
+  { name: "Phim Chiếu Rạp", href: "/danh-sach/phim-chieu-rap" },
   { name: "Phim Mới", href: "/phim-moi" },
   { name: "TV Shows", href: "/danh-sach/tv-shows" },
 ];

@@ -184,6 +184,7 @@ export const MovieDetailPage = () => {
                 fill
                 className="object-cover"
                 unoptimized
+                priority
               />
             </div>
           </div>
@@ -522,7 +523,7 @@ export const MovieDetailPage = () => {
           <>
             <Divider className="my-8 bg-white/10" />
             <MovieCarousel
-              title="Phim Tương Tự"
+              title="Phim cùng thể loại"
               icon={<Layers className="w-6 h-6" />}
               movies={filteredSimilar}
               href={`/the-loai/${firstGenreSlug}`}

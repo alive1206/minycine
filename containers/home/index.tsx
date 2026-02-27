@@ -10,7 +10,15 @@ import {
 import { HeroBanner } from "@/components/movie/hero-banner";
 import { MovieCarousel } from "@/components/movie/movie-carousel";
 import { ContinueWatching } from "@/components/movie/continue-watching";
-import { Clapperboard, Film, Tv, Flame, Globe, Popcorn } from "lucide-react";
+import {
+  Clapperboard,
+  Film,
+  Tv,
+  Flame,
+  Globe,
+  Popcorn,
+  Ticket,
+} from "lucide-react";
 import type { Movie } from "@/types/api";
 
 const sortByYear = (items: Movie[]) =>
@@ -28,6 +36,8 @@ export const Home = () => {
   );
   const { data: phimDangChieu, isLoading: loadingDangChieu } =
     useMoviesByCategory("phim-dang-chieu", 1);
+  const { data: phimChieuRap, isLoading: loadingChieuRap } =
+    useMoviesByCategory("phim-chieu-rap", 1);
   const { data: tvShows, isLoading: loadingTvShows } = useMoviesByCategory(
     "tv-shows",
     1,
@@ -54,6 +64,10 @@ export const Home = () => {
   const sortedDangChieu = useMemo(
     () => sortByYear(phimDangChieu?.items || []),
     [phimDangChieu],
+  );
+  const sortedChieuRap = useMemo(
+    () => sortByYear(phimChieuRap?.items || []),
+    [phimChieuRap],
   );
   const sortedTrungQuoc = useMemo(
     () => sortByYear(phimTrungQuoc?.items || []),
@@ -111,6 +125,14 @@ export const Home = () => {
           movies={sortedDangChieu}
           href="/danh-sach/phim-dang-chieu"
           isLoading={loadingDangChieu}
+        />
+
+        <MovieCarousel
+          title="Phim Chiếu Rạp"
+          icon={<Ticket className="w-6 h-6" />}
+          movies={sortedChieuRap}
+          href="/danh-sach/phim-chieu-rap"
+          isLoading={loadingChieuRap}
         />
 
         <MovieCarousel
