@@ -7,7 +7,8 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)),
   );
-  self.skipWaiting();
+  // Do NOT call skipWaiting() — let new SW activate on next app open
+  // to prevent mid-session page reloads that restart the splash animation
 });
 
 // Activate: clean up old caches
@@ -23,7 +24,6 @@ self.addEventListener("activate", (event) => {
         ),
       ),
   );
-  self.clients.claim();
 });
 
 // Fetch: network-first for navigations AND Next.js assets, cache-first for others

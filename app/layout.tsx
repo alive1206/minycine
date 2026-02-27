@@ -47,11 +47,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className="dark">
-      <body className={`${beVietnamPro.variable} font-sans antialiased`}>
+      <body
+        className={`${beVietnamPro.variable} font-sans antialiased`}
+        style={{ overflow: "hidden" }}
+      >
         <SplashScreen />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var s=document.querySelector('.splash-screen');var n=Date.now();var l=Number(sessionStorage.getItem('sp')||0);if(n-l<5000){if(s)s.style.display='none'}else{sessionStorage.setItem('sp',String(n));document.body.style.overflow='hidden';setTimeout(function(){document.body.style.overflow=''},3600)}})()`,
+            __html: `setTimeout(function(){document.body.style.overflow=''},3600)`,
           }}
         />
         <Providers>
