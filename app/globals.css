@@ -156,24 +156,45 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PWA Splash Screen — Premium Cinematic Animation
+   PWA Splash Screen — Pure CSS Cinematic Animation
+   Hidden by default; only visible in standalone PWA mode.
+   Auto-dismisses after ~2.5s via CSS animation.
    ═══════════════════════════════════════════════════════ */
 
+/* Hidden in browser — only show in PWA standalone */
 .splash-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0d0d0d;
-  overflow: hidden;
-  transition: opacity 0.6s ease-out;
+  display: none;
 }
 
-.splash-screen.splash-fade-out {
-  opacity: 0;
-  pointer-events: none;
+@media (display-mode: standalone) {
+  .splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d0d;
+    overflow: hidden;
+    /* Auto-dismiss: fade out at 2s, then hide at 2.6s */
+    animation: splash-dismiss 0.6s 2s ease-out forwards;
+  }
+}
+
+@keyframes splash-dismiss {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
+    opacity: 0;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 /* Ambient glow blobs */
@@ -296,7 +317,7 @@ body {
   }
 }
 
-/* Popcorn kernels pop-in stagger — each kernel pops with a scale bounce */
+/* Popcorn kernels pop-in stagger */
 .splash-svg-kernel {
   opacity: 0;
   transform-origin: center;
