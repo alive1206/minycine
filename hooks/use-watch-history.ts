@@ -83,14 +83,8 @@ export const useWatchHistory = () => {
   const saveProgress = useCallback(
     (entry: Omit<WatchHistoryItem, "updatedAt">) => {
       setItems((prev) => {
-        // Remove existing entry for same movie+episode
-        const filtered = prev.filter(
-          (h) =>
-            !(
-              h.movieSlug === entry.movieSlug &&
-              h.episodeSlug === entry.episodeSlug
-            ),
-        );
+        // Remove existing entry for same movie (dedupe by movie, not episode)
+        const filtered = prev.filter((h) => h.movieSlug !== entry.movieSlug);
         const updated: WatchHistoryItem = {
           ...entry,
           updatedAt: Date.now(),

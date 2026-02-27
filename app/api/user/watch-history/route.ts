@@ -65,7 +65,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Thiếu thông tin" }, { status: 400 });
     }
 
-    // Check existing entry
+    // Check existing entry for this movie (dedupe by movie, not episode)
     const [existing] = await db
       .select()
       .from(watchHistory)
@@ -73,7 +73,6 @@ export async function POST(request: Request) {
         and(
           eq(watchHistory.userId, payload.userId),
           eq(watchHistory.movieSlug, movieSlug),
-          eq(watchHistory.episodeSlug, episodeSlug),
         ),
       )
       .limit(1);
@@ -85,6 +84,7 @@ export async function POST(request: Request) {
         .set({
           movieName: movieName || existing.movieName,
           posterUrl: posterUrl ?? existing.posterUrl,
+          episodeSlug: episodeSlug || existing.episodeSlug,
           episodeName: episodeName ?? existing.episodeName,
           currentTime: currentTime ?? existing.currentTime,
           duration: duration ?? existing.duration,

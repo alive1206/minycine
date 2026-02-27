@@ -68,13 +68,7 @@ export const watchHistory = pgTable(
     duration: real("duration").notNull().default(0),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
-  (t) => [
-    unique("watch_history_user_movie_episode").on(
-      t.userId,
-      t.movieSlug,
-      t.episodeSlug,
-    ),
-  ],
+  (t) => [unique("watch_history_user_movie").on(t.userId, t.movieSlug)],
 );
 
 // ─── Types ────────────────────────────────────────────────────

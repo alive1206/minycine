@@ -52,8 +52,12 @@ export const ContinueWatching = () => {
             >
               {/* Remove button */}
               <button
-                onClick={() => removeItem(item.movieSlug)}
-                className="absolute -top-1.5 -right-1.5 z-20 w-6 h-6 rounded-full bg-black/80 border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/80"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  removeItem(item.movieSlug);
+                }}
+                className="absolute top-1 right-1 z-30 w-6 h-6 rounded-full bg-black/80 border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/80"
               >
                 <X className="w-3 h-3 text-white" />
               </button>
