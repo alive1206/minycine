@@ -24,14 +24,17 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    const { name, avatar } = body;
+    const { name, avatar, avatarFrame } = body;
 
-    const updateData: Record<string, string> = {};
+    const updateData: Record<string, string | null> = {};
     if (name && typeof name === "string" && name.trim().length > 0) {
       updateData.name = name.trim();
     }
     if (avatar !== undefined) {
       updateData.avatar = avatar;
+    }
+    if (avatarFrame !== undefined) {
+      updateData.avatarFrame = avatarFrame;
     }
 
     if (Object.keys(updateData).length === 0) {

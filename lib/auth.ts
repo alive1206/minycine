@@ -182,6 +182,7 @@ export function sanitizeUser(user: {
   email: string;
   name: string;
   avatar: string | null;
+  avatarFrame: string | null;
   createdAt: Date;
 }) {
   return {
@@ -189,6 +190,7 @@ export function sanitizeUser(user: {
     email: user.email,
     name: user.name,
     avatar: user.avatar,
+    avatarFrame: user.avatarFrame,
     createdAt: user.createdAt,
   };
 }

@@ -31,6 +31,7 @@ import {
   XIcon,
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { AvatarWithFrame } from "@/components/ui/avatar-with-frame";
 import { useGenreList, useCountryList, useYearList } from "@/hooks/use-movies";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -295,14 +296,12 @@ export const Navbar = () => {
             >
               <DropdownTrigger>
                 <button className="flex items-center gap-2 outline-none">
-                  <Avatar
-                    name={user.name.charAt(0).toUpperCase()}
-                    size="sm"
-                    classNames={{
-                      base: `${user.avatar ? "bg-transparent" : "bg-primary"} cursor-pointer ring-2 ring-primary/30 hover:ring-primary/60 transition-all`,
-                      name: "text-white font-bold text-sm",
-                    }}
+                  <AvatarWithFrame
+                    name={user.name}
                     src={user.avatar || undefined}
+                    frameId={user.avatarFrame}
+                    size="sm"
+                    className="cursor-pointer ring-2 ring-primary/30 hover:ring-primary/60 transition-all"
                   />
                 </button>
               </DropdownTrigger>

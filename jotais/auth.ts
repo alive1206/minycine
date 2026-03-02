@@ -7,6 +7,7 @@ export interface AuthUser {
   email: string;
   name: string;
   avatar: string | null;
+  avatarFrame: string | null;
   createdAt: string;
 }
 

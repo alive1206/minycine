@@ -23,17 +23,26 @@ import {
   Clock,
   Trash2,
   Play,
+  Film,
 } from "lucide-react";
 import { useAuth, useAuthFetch } from "@/hooks/use-auth";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useWatchHistory } from "@/hooks/use-watch-history";
 import { useEffect, useState } from "react";
 import { AVATAR_CATEGORIES } from "@/lib/system-avatars";
+import { AVATAR_FRAMES } from "@/lib/avatar-frames";
+import { AvatarWithFrame } from "@/components/ui/avatar-with-frame";
 
 const inputClassNames = {
   inputWrapper: "border-white/10 hover:border-white/20",
   input: "placeholder:text-white/20",
   label: "text-default-500",
+};
+
+const getImageUrl = (url: string): string => {
+  if (!url) return "";
+  if (url.startsWith("http")) return url;
+  return `${process.env.NEXT_PUBLIC_IMG_URL}/${url}`;
 };
 
 const formatTime = (sec: number) => {
@@ -57,33 +66,43 @@ const FavoritesSection = () => {
       </CardHeader>
       <CardBody className="px-8 py-6">
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
-          {items.map((fav) => (
-            <div key={fav.slug} className="group relative">
-              <Link href={`/phim/${fav.slug}`}>
-                <div className="aspect-2/3 rounded-lg overflow-hidden bg-[#1A1A1A] relative">
-                  <Image
-                    src={fav.posterUrl || fav.thumbUrl}
-                    alt={fav.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform"
-                    unoptimized
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-2">
-                    <p className="text-xs text-white font-medium truncate">
-                      {fav.name}
-                    </p>
-                    <p className="text-[10px] text-gray-400">{fav.year}</p>
+          {items.map((fav) => {
+            const imgSrc = getImageUrl(fav.posterUrl || fav.thumbUrl);
+            return (
+              <div key={fav.slug} className="group relative">
+                <Link href={`/phim/${fav.slug}`}>
+                  <div className="aspect-2/3 rounded-lg overflow-hidden bg-[#1A1A1A] relative">
+                    {imgSrc ? (
+                      <Image
+                        src={imgSrc}
+                        alt={fav.name}
+                        fill
+                        sizes="(max-width: 640px) 33vw, 20vw"
+                        className="object-cover group-hover:scale-105 transition-transform"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-[#1A1A1A] text-gray-600">
+                        <Film className="w-8 h-8" />
+                      </div>
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-2">
+                      <p className="text-xs text-white font-medium truncate">
+                        {fav.name}
+                      </p>
+                      <p className="text-[10px] text-gray-400">{fav.year}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-              <button
-                onClick={() => removeItem(fav.slug)}
-                className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/80"
-              >
-                <Trash2 className="w-3 h-3 text-white" />
-              </button>
-            </div>
-          ))}
+                </Link>
+                <button
+                  onClick={() => removeItem(fav.slug)}
+                  className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/80"
+                >
+                  <Trash2 className="w-3 h-3 text-white" />
+                </button>
+              </div>
+            );
+          })}
         </div>
       </CardBody>
     </Card>
@@ -117,7 +136,7 @@ const WatchHistorySection = () => {
         </div>
       </CardHeader>
       <CardBody className="px-8 py-6">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 max-h-100 overflow-y-auto thin-scrollbar">
           {items.map((item) => {
             const progress =
               item.duration > 0
@@ -167,7 +186,7 @@ const WatchHistorySection = () => {
                     </p>
                   </Link>
                   <p className="text-xs text-gray-500 truncate">
-                    {item.episodeName} • Còn {formatTime(remaining)}
+                    Tập {item.episodeName} • Còn {formatTime(remaining)}
                   </p>
                 </div>
 
@@ -195,6 +214,7 @@ export const ProfilePage = () => {
   // Profile editing
   const [name, setName] = useState(user?.name ?? "");
   const [selectedAvatar, setSelectedAvatar] = useState(user?.avatar ?? "");
+  const [selectedFrame, setSelectedFrame] = useState(user?.avatarFrame ?? null);
   const [avatarCategory, setAvatarCategory] = useState(
     AVATAR_CATEGORIES[0]?.label ?? "",
   );
@@ -212,6 +232,15 @@ export const ProfilePage = () => {
   const [pwMsg, setPwMsg] = useState("");
   const [pwError, setPwError] = useState("");
 
+  // Sync state when user loads asynchronously
+  useEffect(() => {
+    if (user) {
+      setName(user?.name);
+      setSelectedAvatar(user?.avatar ?? "");
+      setSelectedFrame(user?.avatarFrame ?? null);
+    }
+  }, [user?.name, user?.avatar, user?.avatarFrame, user]);
+
   useEffect(() => {
     if (!isLoading && !user) {
       router.push("/dang-nhap");
@@ -225,7 +254,11 @@ export const ProfilePage = () => {
     try {
       const res = await authFetch("/api/auth/update-profile", {
         method: "PUT",
-        body: JSON.stringify({ name, avatar: selectedAvatar || null }),
+        body: JSON.stringify({
+          name,
+          avatar: selectedAvatar || null,
+          avatarFrame: selectedFrame,
+        }),
       });
 
       const data = await res.json();
@@ -318,13 +351,12 @@ export const ProfilePage = () => {
       <Card className="border border-white/10 bg-content1/80 backdrop-blur-xl">
         <CardBody className="p-8">
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start sm:gap-6">
-            <Avatar
-              name={user.name.charAt(0).toUpperCase()}
+            <AvatarWithFrame
+              name={user.name}
               src={selectedAvatar || user.avatar || undefined}
-              classNames={{
-                base: `${selectedAvatar || user.avatar ? "bg-transparent" : "bg-primary"} w-20 h-20 ring-4 ring-primary/20`,
-                name: "text-white font-bold text-2xl",
-              }}
+              frameId={selectedFrame}
+              size="lg"
+              className="ring-4 ring-primary/20"
             />
 
             <div className="flex flex-1 flex-col items-center gap-1 sm:items-start">
@@ -340,7 +372,7 @@ export const ProfilePage = () => {
       </Card>
 
       {/* ─── Profile Edit Card ────────────────────────── */}
-      <Card className="mt-4 border border-white/10 bg-content1/80 backdrop-blur-xl overflow-hidden">
+      <Card className="mt-4 border border-white/10 bg-content1/80 backdrop-blur-xl">
         <CardHeader className="px-4 sm:px-8 pt-6 pb-0">
           <div className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-primary" />
@@ -367,7 +399,7 @@ export const ProfilePage = () => {
 
             {/* Avatar Picker */}
             {isEditingProfile && (
-              <div className="overflow-hidden">
+              <div>
                 <p className="mb-3 text-sm text-default-500">Chọn avatar</p>
 
                 {/* Category chips - 2x2 grid on mobile */}
@@ -421,6 +453,56 @@ export const ProfilePage = () => {
                     </button>
                   ))}
                 </div>
+
+                {/* Frame Picker */}
+                <div className="mt-5">
+                  <p className="mb-3 text-sm text-default-500">Khung avatar</p>
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 p-1">
+                    {/* No frame option */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedFrame(null)}
+                      className={`flex flex-col items-center gap-2 p-3 rounded-xl transition-all ${
+                        selectedFrame === null
+                          ? "bg-primary/20 ring-2 ring-primary"
+                          : "bg-white/5 hover:bg-white/10 ring-1 ring-white/10"
+                      }`}
+                    >
+                      <Avatar
+                        name={user.name.charAt(0).toUpperCase()}
+                        src={selectedAvatar || user.avatar || undefined}
+                        classNames={{
+                          base: `${selectedAvatar || user.avatar ? "bg-transparent" : "bg-primary"} w-10 h-10`,
+                          name: "text-white font-bold text-sm",
+                        }}
+                      />
+                      <span className="text-[10px] text-gray-400">Không</span>
+                    </button>
+
+                    {AVATAR_FRAMES.map((frame) => (
+                      <button
+                        key={frame.id}
+                        type="button"
+                        onClick={() => setSelectedFrame(frame.id)}
+                        className={`flex flex-col items-center gap-2 p-3 rounded-xl transition-all ${
+                          selectedFrame === frame.id
+                            ? "bg-primary/20 ring-2 ring-primary"
+                            : "bg-white/5 hover:bg-white/10 ring-1 ring-white/10"
+                        }`}
+                      >
+                        <AvatarWithFrame
+                          name={user.name}
+                          src={selectedAvatar || user.avatar || undefined}
+                          frameId={frame.id}
+                          size="sm"
+                        />
+                        <span className="text-[10px] text-gray-400">
+                          {frame.nameVi}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
 
@@ -448,6 +530,7 @@ export const ProfilePage = () => {
                   onPress={() => {
                     setName(user.name);
                     setSelectedAvatar(user.avatar ?? "");
+                    setSelectedFrame(user.avatarFrame ?? null);
                     setIsEditingProfile(false);
                     setProfileMsg("");
                   }}

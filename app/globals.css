@@ -446,3 +446,366 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   Avatar Frames — Kiếm Hiệp / Wuxia Martial Arts Theme
+   Pure CSS animated borders using conic-gradient + mask
+   + SVG decorative elements on OUTER BORDER ONLY
+   Discord/Steam-style: decoration wraps around avatar
+   ═══════════════════════════════════════════════════════ */
+
+@property --frame-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.avatar-frame-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Rotating conic-gradient border ring */
+.avatar-frame-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--frame-angle),
+    var(--frame-color-1) 0%,
+    var(--frame-color-2) 25%,
+    var(--frame-color-1) 50%,
+    var(--frame-color-2) 75%,
+    var(--frame-color-1) 100%
+  );
+  mask: radial-gradient(circle, transparent 55%, black 56%);
+  -webkit-mask: radial-gradient(circle, transparent 55%, black 56%);
+  animation: frame-rotate var(--frame-speed, 3s) linear infinite;
+}
+
+/* Outer glow pulse */
+.avatar-frame-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--frame-glow) 0%,
+    transparent 70%
+  );
+  opacity: 0.5;
+  animation: frame-glow-pulse var(--frame-glow-speed, 2s) ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes frame-rotate {
+  to {
+    --frame-angle: 360deg;
+  }
+}
+
+@keyframes frame-glow-pulse {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* ─── SVG Scene overlay — decorations on OUTER BORDER ONLY ─── */
+.frame-scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── 1. Huyết Kiếm — crimson/dark red, blood energy wisps ─── */
+.frame-huyet-kiem {
+  --frame-color-1: #dc2626;
+  --frame-color-2: #991b1b;
+  --frame-glow: rgba(220, 38, 38, 0.3);
+  --frame-speed: 3s;
+  --frame-glow-speed: 2s;
+}
+.frame-scene-huyet-kiem .blood-wisp {
+  animation: frame-blood-flow 3s ease-in-out infinite;
+}
+@keyframes frame-blood-flow {
+  0% { opacity: 0.2; stroke-dashoffset: 60; }
+  50% { opacity: 0.7; stroke-dashoffset: 0; }
+  100% { opacity: 0.2; stroke-dashoffset: -60; }
+}
+.frame-scene-huyet-kiem .blood-wisp {
+  stroke-dasharray: 30 30;
+}
+.frame-scene-huyet-kiem .sword-cross {
+  animation: frame-sword-gleam 2.5s ease-in-out infinite alternate;
+}
+@keyframes frame-sword-gleam {
+  0% { opacity: 0.6; filter: brightness(1); }
+  100% { opacity: 1; filter: brightness(1.5); }
+}
+
+/* ─── 2. Thanh Long — jade green/gold, dragon coiling ─── */
+.frame-thanh-long {
+  --frame-color-1: #22c55e;
+  --frame-color-2: #d4a017;
+  --frame-glow: rgba(34, 197, 94, 0.25);
+  --frame-speed: 4s;
+  --frame-glow-speed: 3s;
+}
+.frame-scene-thanh-long {
+  animation: frame-dragon-orbit 16s linear infinite;
+}
+@keyframes frame-dragon-orbit {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.frame-scene-thanh-long .dragon-cloud {
+  animation: frame-cloud-drift 4s ease-in-out infinite alternate;
+}
+@keyframes frame-cloud-drift {
+  0% { opacity: 0.15; transform: translateX(-2px); }
+  100% { opacity: 0.35; transform: translateX(2px); }
+}
+
+/* ─── 3. Bạch Hổ — silver/white, tiger stripes + icy mist ─── */
+.frame-bach-ho {
+  --frame-color-1: #e2e8f0;
+  --frame-color-2: #94a3b8;
+  --frame-glow: rgba(226, 232, 240, 0.3);
+  --frame-speed: 4s;
+  --frame-glow-speed: 2.5s;
+}
+.frame-scene-bach-ho .tiger-stripe {
+  animation: frame-stripe-flash 3s ease-in-out infinite;
+}
+@keyframes frame-stripe-flash {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+.frame-scene-bach-ho .tiger-claw {
+  animation: frame-claw-slash 2s ease-out infinite;
+}
+@keyframes frame-claw-slash {
+  0% { opacity: 0; transform: scale(0.5); }
+  30% { opacity: 0.8; transform: scale(1.1); }
+  100% { opacity: 0.4; transform: scale(1); }
+}
+.frame-scene-bach-ho .ice-mist {
+  animation: frame-ice-float 3.5s ease-in-out infinite alternate;
+}
+@keyframes frame-ice-float {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 0.6; transform: scale(1.3); }
+}
+
+/* ─── 4. Phượng Vũ — orange-gold to crimson, phoenix feathers ─── */
+.frame-phuong-vu {
+  --frame-color-1: #f97316;
+  --frame-color-2: #dc2626;
+  --frame-glow: rgba(249, 115, 22, 0.35);
+  --frame-speed: 2.5s;
+  --frame-glow-speed: 1.5s;
+}
+.frame-scene-phuong-vu .phoenix-feather {
+  animation: frame-feather-glow 2.4s ease-in-out infinite;
+  stroke-dasharray: 20 20;
+}
+@keyframes frame-feather-glow {
+  0% { opacity: 0.3; stroke-dashoffset: 40; }
+  50% { opacity: 0.8; stroke-dashoffset: 0; }
+  100% { opacity: 0.3; stroke-dashoffset: -40; }
+}
+.frame-scene-phuong-vu .flame-particle {
+  animation: frame-flame-rise 2s ease-out infinite;
+}
+@keyframes frame-flame-rise {
+  0% { opacity: 0.6; transform: translateY(0) scale(1); }
+  50% { opacity: 0.9; transform: translateY(-3px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-8px) scale(0.5); }
+}
+.frame-scene-phuong-vu .phoenix-crest {
+  animation: frame-crest-pulse 2s ease-in-out infinite alternate;
+}
+@keyframes frame-crest-pulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; filter: brightness(1.3); }
+}
+.frame-phuong-vu.avatar-frame-wrapper::after {
+  animation: frame-fire-flicker 1s steps(4) infinite;
+}
+@keyframes frame-fire-flicker {
+  0% { opacity: 0.3; }
+  25% { opacity: 0.6; }
+  50% { opacity: 0.35; }
+  75% { opacity: 0.7; }
+}
+
+/* ─── 5. Hắc Nguyệt — deep purple/black, moon + stars ─── */
+.frame-hac-nguyet {
+  --frame-color-1: #a855f7;
+  --frame-color-2: #6b21a8;
+  --frame-glow: rgba(168, 85, 247, 0.25);
+  --frame-speed: 5s;
+  --frame-glow-speed: 3s;
+}
+.frame-scene-hac-nguyet .moon-star {
+  animation: frame-star-twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes frame-star-twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.3); }
+  100% { opacity: 0.2; transform: scale(0.8); }
+}
+.frame-scene-hac-nguyet .crescent-moon {
+  animation: frame-moon-glow 4s ease-in-out infinite alternate;
+}
+@keyframes frame-moon-glow {
+  0% { opacity: 0.6; filter: brightness(1); }
+  100% { opacity: 1; filter: brightness(1.4) drop-shadow(0 0 4px rgba(168, 85, 247, 0.5)); }
+}
+.frame-scene-hac-nguyet .dark-rune {
+  animation: frame-rune-pulse 3s ease-in-out infinite;
+}
+@keyframes frame-rune-pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+}
+.frame-scene-hac-nguyet .dark-wisp {
+  animation: frame-dark-wisp 4s ease-in-out infinite;
+  stroke-dasharray: 15 15;
+}
+@keyframes frame-dark-wisp {
+  0% { opacity: 0.1; stroke-dashoffset: 30; }
+  50% { opacity: 0.4; stroke-dashoffset: 0; }
+  100% { opacity: 0.1; stroke-dashoffset: -30; }
+}
+
+/* ─── 6. Kim Cương — bright gold, mandala/vajra patterns ─── */
+.frame-kim-cuong {
+  --frame-color-1: #fbbf24;
+  --frame-color-2: #d97706;
+  --frame-glow: rgba(251, 191, 36, 0.35);
+  --frame-speed: 3s;
+  --frame-glow-speed: 2s;
+}
+.frame-scene-kim-cuong {
+  animation: frame-mandala-spin 20s linear infinite;
+}
+@keyframes frame-mandala-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.frame-scene-kim-cuong .vajra-diamond {
+  animation: frame-vajra-pulse 2.5s ease-in-out infinite;
+}
+@keyframes frame-vajra-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ─── 7. Thủy Mặc — black/white, ink brush strokes ─── */
+.frame-thuy-mac {
+  --frame-color-1: #d1d5db;
+  --frame-color-2: #6b7280;
+  --frame-glow: rgba(209, 213, 219, 0.2);
+  --frame-speed: 6s;
+  --frame-glow-speed: 4s;
+}
+.frame-scene-thuy-mac .ink-border {
+  animation: frame-ink-draw 8s ease-in-out infinite;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 0;
+}
+@keyframes frame-ink-draw {
+  0% { stroke-dashoffset: 0; opacity: 0.5; }
+  50% { stroke-dashoffset: 150; opacity: 0.8; }
+  100% { stroke-dashoffset: 300; opacity: 0.5; }
+}
+.frame-scene-thuy-mac .ink-splatter {
+  animation: frame-ink-splash 4s ease-in-out infinite;
+}
+@keyframes frame-ink-splash {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+.frame-scene-thuy-mac .bamboo-leaf {
+  animation: frame-leaf-sway 3s ease-in-out infinite alternate;
+}
+@keyframes frame-leaf-sway {
+  0% { opacity: 0.3; transform: rotate(var(--leaf-rot, 0deg)) translateX(-1px); }
+  100% { opacity: 0.5; transform: rotate(var(--leaf-rot, 0deg)) translateX(1px); }
+}
+
+/* ─── 8. Thiên Mệnh — prismatic/rainbow, celestial, premium ─── */
+.frame-thien-menh {
+  --frame-color-1: #e0f2fe;
+  --frame-color-2: #fbbf24;
+  --frame-glow: rgba(224, 242, 254, 0.35);
+  --frame-speed: 3s;
+  --frame-glow-speed: 2s;
+}
+.frame-thien-menh.avatar-frame-wrapper::before {
+  animation: frame-rotate 3s linear infinite, frame-hue-shift 6s linear infinite;
+}
+.frame-scene-thien-menh {
+  animation: frame-hue-shift 6s linear infinite;
+}
+@keyframes frame-hue-shift {
+  to { filter: hue-rotate(360deg); }
+}
+.frame-scene-thien-menh .celestial-knot {
+  animation: frame-knot-glow 3s ease-in-out infinite;
+}
+@keyframes frame-knot-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; filter: brightness(1.3); }
+}
+.frame-scene-thien-menh .celestial-cloud {
+  animation: frame-celestial-cloud 5s ease-in-out infinite alternate;
+}
+@keyframes frame-celestial-cloud {
+  0% { opacity: 0.15; transform: translateX(-2px); }
+  100% { opacity: 0.4; transform: translateX(2px); }
+}
+.frame-scene-thien-menh .seal-char {
+  animation: frame-seal-appear 4s ease-in-out infinite;
+}
+@keyframes frame-seal-appear {
+  0%, 100% { opacity: 0.2; transform: scale(0.9); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+.frame-scene-thien-menh .mandate-orb {
+  animation: frame-orb-pulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes frame-orb-pulse {
+  0% { opacity: 0.3; transform: scale(0.8); filter: brightness(1); }
+  100% { opacity: 0.8; transform: scale(1.2); filter: brightness(1.5); }
+}
+.frame-thien-menh.avatar-frame-wrapper::after {
+  opacity: 0.6;
+}
+
+/* ─── Accessibility: reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-frame-wrapper::before,
+  .avatar-frame-wrapper::after,
+  .frame-scene,
+  .frame-scene * {
+    animation: none !important;
+  }
+  .avatar-frame-wrapper::before {
+    --frame-angle: 45deg;
+  }
+  .avatar-frame-wrapper::after {
+    opacity: 0.4;
+  }
+  .frame-scene {
+    opacity: 0.7;
+  }
+}

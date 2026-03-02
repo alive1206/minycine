@@ -55,6 +55,7 @@ export const VideoPlayer = ({
   initialTime,
 }: VideoPlayerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isHoveringRef = useRef(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -400,6 +401,13 @@ export const VideoPlayer = ({
     const handleKey = (e: KeyboardEvent) => {
       const video = videoRef.current;
       if (!video) return;
+
+      // Only handle shortcuts when hovering over player or in fullscreen
+      if (!isHoveringRef.current && !document.fullscreenElement) return;
+
+      // Skip if user is typing in an input/textarea/contenteditable
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement)?.isContentEditable) return;
       switch (e.key) {
         case " ":
         case "k":
@@ -740,6 +748,8 @@ export const VideoPlayer = ({
     <div
       ref={containerRef}
       className="relative w-full h-full bg-black group select-none"
+      onMouseEnter={() => { isHoveringRef.current = true; }}
+      onMouseLeave={() => { isHoveringRef.current = false; }}
       onMouseMove={resetHideTimer}
       onClick={handleVideoClick}
       onTouchStart={handleTouchStart}
