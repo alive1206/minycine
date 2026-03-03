@@ -161,6 +161,16 @@ body {
    hidden behind it until the animation auto-dismisses.
    ═══════════════════════════════════════════════════════ */
 
+/* Instant hide on repeat visits (class set by <head> script) */
+html.splash-done .splash-screen {
+  display: none !important;
+}
+
+/* Lock body scroll during splash animation */
+html.splash-active body {
+  overflow: hidden;
+}
+
 .splash-screen {
   position: fixed;
   inset: 0;

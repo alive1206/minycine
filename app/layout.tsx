@@ -4,6 +4,7 @@ import { Providers } from "@/providers";
 import { MainLayout } from "@/components/layout/main-layout";
 import { ServiceWorkerRegistrar } from "@/components/pwa/service-worker-registrar";
 import { SplashScreen } from "@/components/pwa/splash-screen";
+import { SplashCleanup } from "@/components/pwa/splash-cleanup";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -47,16 +48,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className="dark">
-      <body
-        className={`${beVietnamPro.variable} font-sans antialiased`}
-        style={{ overflow: "hidden" }}
-      >
-        <SplashScreen />
+      <head>
+        {/* Early splash gate — runs before body is parsed/painted */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(sessionStorage.getItem('splash_shown')){var s=document.querySelector('.splash-screen');if(s)s.style.display='none';document.body.style.overflow=''}else{sessionStorage.setItem('splash_shown','1');setTimeout(function(){document.body.style.overflow=''},3600)}}catch(e){setTimeout(function(){document.body.style.overflow=''},3600)}})()`,
+            __html: `(function(){try{if(sessionStorage.getItem('splash_shown')){document.documentElement.classList.add('splash-done')}else{sessionStorage.setItem('splash_shown','1');document.documentElement.classList.add('splash-active')}}catch(e){document.documentElement.classList.add('splash-active')}})()`,
           }}
         />
+      </head>
+      <body
+        className={`${beVietnamPro.variable} font-sans antialiased`}
+      >
+        <SplashScreen />
+        <SplashCleanup />
         <Providers>
           <MainLayout>{children}</MainLayout>
         </Providers>

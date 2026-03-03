@@ -322,21 +322,21 @@ export const Navbar = () => {
                 <DropdownItem
                   key="profile"
                   startContent={<User className="w-4 h-4" />}
-                  href="/ho-so"
+                  onPress={() => router.push("/ho-so")}
                 >
                   Hồ sơ
                 </DropdownItem>
                 <DropdownItem
                   key="favorites"
                   startContent={<Heart className="w-4 h-4" />}
-                  href="/yeu-thich"
+                  onPress={() => router.push("/yeu-thich")}
                 >
                   Yêu thích
                 </DropdownItem>
                 <DropdownItem
                   key="history"
                   startContent={<Clock className="w-4 h-4" />}
-                  href="/lich-su-xem"
+                  onPress={() => router.push("/lich-su-xem")}
                 >
                   Xem tiếp
                 </DropdownItem>
