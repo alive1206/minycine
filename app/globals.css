@@ -758,6 +758,20 @@ html.splash-active body {
   }
 }
 
+/* ─── Frame picker: disable animations for performance ─── */
+.frame-picker .avatar-frame-wrapper::before,
+.frame-picker .avatar-frame-wrapper::after,
+.frame-picker .frame-scene,
+.frame-picker .frame-scene * {
+  animation: none !important;
+}
+.frame-picker .avatar-frame-wrapper::before {
+  --frame-angle: 45deg;
+}
+.frame-picker .avatar-frame-wrapper::after {
+  opacity: 0.3;
+}
+
 /* ─── Accessibility: reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   .avatar-frame-wrapper::before,

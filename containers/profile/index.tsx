@@ -219,6 +219,16 @@ export const ProfilePage = () => {
     AVATAR_CATEGORIES[0]?.label ?? "",
   );
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+
+  // Auto-detect which category the current avatar belongs to
+  useEffect(() => {
+    if (isEditingProfile && selectedAvatar) {
+      const matchCat = AVATAR_CATEGORIES.find((cat) =>
+        cat.avatars.some((av) => av.url === selectedAvatar),
+      );
+      if (matchCat) setAvatarCategory(matchCat.label);
+    }
+  }, [isEditingProfile, selectedAvatar]);
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileMsg, setProfileMsg] = useState("");
 
@@ -457,7 +467,7 @@ export const ProfilePage = () => {
                 {/* Frame Picker */}
                 <div className="mt-5">
                   <p className="mb-3 text-sm text-default-500">Khung avatar</p>
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 p-1">
+                  <div className="frame-picker grid grid-cols-3 sm:grid-cols-4 gap-3 p-1">
                     {/* No frame option */}
                     <button
                       type="button"
