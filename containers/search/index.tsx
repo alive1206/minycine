@@ -3,38 +3,28 @@
 import { Suspense, useState } from "react";
 import { usePageParam } from "@/hooks/use-page-param";
 import { useSearchParams } from "next/navigation";
+
 import { MovieGrid } from "@/components/movie/movie-grid";
-import { MovieFilter } from "@/components/movie/movie-filter";
 import { useSearchMovies } from "@/hooks/use-movies";
 import { useRagSearch } from "@/hooks/use-rag-search";
 import { Search, Loader2, Sparkles } from "lucide-react";
 import { Switch, Chip } from "@heroui/react";
-import type { MovieListParams } from "@/types/api";
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword") || "";
   const [page, setPage] = usePageParam();
-  const [filters, setFilters] = useState<MovieListParams>({
-    sort_field: "year",
-    sort_type: "desc",
-  });
   const [ragEnabled, setRagEnabled] = useState(false);
 
   // Normal search
-  const normalSearch = useSearchMovies(keyword, page, filters);
+  const normalSearch = useSearchMovies(keyword, page);
   // RAG-enhanced search
-  const ragSearch = useRagSearch(keyword, "search", page, filters, ragEnabled);
+  const ragSearch = useRagSearch(keyword, "search", page, undefined, ragEnabled);
 
   // Choose which result to display
   const activeSearch = ragEnabled ? ragSearch : normalSearch;
   const data = ragEnabled ? ragSearch.data : normalSearch.data;
   const isLoading = activeSearch.isLoading;
-
-  const handleFilterChange = (newFilters: MovieListParams) => {
-    setFilters(newFilters);
-    setPage(1);
-  };
 
   return (
     <div className="min-h-screen px-4 md:px-10 py-8">
@@ -118,8 +108,6 @@ const SearchResults = () => {
             ? "Đang tìm kiếm..."
             : `Không tìm thấy kết quả cho "${keyword}"`}
       </p>
-
-      <MovieFilter filters={filters} onChange={handleFilterChange} />
 
       <MovieGrid
         movies={data?.items || []}

@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import type { MovieListResponse, MovieListParams, Movie } from "@/types/api";
+import type { MovieListResponse, Movie } from "@/types/api";
 import type { NormalizedMovieList } from "./use-movies";
 
 // ─── Types ────────────────────────────────────────────────────
@@ -18,22 +18,6 @@ export interface RagSearchResult extends NormalizedMovieList {
   ragKeywords: string[];
   isFallback: boolean;
   suggestions: string[];
-}
-
-// ─── Helper: clean filter params ──────────────────────────────
-
-function cleanParams(
-  params: MovieListParams = {},
-): Record<string, string | number> {
-  const cleaned: Record<string, string | number> = {};
-  if (params.page) cleaned.page = params.page;
-  if (params.limit) cleaned.limit = params.limit;
-  if (params.sort_field) cleaned.sort_field = params.sort_field;
-  if (params.sort_type) cleaned.sort_type = params.sort_type;
-  if (params.category) cleaned.category = params.category;
-  if (params.country) cleaned.country = params.country;
-  if (params.year) cleaned.year = params.year;
-  return cleaned;
 }
 
 // ─── Step 1: Expand keywords via AI ───────────────────────────
@@ -64,11 +48,10 @@ async function expandKeywords(
 async function searchOPhim(
   keyword: string,
   page: number,
-  filters?: MovieListParams,
 ): Promise<{ movies: Movie[]; totalItems: number }> {
   try {
     const res = await api.get<MovieListResponse>(`/tim-kiem`, {
-      params: { ...cleanParams(filters), keyword, page },
+      params: { keyword, page },
     });
     return {
       movies: res.data.data.items || [],
@@ -99,16 +82,16 @@ export function useRagSearch(
   query: string,
   context: "search" | "actor",
   page: number = 1,
-  filters?: MovieListParams,
+  _filters?: unknown,
   enabled: boolean = true,
 ) {
   return useQuery<RagSearchResult>({
-    queryKey: ["rag-search", context, query, page, filters],
+    queryKey: ["rag-search", context, query, page],
     queryFn: async () => {
       if (context === "actor") {
-        return actorSearch(query, page, filters);
+        return actorSearch(query, page);
       }
-      return generalSearch(query, page, filters);
+      return generalSearch(query, page);
     },
     enabled: enabled && query.length >= 2,
     staleTime: 1000 * 60 * 5,
@@ -120,11 +103,10 @@ export function useRagSearch(
 async function actorSearch(
   actorName: string,
   page: number,
-  filters?: MovieListParams,
 ): Promise<RagSearchResult> {
   // Run BOTH in parallel: direct name search + AI keyword expansion
   const [directResult, expanded] = await Promise.all([
-    searchOPhim(actorName, page, filters),
+    searchOPhim(actorName, page),
     expandKeywords(actorName, "actor"),
   ]);
 
@@ -135,7 +117,7 @@ async function actorSearch(
   // If AI provided keywords, search those too (but only as supplement)
   if (!expanded.fallback && expanded.keywords.length > 0) {
     const aiResults = await Promise.allSettled(
-      expanded.keywords.slice(0, 5).map((kw) => searchOPhim(kw, 1, filters)),
+      expanded.keywords.slice(0, 5).map((kw) => searchOPhim(kw, 1)),
     );
 
     for (const result of aiResults) {
@@ -167,7 +149,6 @@ async function actorSearch(
 async function generalSearch(
   query: string,
   page: number,
-  filters?: MovieListParams,
 ): Promise<RagSearchResult> {
   // Step 1: AI keyword expansion
   const expanded = await expandKeywords(query, "search");
@@ -178,7 +159,7 @@ async function generalSearch(
 
   // Step 2: Search with all keywords in parallel
   const results = await Promise.allSettled(
-    allKeywords.map((kw) => searchOPhim(kw, page, filters)),
+    allKeywords.map((kw) => searchOPhim(kw, page)),
   );
 
   const allMovies: Movie[] = [];

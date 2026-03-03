@@ -166,13 +166,12 @@ export function useMoviesByYear(
 export function useSearchMovies(
   keyword: string,
   page: number = 1,
-  filters?: MovieListParams,
 ) {
   return useQuery({
-    queryKey: ["movies", "search", keyword, page, filters],
+    queryKey: ["movies", "search", keyword, page],
     queryFn: async () => {
       const { data } = await api.get<MovieListResponse>(`/tim-kiem`, {
-        params: { ...cleanParams(filters), keyword, page },
+        params: { keyword, page },
       });
       return normalizeList(data);
     },

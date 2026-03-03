@@ -10,8 +10,11 @@ export function SplashCleanup() {
 
     const timer = setTimeout(() => {
       html.classList.remove("splash-active");
-      const el = document.querySelector(".splash-screen");
-      if (el) el.remove();
+      html.classList.add("splash-done");
+      const el = document.querySelector<HTMLElement>(".splash-screen");
+      if (el) {
+        el.style.display = "none";
+      }
     }, 3700); // 3s delay + 0.6s fade + 100ms buffer
 
     return () => clearTimeout(timer);
