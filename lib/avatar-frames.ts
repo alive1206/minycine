@@ -1,14 +1,14 @@
-// ─── Avatar Frames: Kiếm Hiệp / Wuxia Martial Arts theme ──────
+// ─── Avatar Frames: Voice Live Room / Luxury Style ──────
 
 export type FrameDecoration =
-  | "blood-sword"
-  | "azure-dragon"
-  | "white-tiger"
-  | "phoenix-dance"
-  | "dark-moon"
-  | "diamond-vajra"
-  | "ink-wash"
-  | "heavenly-mandate";
+  | "platinum-ring"
+  | "gold-ring"
+  | "emerald-gem"
+  | "amethyst-wings"
+  | "sapphire-wings"
+  | "rose-wings"
+  | "dragon-crown"
+  | "imperial-violet";
 
 export interface AvatarFrame {
   id: string;
@@ -19,52 +19,52 @@ export interface AvatarFrame {
 
 export const AVATAR_FRAMES: AvatarFrame[] = [
   {
-    id: "huyet-kiem",
-    nameVi: "Huyết Kiếm",
-    cssClass: "frame-huyet-kiem",
-    decoration: "blood-sword",
+    id: "platinum-ring",
+    nameVi: "Bạch Kim",
+    cssClass: "frame-platinum-ring",
+    decoration: "platinum-ring",
   },
   {
-    id: "thanh-long",
-    nameVi: "Thanh Long",
-    cssClass: "frame-thanh-long",
-    decoration: "azure-dragon",
+    id: "gold-ring",
+    nameVi: "Kim Quang",
+    cssClass: "frame-gold-ring",
+    decoration: "gold-ring",
   },
   {
-    id: "bach-ho",
-    nameVi: "Bạch Hổ",
-    cssClass: "frame-bach-ho",
-    decoration: "white-tiger",
+    id: "emerald-gem",
+    nameVi: "Lục Bảo",
+    cssClass: "frame-emerald-gem",
+    decoration: "emerald-gem",
   },
   {
-    id: "phuong-vu",
-    nameVi: "Phượng Vũ",
-    cssClass: "frame-phuong-vu",
-    decoration: "phoenix-dance",
+    id: "amethyst-wings",
+    nameVi: "Tử Ngọc",
+    cssClass: "frame-amethyst-wings",
+    decoration: "amethyst-wings",
   },
   {
-    id: "hac-nguyet",
-    nameVi: "Hắc Nguyệt",
-    cssClass: "frame-hac-nguyet",
-    decoration: "dark-moon",
+    id: "sapphire-wings",
+    nameVi: "Thanh Ngọc",
+    cssClass: "frame-sapphire-wings",
+    decoration: "sapphire-wings",
   },
   {
-    id: "kim-cuong",
-    nameVi: "Kim Cương",
-    cssClass: "frame-kim-cuong",
-    decoration: "diamond-vajra",
+    id: "rose-wings",
+    nameVi: "Hồng Ngọc",
+    cssClass: "frame-rose-wings",
+    decoration: "rose-wings",
   },
   {
-    id: "thuy-mac",
-    nameVi: "Thủy Mặc",
-    cssClass: "frame-thuy-mac",
-    decoration: "ink-wash",
+    id: "dragon-crown",
+    nameVi: "Long Viêm",
+    cssClass: "frame-dragon-crown",
+    decoration: "dragon-crown",
   },
   {
-    id: "thien-menh",
-    nameVi: "Thiên Mệnh",
-    cssClass: "frame-thien-menh",
-    decoration: "heavenly-mandate",
+    id: "imperial-violet",
+    nameVi: "Đế Vương",
+    cssClass: "frame-imperial-violet",
+    decoration: "imperial-violet",
   },
 ];
 

@@ -54,7 +54,7 @@ export default function RootLayout({
         <SplashScreen />
         <script
           dangerouslySetInnerHTML={{
-            __html: `setTimeout(function(){document.body.style.overflow=''},3600)`,
+            __html: `(function(){try{if(sessionStorage.getItem('splash_shown')){var s=document.querySelector('.splash-screen');if(s)s.style.display='none';document.body.style.overflow=''}else{sessionStorage.setItem('splash_shown','1');setTimeout(function(){document.body.style.overflow=''},3600)}}catch(e){setTimeout(function(){document.body.style.overflow=''},3600)}})()`,
           }}
         />
         <Providers>

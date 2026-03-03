@@ -719,26 +719,26 @@ export const VideoPlayer = ({
         lastTapTimeRef.current = now;
         lastTapXRef.current = relativeX;
         tapTimerRef.current = setTimeout(() => {
-          togglePlayPause();
+          // Show controls on single tap (center button handles play/pause)
+          resetHideTimer();
           tapTimerRef.current = null;
         }, DOUBLE_TAP_DELAY);
       }
     },
-    [duration, resetHideTimer, togglePlayPause, showSeekFeedback],
+    [duration, resetHideTimer, showSeekFeedback],
   );
 
   // ─── Desktop click handler ────────────────────────────────
   const handleVideoClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLElement;
-      // Don't toggle on control area clicks
       if (target.closest(".player-controls-area") || target.closest("button"))
         return;
-      // On touch devices the touch handler manages this
       if ("ontouchstart" in window) return;
-      togglePlayPause();
+      // Show controls on click (center button handles play/pause)
+      resetHideTimer();
     },
-    [togglePlayPause],
+    [resetHideTimer],
   );
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -860,6 +860,22 @@ export const VideoPlayer = ({
           showControls ? "opacity-100" : "opacity-0"
         }`}
       >
+        {/* Center play/pause button */}
+        {!loading && !autoplayBlocked && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button
+              onClick={togglePlayPause}
+              className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black/40 hover:bg-black/60 active:scale-95 flex items-center justify-center transition-all backdrop-blur-sm pointer-events-auto cursor-pointer"
+            >
+              {playing ? (
+                <Pause className="w-7 h-7 md:w-8 md:h-8 text-white" />
+              ) : (
+                <Play className="w-7 h-7 md:w-8 md:h-8 text-white fill-white ml-0.5" />
+              )}
+            </button>
+          </div>
+        )}
+
         {/* Top gradient + title */}
         <div className="player-controls-area absolute top-0 left-0 right-0 bg-linear-to-b from-black/70 to-transparent p-4 flex items-start justify-between pointer-events-auto">
           {title ? (
