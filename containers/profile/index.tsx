@@ -39,6 +39,22 @@ const inputClassNames = {
   label: "text-default-500",
 };
 
+// Robust avatar URL comparison — handles base-URL differences
+const isSameAvatar = (url1: string, url2: string): boolean => {
+  if (!url1 || !url2) return false;
+  if (url1 === url2) return true;
+  // Compare by pathname + query (ignoring protocol/host differences)
+  const getKey = (url: string) => {
+    try {
+      const u = new URL(url);
+      return u.pathname + u.search;
+    } catch {
+      return url;
+    }
+  };
+  return getKey(url1) === getKey(url2);
+};
+
 const getImageUrl = (url: string): string => {
   if (!url) return "";
   if (url.startsWith("http")) return url;
@@ -208,7 +224,7 @@ const WatchHistorySection = () => {
 
 export const ProfilePage = () => {
   const router = useRouter();
-  const { user, isLoading, logout } = useAuth();
+  const { user, isLoading, logout, setUser } = useAuth();
   const authFetch = useAuthFetch();
 
   // Profile editing
@@ -224,7 +240,7 @@ export const ProfilePage = () => {
   useEffect(() => {
     if (isEditingProfile && selectedAvatar) {
       const matchCat = AVATAR_CATEGORIES.find((cat) =>
-        cat.avatars.some((av) => av.url === selectedAvatar),
+        cat.avatars.some((av) => isSameAvatar(av.url, selectedAvatar)),
       );
       if (matchCat) setAvatarCategory(matchCat.label);
     }
@@ -274,9 +290,9 @@ export const ProfilePage = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
 
+      setUser(data.user);
       setProfileMsg("Cập nhật hồ sơ thành công!");
       setIsEditingProfile(false);
-      window.location.reload();
     } catch (err) {
       setProfileMsg(err instanceof Error ? err.message : "Cập nhật thất bại");
     } finally {
@@ -440,7 +456,7 @@ export const ProfilePage = () => {
                       type="button"
                       onClick={() => setSelectedAvatar(av.url)}
                       className={`group relative overflow-hidden rounded-full ring-2 transition-all ${
-                        selectedAvatar === av.url
+                        isSameAvatar(selectedAvatar, av.url)
                           ? "ring-primary scale-105"
                           : "ring-white/10 hover:ring-white/30"
                       }`}
@@ -452,7 +468,7 @@ export const ProfilePage = () => {
                           base: "w-full h-full aspect-square",
                         }}
                       />
-                      {selectedAvatar === av.url && (
+                      {isSameAvatar(selectedAvatar, av.url) && (
                         <div className="absolute inset-0 flex items-center justify-center bg-primary/40">
                           <Check className="h-5 w-5 text-white" />
                         </div>

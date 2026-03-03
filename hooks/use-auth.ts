@@ -72,7 +72,7 @@ export function useAuth() {
     }
   }, [setAccessToken, setUser]);
 
-  return { user, accessToken, isLoading, login, register, logout };
+  return { user, accessToken, isLoading, login, register, logout, setUser };
 }
 
 export function useAuthFetch() {
