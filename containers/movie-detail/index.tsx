@@ -277,7 +277,7 @@ export const MovieDetailPage = () => {
               {movie.episode_total && (
                 <div className="flex items-center gap-2">
                   <Film className="w-4 h-4 text-primary" />
-                  <span>Tổng tập: {movie.episode_total}</span>
+                  <span>Tổng số tập: {movie.episode_total}</span>
                 </div>
               )}
             </div>
