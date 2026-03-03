@@ -53,8 +53,16 @@ function normalizeList(res: MovieListResponse): NormalizedMovieList {
       }
     : undefined;
 
+  // Deduplicate items by slug (API may return duplicates with unstable sorts)
+  const seen = new Set<string>();
+  const items = res.data.items.filter((movie) => {
+    if (seen.has(movie.slug)) return false;
+    seen.add(movie.slug);
+    return true;
+  });
+
   return {
-    items: res.data.items,
+    items,
     paginate,
     titlePage: res.data.titlePage,
     cdnImageUrl: res.data.APP_DOMAIN_CDN_IMAGE,

@@ -22,7 +22,7 @@ const CategoryContent = () => {
   const slug = params.slug as string;
   const [page, setPage] = usePageParam();
   const [filters, setFilters] = useState<MovieListParams>({
-    sort_field: "year",
+    sort_field: "modified.time",
     sort_type: "desc",
   });
   const { data, isLoading } = useMoviesByCategory(slug, page, filters);
