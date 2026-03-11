@@ -1,12 +1,13 @@
 // ─── Episode string parsing & diff utilities ────────────────
 
 export interface EpisodeNotification {
-  id: string; // `${slug}-ep-${episodeNumber}`
+  id: string; // just `slug` (one per movie)
   slug: string;
   movieName: string;
   posterUrl: string;
-  episodeNumber: number;
-  createdAt: number;
+  latestEpisode: string; // raw string from API, e.g. "Tập 4"
+  episodeSlug: string; // slug of latest episode for direct link
+  updatedTime: number; // seoOnPage.updated_time from API
   read: boolean;
 }
 
@@ -54,36 +55,24 @@ export function isCompletedSeries(str: string): boolean {
 }
 
 /**
- * Generate notification objects for each new episode between old and new.
+ * Generate a single notification for a movie's latest episode.
  */
-export function generateEpisodeNotifications(
+export function generateMovieNotification(
   slug: string,
   movieName: string,
   posterUrl: string,
-  oldEpStr: string,
-  newEpStr: string,
-): EpisodeNotification[] {
-  const oldEp = parseEpisodeNumber(oldEpStr);
-  const newEp = parseEpisodeNumber(newEpStr);
-
-  if (oldEp === null || newEp === null) return [];
-  if (newEp <= oldEp) return [];
-
-  const notifications: EpisodeNotification[] = [];
-  // Cap at 10 notifications per movie to avoid flooding
-  const start = Math.max(oldEp + 1, newEp - 9);
-
-  for (let ep = start; ep <= newEp; ep++) {
-    notifications.push({
-      id: `${slug}-ep-${ep}`,
-      slug,
-      movieName,
-      posterUrl,
-      episodeNumber: ep,
-      createdAt: Date.now(),
-      read: false,
-    });
-  }
-
-  return notifications;
+  latestEpisode: string,
+  episodeSlug: string,
+  updatedTime: number,
+): EpisodeNotification {
+  return {
+    id: slug,
+    slug,
+    movieName,
+    posterUrl,
+    latestEpisode,
+    episodeSlug,
+    updatedTime,
+    read: false,
+  };
 }

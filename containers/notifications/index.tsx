@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Card, CardBody } from "@heroui/react";
@@ -11,6 +11,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  CheckCheck,
+  Eye,
 } from "lucide-react";
 import { useNotifications } from "@/hooks/use-notifications";
 
@@ -23,7 +25,9 @@ const getImageUrl = (url: string): string => {
 };
 
 function timeAgo(ts: number): string {
+  if (!ts || isNaN(ts)) return "";
   const diff = Date.now() - ts;
+  if (diff < 0) return "Vừa xong";
   const minutes = Math.floor(diff / 60000);
   if (minutes < 1) return "Vừa xong";
   if (minutes < 60) return `${minutes} phút trước`;
@@ -35,13 +39,9 @@ function timeAgo(ts: number): string {
 }
 
 export const NotificationsPage = () => {
-  const { items, markAllRead, dismiss, clearAll } = useNotifications();
+  const { items, unreadCount, markRead, markAllRead, dismiss, clearAll } =
+    useNotifications();
   const [page, setPage] = useState(1);
-
-  // Mark all as read on mount
-  useEffect(() => {
-    markAllRead();
-  }, [markAllRead]);
 
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paged = items.slice(
@@ -66,18 +66,30 @@ export const NotificationsPage = () => {
         <h1 className="text-2xl font-bold text-white">
           Thông Báo ({items.length})
         </h1>
-        {items.length > 0 && (
-          <Button
-            size="sm"
-            variant="flat"
-            color="danger"
-            className="ml-auto"
-            startContent={<Trash2 className="w-3.5 h-3.5" />}
-            onPress={clearAll}
-          >
-            Xóa tất cả
-          </Button>
-        )}
+        <div className="ml-auto flex items-center gap-2">
+          {unreadCount > 0 && (
+            <Button
+              size="sm"
+              variant="flat"
+              color="primary"
+              startContent={<CheckCheck className="w-3.5 h-3.5" />}
+              onPress={markAllRead}
+            >
+              Đọc tất cả
+            </Button>
+          )}
+          {items.length > 0 && (
+            <Button
+              size="sm"
+              variant="flat"
+              color="danger"
+              startContent={<Trash2 className="w-3.5 h-3.5" />}
+              onPress={clearAll}
+            >
+              Xóa tất cả
+            </Button>
+          )}
+        </div>
       </div>
 
       {items.length === 0 ? (
@@ -98,7 +110,7 @@ export const NotificationsPage = () => {
             {paged.map((notif) => (
               <Link
                 key={notif.id}
-                href={`/phim/${notif.slug}`}
+                href={`/xem/${notif.slug}?tap=${notif.episodeSlug}`}
                 className={`group flex items-center gap-3 p-3 rounded-xl border transition-colors hover:bg-white/5 ${
                   notif.read
                     ? "border-white/5 opacity-60"
@@ -120,22 +132,37 @@ export const NotificationsPage = () => {
                     {notif.movieName}
                   </p>
                   <p className="text-xs text-primary mt-0.5">
-                    Tập {notif.episodeNumber} đã cập nhật
+                    {notif.latestEpisode} đã cập nhật
                   </p>
                   <p className="text-xs text-gray-500 mt-0.5">
-                    {timeAgo(notif.createdAt)}
+                    {timeAgo(notif.updatedTime)}
                   </p>
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dismiss(notif.id);
-                  }}
-                  className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/10"
-                >
-                  <X className="w-3.5 h-3.5 text-gray-400" />
-                </button>
+                <div className="flex items-center gap-1 shrink-0">
+                  {!notif.read && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        markRead(notif.id);
+                      }}
+                      className="w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/10"
+                      title="Đánh dấu đã đọc"
+                    >
+                      <Eye className="w-3.5 h-3.5 text-gray-400" />
+                    </button>
+                  )}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      dismiss(notif.id);
+                    }}
+                    className="w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/10"
+                  >
+                    <X className="w-3.5 h-3.5 text-gray-400" />
+                  </button>
+                </div>
               </Link>
             ))}
           </div>

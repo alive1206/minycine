@@ -19,6 +19,7 @@ import {
   Volume1,
 } from "lucide-react";
 
+
 interface VideoPlayerProps {
   src: string;
   title?: string;
@@ -919,16 +920,21 @@ export const VideoPlayer = ({
             {/* Progress */}
             <div
               className="absolute top-0 left-0 h-full bg-primary rounded-full"
-              style={{
-                width: `${seekPreview ? seekPreview.percent : progress}%`,
-              }}
+              style={{ width: `${progress}%` }}
             />
+            {/* Hover indicator line */}
+            {seekPreview && (
+              <div
+                className="absolute top-0 h-full w-0.5 bg-white/60 pointer-events-none"
+                style={{ left: `${seekPreview.percent}%` }}
+              />
+            )}
             {/* Thumb */}
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-primary rounded-full shadow-md opacity-0 group-hover/seek:opacity-100 transition-opacity"
+              className="absolute top-1/2 w-3.5 h-3.5 bg-primary rounded-full shadow-md opacity-0 group-hover/seek:opacity-100 transition-opacity"
               style={{
-                left: `${seekPreview ? seekPreview.percent : progress}%`,
-                transform: `translate(-50%, -50%)`,
+                left: `${progress}%`,
+                transform: "translate(-50%, -50%)",
               }}
             />
             {/* Preview tooltip */}
@@ -937,7 +943,7 @@ export const VideoPlayer = ({
                 className="absolute -top-9 pointer-events-none"
                 style={{
                   left: `${seekPreview.percent}%`,
-                  transform: `translateX(-50%)`,
+                  transform: "translateX(-50%)",
                 }}
               >
                 <div className="bg-black/85 text-white text-xs font-mono px-2 py-1 rounded shadow-lg backdrop-blur-sm whitespace-nowrap">

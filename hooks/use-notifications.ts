@@ -7,8 +7,10 @@ import { useFavorites } from "@/hooks/use-favorites";
 import { useAuth } from "@/hooks/use-auth";
 import {
   isCompletedSeries,
-  generateEpisodeNotifications,
+  parseEpisodeNumber,
+  generateMovieNotification,
 } from "@/lib/episode-utils";
+import type { EpisodeNotification } from "@/lib/episode-utils";
 import api from "@/lib/api";
 
 const CHECK_COOLDOWN = 30 * 60 * 1000; // 30 minutes
@@ -43,9 +45,7 @@ export const useNotifications = () => {
         return;
       }
 
-      const allNewNotifications: ReturnType<
-        typeof generateEpisodeNotifications
-      > = [];
+      const allNewNotifications: EpisodeNotification[] = [];
       const updates: { slug: string; newEp: string }[] = [];
 
       // Process in batches of CONCURRENCY
@@ -68,18 +68,33 @@ export const useNotifications = () => {
           const liveEp = movie.episode_current;
           if (!liveEp || liveEp === fav.episode_current) continue;
 
-          const notifications = generateEpisodeNotifications(
+          // Compare episode numbers to detect new episodes
+          const oldEp = parseEpisodeNumber(fav.episode_current);
+          const newEp = parseEpisodeNumber(liveEp);
+          if (oldEp === null || newEp === null || newEp <= oldEp) continue;
+
+          // Extract real timestamp from API
+          const updatedTime =
+            data?.data?.seoOnPage?.updated_time || Date.now();
+
+          // Extract latest episode slug from server_data
+          const serverData = movie.episodes?.[0]?.server_data;
+          const latestEpSlug =
+            serverData && serverData.length > 0
+              ? serverData[serverData.length - 1].slug
+              : "";
+
+          const notification = generateMovieNotification(
             fav.slug,
             fav.name,
             fav.posterUrl,
-            fav.episode_current,
             liveEp,
+            latestEpSlug,
+            updatedTime,
           );
 
-          if (notifications.length > 0) {
-            allNewNotifications.push(...notifications);
-            updates.push({ slug: fav.slug, newEp: liveEp });
-          }
+          allNewNotifications.push(notification);
+          updates.push({ slug: fav.slug, newEp: liveEp });
         }
 
         // Delay between batches (skip after last batch)
@@ -88,14 +103,18 @@ export const useNotifications = () => {
         }
       }
 
-      // Merge new notifications, dedup by id, cap at MAX_ITEMS
+      // Merge new notifications, dedup by id (slug), cap at MAX_ITEMS
       if (allNewNotifications.length > 0) {
         setState((prev) => {
-          const existingIds = new Set(prev.items.map((n) => n.id));
-          const fresh = allNewNotifications.filter(
-            (n) => !existingIds.has(n.id),
-          );
-          const merged = [...fresh, ...prev.items].slice(0, MAX_ITEMS);
+          const updatedMap = new Map(prev.items.map((n) => [n.id, n]));
+          for (const n of allNewNotifications) {
+            // Upsert: update existing or add new, preserve read state
+            const existing = updatedMap.get(n.id);
+            updatedMap.set(n.id, existing ? { ...n, read: existing.read } : n);
+          }
+          const merged = Array.from(updatedMap.values())
+            .sort((a, b) => b.updatedTime - a.updatedTime)
+            .slice(0, MAX_ITEMS);
           return { items: merged, lastCheckedAt: now };
         });
 
@@ -119,6 +138,18 @@ export const useNotifications = () => {
   }, [user]);
 
   const unreadCount = state.items.filter((n) => !n.read).length;
+
+  const markRead = useCallback(
+    (id: string) => {
+      setState((prev) => ({
+        ...prev,
+        items: prev.items.map((n) =>
+          n.id === id ? { ...n, read: true } : n,
+        ),
+      }));
+    },
+    [setState],
+  );
 
   const markAllRead = useCallback(() => {
     setState((prev) => ({
@@ -144,6 +175,7 @@ export const useNotifications = () => {
   return {
     items: state.items,
     unreadCount,
+    markRead,
     markAllRead,
     dismiss,
     clearAll,

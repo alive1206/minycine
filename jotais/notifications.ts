@@ -11,6 +11,6 @@ export interface NotificationState {
 // ─── Atom ─────────────────────────────────────────────────────
 
 export const notificationsAtom = atomWithStorage<NotificationState>(
-  "episode_notifications",
+  "notifications_v2",
   { items: [], lastCheckedAt: 0 },
 );
