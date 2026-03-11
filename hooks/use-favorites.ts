@@ -120,5 +120,25 @@ export const useFavorites = () => {
     [setItems, user],
   );
 
-  return { items, toggle, isFavorite, removeItem };
+  const updateEpisodeCurrent = useCallback(
+    (slug: string, newEp: string) => {
+      setItems((prev) =>
+        prev.map((f) =>
+          f.slug === slug ? { ...f, episode_current: newEp } : f,
+        ),
+      );
+
+      if (user) {
+        authFetch("/api/user/favorites", {
+          method: "PATCH",
+          body: JSON.stringify({ slug, episode_current: newEp }),
+        }).catch(() => {
+          /* silent */
+        });
+      }
+    },
+    [setItems, user],
+  );
+
+  return { items, toggle, isFavorite, removeItem, updateEpisodeCurrent };
 };

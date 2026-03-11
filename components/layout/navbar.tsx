@@ -28,12 +28,14 @@ import {
   LogOut,
   Heart,
   Clock,
+  Bell,
   XIcon,
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { AvatarWithFrame } from "@/components/ui/avatar-with-frame";
 import { useGenreList, useCountryList, useYearList } from "@/hooks/use-movies";
 import { useAuth } from "@/hooks/use-auth";
+import { useNotifications } from "@/hooks/use-notifications";
 
 const navLinks = [
   { name: "Trang Chủ", href: "/" },
@@ -51,6 +53,7 @@ export const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { user, isLoading: authLoading, logout } = useAuth();
+  const { unreadCount } = useNotifications();
 
   // Fetch taxonomy data from API
   const { data: genreData, isLoading: loadingGenres } = useGenreList();
@@ -295,7 +298,7 @@ export const Navbar = () => {
               }}
             >
               <DropdownTrigger>
-                <button className="flex items-center gap-2 outline-none">
+                <button className="relative flex items-center gap-2 outline-none">
                   <AvatarWithFrame
                     name={user.name}
                     src={user.avatar || undefined}
@@ -303,6 +306,11 @@ export const Navbar = () => {
                     size="sm"
                     className="cursor-pointer ring-2 ring-primary/30 hover:ring-primary/60 transition-all"
                   />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 min-w-5 h-5 flex items-center justify-center bg-red-500 text-white text-[10px] font-bold rounded-full px-1 ring-2 ring-black">
+                      {unreadCount > 9 ? "9+" : unreadCount}
+                    </span>
+                  )}
                 </button>
               </DropdownTrigger>
               <DropdownMenu
@@ -339,6 +347,20 @@ export const Navbar = () => {
                   onPress={() => router.push("/lich-su-xem")}
                 >
                   Xem tiếp
+                </DropdownItem>
+                <DropdownItem
+                  key="notifications"
+                  startContent={<Bell className="w-4 h-4" />}
+                  onPress={() => router.push("/thong-bao")}
+                  endContent={
+                    unreadCount > 0 ? (
+                      <span className="min-w-5 h-5 flex items-center justify-center bg-red-500 text-white text-[10px] font-bold rounded-full px-1.5">
+                        {unreadCount > 9 ? "9+" : unreadCount}
+                      </span>
+                    ) : null
+                  }
+                >
+                  Thông báo
                 </DropdownItem>
                 <DropdownItem
                   key="logout"

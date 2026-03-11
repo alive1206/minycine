@@ -103,6 +103,46 @@ export async function POST(request: Request) {
   }
 }
 
+// ─── PATCH /api/user/favorites ─ update episode_current ──────
+export async function PATCH(request: Request) {
+  try {
+    const token = getAccessTokenFromHeader(request);
+    if (!token) {
+      return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
+    }
+
+    const payload = await verifyAccessToken(token);
+    if (!payload) {
+      return NextResponse.json(
+        { error: "Token không hợp lệ" },
+        { status: 401 },
+      );
+    }
+
+    const body = await request.json();
+    const { slug, episode_current } = body;
+
+    if (!slug || !episode_current) {
+      return NextResponse.json(
+        { error: "Thiếu slug hoặc episode_current" },
+        { status: 400 },
+      );
+    }
+
+    await db
+      .update(favorites)
+      .set({ episodeCurrent: episode_current })
+      .where(
+        and(eq(favorites.userId, payload.userId), eq(favorites.slug, slug)),
+      );
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Patch favorite error:", error);
+    return NextResponse.json({ error: "Đã xảy ra lỗi" }, { status: 500 });
+  }
+}
+
 // ─── DELETE /api/user/favorites?slug=xxx ─ remove favorite ────
 export async function DELETE(request: Request) {
   try {
