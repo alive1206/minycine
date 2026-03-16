@@ -199,7 +199,7 @@ export const WatchPage = () => {
         {allEpisodes.length > 1 && (
           <div className="mt-6">
             <h3 className="text-white font-semibold mb-3">Danh sách tập</h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 max-h-[400px] overflow-y-auto thin-scrollbar">
               {allEpisodes.map((ep) => (
                 <Button
                   key={ep.slug}
