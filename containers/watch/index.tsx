@@ -23,6 +23,7 @@ export const WatchPage = () => {
   const { saveProgress, items: watchHistory } = useWatchHistory();
   const { user } = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeTap, setActiveTap] = useState(tapParam);
 
   const movie = data?.movie;
   const firstGenreSlug = movie?.category?.[0]?.slug || "";
@@ -47,12 +48,12 @@ export const WatchPage = () => {
   // Current episode
   const currentEp = useMemo(() => {
     if (allEpisodes.length === 0) return null;
-    if (tapParam) {
-      const found = allEpisodes.find((ep) => ep.slug === tapParam);
+    if (activeTap) {
+      const found = allEpisodes.find((ep) => ep.slug === activeTap);
       if (found) return found;
     }
     return allEpisodes[0];
-  }, [allEpisodes, tapParam]);
+  }, [allEpisodes, activeTap]);
 
   const currentSrc = currentEp?.link_m3u8 || currentEp?.link_embed || "";
 
@@ -102,11 +103,10 @@ export const WatchPage = () => {
   );
 
   const handleSelectEpisode = useCallback((epSlug: string) => {
-    // Use pushState to avoid full page reload
+    setActiveTap(epSlug);
     const url = new URL(window.location.href);
     url.searchParams.set("tap", epSlug);
-    window.history.pushState({}, "", url.toString());
-    window.location.reload();
+    window.history.replaceState({}, "", url.toString());
   }, []);
 
   if (isLoading) {
@@ -203,10 +203,9 @@ export const WatchPage = () => {
               {allEpisodes.map((ep) => (
                 <Button
                   key={ep.slug}
-                  as={Link}
-                  href={`/xem/${movie.slug}?tap=${ep.slug}`}
                   size="sm"
                   variant="flat"
+                  onPress={() => handleSelectEpisode(ep.slug)}
                   className={`min-w-14 border border-white/10 ${
                     currentEp?.slug === ep.slug
                       ? "bg-primary text-white"

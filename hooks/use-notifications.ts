@@ -46,7 +46,6 @@ export const useNotifications = () => {
       }
 
       const allNewNotifications: EpisodeNotification[] = [];
-      const updates: { slug: string; newEp: string }[] = [];
 
       // Process in batches of CONCURRENCY
       for (let i = 0; i < toCheck.length; i += CONCURRENCY) {
@@ -94,7 +93,6 @@ export const useNotifications = () => {
           );
 
           allNewNotifications.push(notification);
-          updates.push({ slug: fav.slug, newEp: liveEp });
         }
 
         // Delay between batches (skip after last batch)
@@ -108,27 +106,30 @@ export const useNotifications = () => {
         setState((prev) => {
           const updatedMap = new Map(prev.items.map((n) => [n.id, n]));
           for (const n of allNewNotifications) {
-            // Upsert: update existing or add new, preserve read state
             const existing = updatedMap.get(n.id);
-            updatedMap.set(n.id, existing ? { ...n, read: existing.read } : n);
+            if (existing) {
+              // Reset read if episode changed (new episode since last check)
+              const read =
+                existing.latestEpisode === n.latestEpisode
+                  ? existing.read
+                  : false;
+              updatedMap.set(n.id, { ...n, read });
+            } else {
+              updatedMap.set(n.id, n);
+            }
           }
           const merged = Array.from(updatedMap.values())
             .sort((a, b) => b.updatedTime - a.updatedTime)
             .slice(0, MAX_ITEMS);
           return { items: merged, lastCheckedAt: now };
         });
-
-        // Update episode_current in favorites + sync DB
-        for (const { slug, newEp } of updates) {
-          updateEpisodeCurrent(slug, newEp);
-        }
       } else {
         setState((prev) => ({ ...prev, lastCheckedAt: now }));
       }
     };
 
     checkForNewEpisodes();
-  }, [user, favorites, state.lastCheckedAt, setState, updateEpisodeCurrent]);
+  }, [user, favorites, state.lastCheckedAt, setState]);
 
   // Reset check flag on user change
   useEffect(() => {
@@ -141,22 +142,37 @@ export const useNotifications = () => {
 
   const markRead = useCallback(
     (id: string) => {
+      const notif = state.items.find((n) => n.id === id);
+
       setState((prev) => ({
         ...prev,
         items: prev.items.map((n) =>
           n.id === id ? { ...n, read: true } : n,
         ),
       }));
+
+      // Update episode_current in favorites + DB so future checks
+      // only notify for episodes after this one
+      if (notif && !notif.read) {
+        updateEpisodeCurrent(notif.slug, notif.latestEpisode);
+      }
     },
-    [setState],
+    [state.items, setState, updateEpisodeCurrent],
   );
 
   const markAllRead = useCallback(() => {
+    // Update episode_current for all unread notifications
+    for (const notif of state.items) {
+      if (!notif.read) {
+        updateEpisodeCurrent(notif.slug, notif.latestEpisode);
+      }
+    }
+
     setState((prev) => ({
       ...prev,
       items: prev.items.map((n) => ({ ...n, read: true })),
     }));
-  }, [setState]);
+  }, [state.items, setState, updateEpisodeCurrent]);
 
   const dismiss = useCallback(
     (id: string) => {

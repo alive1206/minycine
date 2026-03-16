@@ -183,6 +183,8 @@ export const VideoPlayer = ({
       });
     };
 
+    initialTimeApplied.current = false;
+
     if (isM3u8 && Hls.isSupported()) {
       const hls = new Hls({
         maxBufferLength: 30,

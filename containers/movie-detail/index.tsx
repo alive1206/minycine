@@ -497,7 +497,7 @@ export const MovieDetailPage = () => {
                     <p className="text-sm text-gray-400 mb-3 font-medium">
                       {server.server_name}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 max-h-[400px] overflow-y-auto thin-scrollbar">
                       {server.server_data.map((ep) => (
                         <Button
                           key={ep.slug}
